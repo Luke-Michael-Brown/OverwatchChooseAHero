@@ -12,99 +12,97 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 
 public class ChooseAHeroView extends View {
      // Fields
-    private ArrayList<Entity> heroOrder;
-    private ArrayList<Entity> allyTeam;
-    private ArrayList<Entity> enemyTeam;
+    private final ArrayList<SqEntity> heroOrder;
+    private final ArrayList<HexEntity> allyTeam;
+    private final ArrayList<HexEntity> enemyTeam;
+
+    private final ArrayList<Entity> entities;
+    private final ArrayList<HexEntity> hexEntities;
 
     private int currentIndex = -1;
     private float pokeX;
     private float pokeY;
-    private Paint paint;
-    private int FPS = 60;
+    private final Paint paint;
+    private final int FPS = 60;
 
-    public ChooseAHeroView(Context context, AttributeSet attrs) {
+    public ChooseAHeroView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
+        Entity.setRes(getResources());
         paint = new Paint();
 
-        heroOrder = new ArrayList<Entity>();
-        heroOrder.add(new Entity("genji", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("mcCree", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("pharah", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("reaper", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("soldier76", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("tracer", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("bastion", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("hanzo", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("junkrat", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("mei", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("torbjorn", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("widowmaker", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("dva", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("reinhardt", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("roadhog", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("winston", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("zarya", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("lucio", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("mercy", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("symmetra", EntityType.SQ, 1.5f, getResources()));
-        heroOrder.add(new Entity("zenyatta", EntityType.SQ, 1.5f, getResources()));
+        heroOrder = new ArrayList<SqEntity>();
+        heroOrder.add(new SqEntity("genji"));
+        heroOrder.add(new SqEntity("mccree"));
+        heroOrder.add(new SqEntity("pharah"));
+        heroOrder.add(new SqEntity("reaper"));
+        heroOrder.add(new SqEntity("soldier76"));
+        heroOrder.add(new SqEntity("tracer"));
+        heroOrder.add(new SqEntity("bastion"));
+        heroOrder.add(new SqEntity("hanzo"));
+        heroOrder.add(new SqEntity("junkrat"));
+        heroOrder.add(new SqEntity("mei"));
+        heroOrder.add(new SqEntity("torbjorn"));
+        heroOrder.add(new SqEntity("widowmaker"));
+        heroOrder.add(new SqEntity("dva"));
+        heroOrder.add(new SqEntity("reinhardt"));
+        heroOrder.add(new SqEntity("roadhog"));
+        heroOrder.add(new SqEntity("winston"));
+        heroOrder.add(new SqEntity("zarya"));
+        heroOrder.add(new SqEntity("lucio"));
+        heroOrder.add(new SqEntity("mercy"));
+        heroOrder.add(new SqEntity("symmetra"));
+        heroOrder.add(new SqEntity("zenyatta"));
 
-        allyTeam = new ArrayList<Entity>();
-        allyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        allyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        allyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        allyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        allyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
+        allyTeam = new ArrayList<HexEntity>();
+        allyTeam.add(new HexEntity("empty"));
+        allyTeam.add(new HexEntity("empty"));
+        allyTeam.add(new HexEntity("empty"));
+        allyTeam.add(new HexEntity("empty"));
+        allyTeam.add(new HexEntity("empty"));
 
-        enemyTeam = new ArrayList<Entity>();
-        enemyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        enemyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        enemyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        enemyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        enemyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
-        enemyTeam.add(new Entity("empty", EntityType.HEX, 1, getResources()));
+        enemyTeam = new ArrayList<HexEntity>();
+        enemyTeam.add(new HexEntity("empty"));
+        enemyTeam.add(new HexEntity("empty"));
+        enemyTeam.add(new HexEntity("empty"));
+        enemyTeam.add(new HexEntity("empty"));
+        enemyTeam.add(new HexEntity("empty"));
+        enemyTeam.add(new HexEntity("empty"));
+
+        entities = new ArrayList<Entity>();
+        hexEntities = new ArrayList<HexEntity>();
+        for(Entity entity : heroOrder) {
+            entities.add(entity);
+        }
+        for(HexEntity entity : allyTeam) {
+            entities.add(entity);
+            hexEntities.add(entity);
+        }
+        for(HexEntity entity : enemyTeam) {
+            entities.add(entity);
+            hexEntities.add(entity);
+        }
 
         // start the animation:
         this.postInvalidate();
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
         if(heroOrder.get(0).getPos() == null) {
-            resetPositions();
+            setInitialPositions();
         }
 
         paint.setColor(Color.BLACK);
-        for(Entity entity : heroOrder) {
-            PointF pos = entity.getPos();
-            final float x = pos.x;
-            final float y = pos.y;
-            final Bitmap bm = entity.getBitmap();
-            final float w = bm.getHeight();
-            final float h = bm.getHeight();
+        for(Entity entity : entities) {
+            entity.update(1000 / FPS);
 
-            canvas.drawBitmap(bm, x, y, paint);
-        }
-
-        //canvas.drawBitmap(allyTeam.get(1).getBitmap(), allyTeam.get(1).getPos().x, allyTeam.get(1).getPos().y, paint);
-        for(Entity entity : allyTeam) {
-            PointF pos = entity.getPos();
-            final float x = pos.x;
-            final float y = pos.y;
-            final Bitmap bm = entity.getBitmap();
-            final float w = bm.getHeight();
-            final float h = bm.getHeight();
-
-            canvas.drawBitmap(bm, x, y, paint);
-        }
-
-        for(Entity entity : enemyTeam) {
             PointF pos = entity.getPos();
             final float x = pos.x;
             final float y = pos.y;
@@ -124,7 +122,7 @@ public class ChooseAHeroView extends View {
         this.postInvalidateDelayed(1000 / FPS);
     }
 
-    public void resetPositions() {
+    private void setInitialPositions() {
         int ENTITY_SIZE = heroOrder.get(0).getBitmap().getWidth();
         int NUMBER_OF_ROWS = 5;
         int MIN_NUMBER_OF_HERO_PER_ROW = 3;
@@ -172,7 +170,11 @@ public class ChooseAHeroView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
+    public boolean onTouchEvent(final MotionEvent event){
+       if(isAnimating()) {
+           return true;
+       }
+
         final PointF poke = new PointF(event.getX(), event.getY());
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -188,24 +190,13 @@ public class ChooseAHeroView extends View {
                 return true;
 
             case MotionEvent.ACTION_UP:
-                for(Entity entity : allyTeam) {
+                for(Entity entity : hexEntities) {
                     if(entity.contains(poke)) {
                         if(currentIndex == -1) {
-                            entity.setImage("empty", 1, getResources());
+                            entity.setImage("empty");
                         } else {
                             Entity current = this.heroOrder.get(currentIndex);
-                            entity.setImage(current.getName(), 1, getResources());
-                        }
-                        break;
-                    }
-                }
-                for(Entity entity : enemyTeam) {
-                    if(entity.contains(poke)) {
-                        if(currentIndex == -1) {
-                            entity.setImage("empty", 1, getResources());
-                        } else {
-                            Entity current = this.heroOrder.get(currentIndex);
-                            entity.setImage(current.getName(), 1, getResources());
+                            entity.setImage(current.getName());
                         }
                         break;
                     }
@@ -226,11 +217,30 @@ public class ChooseAHeroView extends View {
         return false;
     }
 
+    public void updateOrder(final ArrayList<String> heroOrderStrings) {
+        if(!isAnimating()) {
+            ArrayList<SqEntity> newHeroOrder = new ArrayList<SqEntity>(heroOrder);
+
+            for(int i = 0; i < heroOrder.size(); ++i) {
+                SqEntity entity = heroOrder.get(i);
+                int index = heroOrderStrings.indexOf(entity.getName());
+                if (i != index) {
+                    entity.setAnimators(heroOrder.get(index).getPos());
+                    newHeroOrder.set(index, entity);
+                }
+            }
+
+            for(int i = 0; i < heroOrder.size(); ++i) {
+                heroOrder.set(i, newHeroOrder.get(i));
+            }
+        }
+    }
+
     public ArrayList<String> getAllyTeam() {
-        ArrayList<String> allyTeamStrings = new ArrayList<String>();
+        final ArrayList<String> allyTeamStrings = new ArrayList<String>();
         for(Entity entity : allyTeam) {
             String name = entity.getName();
-            if(name.equals("empty")) {
+            if(!name.equals("empty")) {
                 allyTeamStrings.add(entity.getName());
             }
         }
@@ -238,14 +248,24 @@ public class ChooseAHeroView extends View {
     }
 
     public ArrayList<String> getEnemyTeam() {
-        ArrayList<String> enemyTeamStrings = new ArrayList<String>();
+        final ArrayList<String> enemyTeamStrings = new ArrayList<String>();
         for(Entity entity : enemyTeam) {
             String name = entity.getName();
-            if(name.equals("empty")) {
+            if(!name.equals("empty")) {
                 enemyTeamStrings.add(entity.getName());
             }
         }
         return enemyTeamStrings;
+    }
+
+    public boolean isAnimating() {
+        for(Entity entity : heroOrder) {
+            if(entity.isAnimating()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

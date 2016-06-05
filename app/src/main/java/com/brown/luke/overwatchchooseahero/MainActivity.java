@@ -18,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ActionBar ab = getSupportActionBar();
         if(ab != null) {
             ab.hide();
@@ -87,25 +89,40 @@ public class MainActivity extends AppCompatActivity {
             });
             adView.loadAd(adRequest);
         }
-
-        // Start drawing!
-        /*Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                view.invalidate();
-            }
-        }, 1000, 17);*/
-
-        // For now just run it right away
-        run();
     }
 
-    private void run() {
-        ArrayList<String> rankedHeroes = ChooseAHero.run(view.getAllyTeam(), view.getEnemyTeam(), state);
+    public void run(View btn) {
+        final ArrayList<String> rankedHeroes = ChooseAHero.run(view.getAllyTeam(), view.getEnemyTeam(), state);
         if(rankedHeroes != null) {
-            // TODO
+            view.updateOrder(rankedHeroes);
         }
+    }
+
+    public void reset(View btn) {
+        final ArrayList<String> defaultOrder = new ArrayList<String>(Arrays.asList("genji", "mccree", "pharah",
+                "reaper", "soldier76", "tracer",
+                "bastion", "hanzo", "junkrat",
+                "mei", "torbjorn", "widowmaker",
+                "dva", "reinhardt", "roadhog",
+                "winston", "zarya", "lucio",
+                "mercy", "symmetra", "zenyatta"));
+        view.updateOrder(defaultOrder);
+    }
+
+    public void changeState(View btn) {
+        switch (state) {
+            case "ATTACK":
+                state = "DEFEND";
+                break;
+            case "DEFEND":
+                state = "KOH";
+                break;
+            case "KOH":
+                state = "ATTACK";
+                break;
+        }
+
+        ((Button) btn).setText(state);
     }
 
 }

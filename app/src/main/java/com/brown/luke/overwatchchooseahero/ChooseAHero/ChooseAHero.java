@@ -1,5 +1,7 @@
 package com.brown.luke.overwatchchooseahero.ChooseAHero;
 
+import android.util.Log;
+
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
@@ -20,7 +22,7 @@ public class ChooseAHero {
     static  {
         // Setup heroes
         final Hero genji = new Hero("genji", Role.OFFENCE, SubRole.FLANKER);
-        final Hero mcCree = new Hero("mcCree", Role.OFFENCE, SubRole.ASSAULT);
+        final Hero mcCree = new Hero("mccree", Role.OFFENCE, SubRole.ASSAULT);
         final Hero pharah = new Hero("pharah", Role.OFFENCE, SubRole.ASSAULT);
         final Hero reaper = new Hero("reaper", Role.OFFENCE, SubRole.FLANKER);
         final Hero soldier76 = new Hero("soldier76", Role.OFFENCE, SubRole.ASSAULT);
@@ -90,7 +92,7 @@ public class ChooseAHero {
         addCounter(mcCree, reinhardt, 1);
         addCounter(mcCree, torbjorn, 1);
         addCounter(mcCree, bastion, 1);
-        addCounter(mcCree, winston, 2);
+        addCounter(mcCree, winston, 1);
         addCounter(mcCree, lucio, 2);
         addCounter(mcCree, junkrat, 1);
 
@@ -115,6 +117,7 @@ public class ChooseAHero {
         addCounter(reaper, zenyatta, 2);
         addCounter(reaper, junkrat, 1);
         addCounter(reaper, roadhog, 1);
+        addCounter(reaper, genji, 1);
 
         addCounter(soldier76, pharah, 2);
         addCounter(soldier76, roadhog, 1);
@@ -264,15 +267,21 @@ public class ChooseAHero {
     }
 
     // Main algorithm
-    public static ArrayList<String> run(ArrayList<String> allyTeamStrings, ArrayList<String> enemyTeamStrings, String stateString) {
-        final ArrayList<Hero> allyTeam = new ArrayList<Hero>();
-        final ArrayList<Hero> enemyTeam = new ArrayList<Hero>();
+    public static ArrayList<String> run(final ArrayList<String> allyTeamStrings, final ArrayList<String> enemyTeamStrings, final String stateString) {
+        ArrayList<Hero> allyTeam = new ArrayList<Hero>();
+        ArrayList<Hero> enemyTeam = new ArrayList<Hero>();
         for(Hero hero : heroes) {
-            if(allyTeamStrings.contains(hero.getName())) {
-                allyTeam.add(hero);
+            for(String allyName : allyTeamStrings) {
+                if(allyName.equals(hero.getName())) {
+                    allyTeam.add(hero);
+                    Log.d("TEST - ALLY", hero.getName());
+                }
             }
-            if(enemyTeamStrings.contains(hero.getName())) {
-                enemyTeam.add(hero);
+            for(String enemyName : enemyTeamStrings) {
+                if(enemyName.equals(hero.getName())) {
+                    enemyTeam.add(hero);
+                    Log.d("TEST - ENEMY", hero.getName());
+                }
             }
         }
 
@@ -291,7 +300,7 @@ public class ChooseAHero {
                 return null;
         }
 
-        ArrayList<Hero> rankedHeroes = new ArrayList<Hero>(heroes);
+        final ArrayList<Hero> rankedHeroes = new ArrayList<Hero>(heroes);
 
         final HashMap<Role, Integer> recommendRoleCount = new HashMap<Role, Integer>();
         recommendRoleCount.put(Role.OFFENCE, (state == State.ATTACK) ? 2 : ((state == State.KOH) ? 1 : 0));
@@ -400,9 +409,11 @@ public class ChooseAHero {
             }
         });
 
-        ArrayList<String> result = new ArrayList<String>();
+        final ArrayList<String> result = new ArrayList<String>();
         for(Hero hero : rankedHeroes) {
+            hero.resetRank();
             result.add(hero.getName());
+            Log.d("TEST - RANK", hero.getName());
         }
 
         return result;

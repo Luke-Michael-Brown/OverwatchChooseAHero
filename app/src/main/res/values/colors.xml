@@ -6,6 +6,7 @@
 
     <color name="white_trans">#DDFFFFFF</color>
     <color name="black_trans">#CC000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="orange">#F99F1D</color>
 </resources>

@@ -66,6 +66,10 @@ public class Hero {
     // Setters
     //---------
 
+    public void resetRank() {
+        this.rank = 0;
+    }
+
     public void adjustRank(int adjustment) {
         this.rank += adjustment;
     }
