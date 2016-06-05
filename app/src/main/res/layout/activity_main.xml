@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/background"
+    tools:context="com.brown.luke.overwatchchooseahero.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black_trans"
+        android:translationZ="1dp">
+        <TextView
+            android:id="@+id/app_title"
+            android:text="Overwatch: Choose a Hero"
+            android:textColor="@color/white"
+            android:layout_margin="10dp"
+            android:textSize="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_trans"
+        android:layout_above="@+id/adView"
+        android:translationZ="1dp">
+        <Button
+            android:id="@+id/start_btn"
+            android:text="Choose"
+            android:background="@android:color/transparent"
+            android:textColor="@color/orange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_trans"
+        android:layout_alignParentBottom="true">
+        <ProgressBar
+            android:layout_margin="1dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            style="?android:attr/progressBarStyle"/>
+    </RelativeLayout>
+
+    <!-- view for AdMob Banner Ad -->
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white_trans"
+        ads:adSize="SMART_BANNER"
+        ads:adUnitId="@string/banner_ad_unit_id" />
+
+    <ImageView
+        android:id="@+id/app_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bg_1"
+        android:layout_above="@id/adView"/>
+
+    <com.brown.luke.overwatchchooseahero.ChooseAHeroView
+        android:id="@+id/canvas_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_above="@id/bottom_bar"
+        android:layout_below="@id/top_bar">
+    </com.brown.luke.overwatchchooseahero.ChooseAHeroView>
+
+</RelativeLayout>
