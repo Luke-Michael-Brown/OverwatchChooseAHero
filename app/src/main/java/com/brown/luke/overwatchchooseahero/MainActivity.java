@@ -41,27 +41,6 @@ public class MainActivity extends AppCompatActivity {
         state = "ATTACK";
         view = (ChooseAHeroView) findViewById(R.id.canvas_layout);
 
-        // Set background
-        Random rand = new Random();
-        View bg = findViewById(R.id.app_bg);
-        if(bg != null) {
-            switch (rand.nextInt(4) + 1) {
-                case 1:
-                    bg.setBackgroundResource(R.drawable.bg_1);
-                    break;
-                case 2:
-                    bg.setBackgroundResource(R.drawable.bg_2);
-                    break;
-                case 3:
-                    bg.setBackgroundResource(R.drawable.bg_3);
-                    break;
-                case 4:
-                    bg.setBackgroundResource(R.drawable.bg_4);
-                    break;
-            }
-        }
-
-
         // Set custom fonts
         TextView title = (TextView) findViewById(R.id.app_title);
         if(title != null) {

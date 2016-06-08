@@ -110,7 +110,11 @@ public class ChooseAHeroView extends View {
             final float w = bm.getHeight();
             final float h = bm.getHeight();
 
+            if(entity.isHover()) {
+                paint.setAlpha(167);
+            }
             canvas.drawBitmap(bm, x, y, paint);
+            paint.setAlpha(255);
         }
 
         if(currentIndex >= 0) {
@@ -153,20 +157,28 @@ public class ChooseAHeroView extends View {
         int SPACING = 30;
         int START_X =  (getWidth() - (ENTITY_WIDTH * 3 + SPACING * 2)) / 2;
         for(int i = 1; i < allyTeam.size() - 1; ++i) {
-            PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), getHeight() - ENTITY_WIDTH - SPACING);
-            allyTeam.get(i).setPos(pos);
+            final HexEntity ally = allyTeam.get(i);
+            final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), getHeight() - ENTITY_WIDTH - SPACING);
+            ally.setPos(pos);
+            addBorder("ally", ally);
         }
         allyTeam.get(0).setPos(new PointF(SPACING, getHeight() - 3 * ENTITY_HEIGHT / 2));
+        addBorder("ally", allyTeam.get(0));
         allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - ENTITY_WIDTH - SPACING, getHeight() - 3 * ENTITY_HEIGHT / 2));
+        addBorder("ally", allyTeam.get(allyTeam.size() - 1));
 
         SPACING = 15;
         START_X =  (getWidth() - (ENTITY_WIDTH * 4 + SPACING * 3)) / 2;
         for(int i = 1; i < enemyTeam.size() - 1; ++i) {
-            PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), SPACING);
-            enemyTeam.get(i).setPos(pos);
+            final HexEntity enemy = enemyTeam.get(i);
+            final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), SPACING);
+            enemy.setPos(pos);
+            addBorder("enemy", enemy);
         }
         enemyTeam.get(0).setPos(new PointF(SPACING, SPACING + 3 * ENTITY_HEIGHT / 4));
+        addBorder("enemy", enemyTeam.get(0));
         enemyTeam.get(enemyTeam.size() - 1).setPos(new PointF(getWidth() - ENTITY_WIDTH - SPACING, SPACING + 3 * ENTITY_HEIGHT / 4));
+        addBorder("enemy", enemyTeam.get(enemyTeam.size() - 1));
     }
 
     @Override
@@ -203,18 +215,34 @@ public class ChooseAHeroView extends View {
                 }
 
             case MotionEvent.ACTION_CANCEL:
-
                 currentIndex = -1;
                 return true;
 
             case MotionEvent.ACTION_MOVE:
                 pokeX = poke.x;
                 pokeY = poke.y;
+                for(HexEntity hexEntity : hexEntities) {
+                    if(hexEntity.contains(poke) && currentIndex != -1) {
+                        hexEntity.setHoverBitmap(heroOrder.get(currentIndex).getName());
+                    } else {
+                        hexEntity.removeHoverBitmap();
+                    }
+                }
                 return true;
 
         }
 
         return false;
+    }
+
+    private void addBorder(final String team, final HexEntity hex) {
+        final Bitmap bitmap = hex.getBitmap();
+        final HexEntity border = new HexEntity(team);
+        final Bitmap borderBitmap = border.getBitmap();
+
+        border.setPos(new PointF(hex.getPos().x - (borderBitmap.getWidth() - bitmap.getWidth()) / 2,
+                                 hex.getPos().y - (borderBitmap.getHeight() - bitmap.getHeight()) / 2 + 1));
+        entities.add(border);
     }
 
     public void updateOrder(final ArrayList<String> heroOrderStrings) {

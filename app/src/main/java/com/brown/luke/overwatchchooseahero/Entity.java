@@ -12,7 +12,7 @@ import android.util.Log;
 import java.util.HashMap;
 
 public abstract class Entity {
-    private static Resources resources;
+    protected static Resources resources;
 
     // Fields
     private String name;
@@ -37,7 +37,7 @@ public abstract class Entity {
         return pos;
     }
 
-    public void setImage(String name) {
+    public void setImage(final String name) {
         this.name = name;
         Bitmap bm = BitmapFactory.decodeResource(resources, getIdMap().get(name));
         Matrix m = new Matrix();
@@ -53,6 +53,10 @@ public abstract class Entity {
         return poke.x >= pos.x && poke.y >= pos.y &&
                 poke.x <= pos.x + bitmap.getWidth() &&
                 poke.y <= pos.y + bitmap.getHeight();
+    }
+
+    public boolean isHover() {
+        return false;
     }
 
     public static void setRes(Resources res) {

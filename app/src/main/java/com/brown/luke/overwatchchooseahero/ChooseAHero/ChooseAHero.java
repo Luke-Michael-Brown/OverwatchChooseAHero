@@ -264,6 +264,16 @@ public class ChooseAHero {
         addSynergy(reinhardt, hanzo, 1);
         addSynergy(pharah, mercy, 2);
         addSynergy(roadhog, junkrat, 1);
+        addSynergy(reaper, lucio, 1);
+        addSynergy(mcCree, lucio, 1);
+        addSynergy(mercy, bastion, 1);
+        addSynergy(mercy, mei, 1);
+        addSynergy(mercy, widowmaker, 1);
+        addSynergy(roadhog, lucio, 1);
+        addSynergy(zarya, lucio, 1);
+        addSynergy(zenyatta, symmetra, 2);
+        addSynergy(lucio, symmetra, 1);
+        addSynergy(mercy, symmetra, 1);
     }
 
     // Main algorithm
@@ -274,13 +284,11 @@ public class ChooseAHero {
             for(String allyName : allyTeamStrings) {
                 if(allyName.equals(hero.getName())) {
                     allyTeam.add(hero);
-                    Log.d("TEST - ALLY", hero.getName());
                 }
             }
             for(String enemyName : enemyTeamStrings) {
                 if(enemyName.equals(hero.getName())) {
                     enemyTeam.add(hero);
-                    Log.d("TEST - ENEMY", hero.getName());
                 }
             }
         }
@@ -345,11 +353,11 @@ public class ChooseAHero {
             // If we are under the recommended roles then recommend hero's of that role
             if(hero.getCore() && roleCounts.get(hero.getRole()) < recommendRoleCount.get(hero.getRole())) {
                 if(hero.getRole() == Role.SUPPORT) {
-                    hero.adjustRank(10);
+                    hero.adjustRank(50);
                 } else if (hero.getRole() == Role.TANK) {
-                    hero.adjustRank(8);
+                    hero.adjustRank(25);
                 } else {
-                    hero.adjustRank(5);
+                    hero.adjustRank(7);
                 }
             }
             if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) < recommendSubRoleCount.get(hero.getSubRole())) {
@@ -358,10 +366,25 @@ public class ChooseAHero {
 
             // If we have too many of one role then don't recommend heroes of that role
             if(hero.getCore() && roleCounts.get(hero.getRole()) > recommendRoleCount.get(hero.getRole())) {
-                hero.adjustRank(roleCounts.get(hero.getRole()) - recommendRoleCount.get(hero.getRole()));
+                hero.adjustRank(5 * (recommendRoleCount.get(hero.getRole()) - roleCounts.get(hero.getRole())));
             }
             if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) > recommendSubRoleCount.get(hero.getSubRole())) {
-                hero.adjustRank(-1);
+                hero.adjustRank(3 * (recommendSubRoleCount.get(hero.getSubRole()) - subRoleCounts.get(hero.getSubRole())));
+            }
+
+            // If we are on attack/defend and they are an attack/defend unit +1/-1
+            if(hero.getRole() == Role.OFFENCE) {
+                if(state == State.ATTACK) {
+                    hero.adjustRank(1);
+                } else if(state == State.DEFEND) {
+                    hero.adjustRank(-1);
+                }
+            } else if(hero.getRole() == Role.DEFENCE) {
+                if(state == State.ATTACK) {
+                    hero.adjustRank(-1);
+                } else if(state == State.DEFEND) {
+                    hero.adjustRank(1);
+                }
             }
 
             for(Hero ally : allyTeam) {
@@ -413,7 +436,6 @@ public class ChooseAHero {
         for(Hero hero : rankedHeroes) {
             hero.resetRank();
             result.add(hero.getName());
-            Log.d("TEST - RANK", hero.getName());
         }
 
         return result;

@@ -2,6 +2,8 @@ package com.brown.luke.overwatchchooseahero;
 
 
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import java.util.HashMap;
 
@@ -33,28 +35,58 @@ public class HexEntity extends Entity {
         HEX_MAP.put("symmetra", R.drawable.symmetra_hex);
         HEX_MAP.put("zenyatta", R.drawable.zenyatta_hex);
         HEX_MAP.put("empty", R.drawable.empty_hex);
+        HEX_MAP.put("ally", R.drawable.ally_hex);
+        HEX_MAP.put("enemy", R.drawable.enemy_hex);
     }
+
+    // Fields
+    private Bitmap hoverBitmap;
 
     public HexEntity(String name) {
         super(name);
+        this.hoverBitmap = null;
+    }
+
+    public void setHoverBitmap(String hoverName) {
+        this.hoverBitmap =  BitmapFactory.decodeResource(resources, getIdMap().get(hoverName));
+    }
+
+    public void removeHoverBitmap() {
+        this.hoverBitmap = null;
+    }
+
+    @Override
+    public Bitmap getBitmap() {
+        if(this.hoverBitmap == null) {
+            return super.getBitmap();
+        } else {
+            return this.hoverBitmap;
+        }
+    }
+
+    @Override
+    public void setImage(final String name) {
+        super.setImage(name);
+        this.hoverBitmap = null;
+    }
+
+    @Override
+    public boolean isHover() {
+        return this.hoverBitmap != null;
     }
 
     @Override
     protected float getScale() {
-        return 1;
+        return 0.9f;
     }
 
     @Override
-    public void update(float delta) {
-
-    }
+    public void update(float delta) {}
 
     @Override
     public boolean isAnimating() {
         return false;
     }
-
-
 
     @Override
     protected HashMap<String, Integer> getIdMap() {
