@@ -13,8 +13,10 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
         // Load an ad into the AdMob banner view.
         final AdView adView = (AdView) findViewById(R.id.adView);
         if(adView != null) {
-            AdRequest adRequest = new AdRequest.Builder().setRequestAgent("android_studio:ad_template").build();
+
+            AdRequest adRequest = new AdRequest.Builder()
+                    .setRequestAgent("android_studio:ad_template")
+                    .addTestDevice("B355818CF4EB6EE16E798FC1DAE19E08")
+                    .build();
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
@@ -68,6 +74,19 @@ public class MainActivity extends AppCompatActivity {
             });
             adView.loadAd(adRequest);
         }
+
+        final Spinner stateSpinner = (Spinner) findViewById(R.id.state_spinner);
+        stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                state = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void run(View btn) {
@@ -87,21 +106,4 @@ public class MainActivity extends AppCompatActivity {
                 "mercy", "symmetra", "zenyatta"));
         view.updateOrder(defaultOrder);
     }
-
-    public void changeState(View btn) {
-        switch (state) {
-            case "ATTACK":
-                state = "DEFEND";
-                break;
-            case "DEFEND":
-                state = "KOH";
-                break;
-            case "KOH":
-                state = "ATTACK";
-                break;
-        }
-
-        ((Button) btn).setText(state);
-    }
-
 }

@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class SqEntity extends Entity {
     // Constants
-    final int SQ_DURATION = 300;
+    final int SQ_DURATION = 267;
 
     // Id map
     private static HashMap<String, Integer> SQ_MAP;
@@ -70,7 +70,7 @@ public class SqEntity extends Entity {
 
     @Override
     protected float getScale() {
-        return 1.5f;
+        return 1.6f;
     }
 
     @Override

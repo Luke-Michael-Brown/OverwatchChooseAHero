@@ -4,9 +4,14 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#F99F1D</color>
 
-    <color name="white_trans">#DDFFFFFF</color>
-    <color name="black_trans">#CC000000</color>
+    <color name="whiteTrans">#DDFFFFFF</color>
+    <color name="blackTrans">#662B2D33</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="orange">#F99F1D</color>
+
+    <color name="blue">#661B73B9</color>
+    <color name="lightBlue">#666EA0CF</color>
+    <color name="darkBlue">#404D6C</color>
+    <color name="yellow">#FBDA05</color>
 </resources>

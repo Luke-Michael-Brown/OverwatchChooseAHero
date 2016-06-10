@@ -353,15 +353,15 @@ public class ChooseAHero {
             // If we are under the recommended roles then recommend hero's of that role
             if(hero.getCore() && roleCounts.get(hero.getRole()) < recommendRoleCount.get(hero.getRole())) {
                 if(hero.getRole() == Role.SUPPORT) {
-                    hero.adjustRank(50);
+                    hero.adjustRank(5000); // Some stupid big number to make them play support even over tank
                 } else if (hero.getRole() == Role.TANK) {
-                    hero.adjustRank(25);
+                    hero.adjustRank(1000); // Some stupid big number to make them play tank
                 } else {
-                    hero.adjustRank(7);
+                    hero.adjustRank(10);
                 }
             }
             if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) < recommendSubRoleCount.get(hero.getSubRole())) {
-                hero.adjustRank(3);
+                hero.adjustRank(5);
             }
 
             // If we have too many of one role then don't recommend heroes of that role

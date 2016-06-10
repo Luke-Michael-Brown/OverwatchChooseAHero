@@ -9,4 +9,25 @@
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
     <string name="banner_ad_unit_id">ca-app-pub-1155399458000973/9121794648</string>
+    
+    <string-array name="states">
+        <item>ATTACK</item>
+        <item>DEFEND</item>
+        <item>KOH</item>
+    </string-array>
+
+    <string-array name="maps">
+        <item>Hanamura</item>
+        <item>Anubis</item>
+        <item>Volskaya</item>
+        <item>Dorado</item>
+        <item>Route 66</item>
+        <item>Watchpoint</item>
+        <item>Hollywood</item>
+        <item>Kings Row</item>
+        <item>Numbani</item>
+        <item>Ilios</item>
+        <item>Lijiang</item>
+        <item>Nepal</item>
+    </string-array>
 </resources>

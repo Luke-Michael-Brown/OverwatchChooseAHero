@@ -113,6 +113,7 @@ public class ChooseAHeroView extends View {
             if(entity.isHover()) {
                 paint.setAlpha(167);
             }
+
             canvas.drawBitmap(bm, x, y, paint);
             paint.setAlpha(255);
         }
@@ -129,32 +130,24 @@ public class ChooseAHeroView extends View {
     private void setInitialPositions() {
         int ENTITY_SIZE = heroOrder.get(0).getBitmap().getWidth();
         int NUMBER_OF_ROWS = 5;
-        int MIN_NUMBER_OF_HERO_PER_ROW = 3;
-        int MAX_NUMBER_OF_HERO_PER_ROW = 5;
-
-        int SPACING_X = (this.getWidth() - MAX_NUMBER_OF_HERO_PER_ROW * ENTITY_SIZE) / (MAX_NUMBER_OF_HERO_PER_ROW + 1);
-        int SPACING_Y = SPACING_X / 2;
 
         int index = 0;
+        int y = (this.getHeight() - ENTITY_SIZE * NUMBER_OF_ROWS) / 2;
         for(int i = 0; i < NUMBER_OF_ROWS; ++i) {
-            final int NUM_OF_HEROES_PER_ROW = (i == 0 || i == NUMBER_OF_ROWS - 1) ? MIN_NUMBER_OF_HERO_PER_ROW : MAX_NUMBER_OF_HERO_PER_ROW;
-            final int START_X = (i == 0 || i == NUMBER_OF_ROWS - 1) ?
-                    (MAX_NUMBER_OF_HERO_PER_ROW - MIN_NUMBER_OF_HERO_PER_ROW - 1) * ENTITY_SIZE + (MAX_NUMBER_OF_HERO_PER_ROW - MIN_NUMBER_OF_HERO_PER_ROW) * SPACING_X :
-                    SPACING_X;
-
-            int y = (this.getHeight() - ENTITY_SIZE * NUMBER_OF_ROWS - (NUMBER_OF_ROWS - 1) * SPACING_Y) / 2 +
-                    i * (ENTITY_SIZE + SPACING_Y);
-            for(int j = 0 ; j < NUM_OF_HEROES_PER_ROW; ++j) {
-                int x = START_X + j * (ENTITY_SIZE + SPACING_X);
+            int NUM_OF_HEROES = (i == 0 || i == NUMBER_OF_ROWS - 1) ? 3 : 5;
+            int x = (this.getWidth() - NUM_OF_HEROES * ENTITY_SIZE) / 2;
+            for(int j = 0; j < NUM_OF_HEROES; ++j) {
                 heroOrder.get(index).setPos(new PointF(x, y));
+                x += ENTITY_SIZE;
                 ++index;
             }
+            y += ENTITY_SIZE;
         }
 
         int ENTITY_WIDTH = allyTeam.get(0).getBitmap().getWidth();
         int ENTITY_HEIGHT = allyTeam.get(0).getBitmap().getHeight();
 
-        int SPACING = 30;
+        int SPACING = 40;
         int START_X =  (getWidth() - (ENTITY_WIDTH * 3 + SPACING * 2)) / 2;
         for(int i = 1; i < allyTeam.size() - 1; ++i) {
             final HexEntity ally = allyTeam.get(i);
@@ -167,7 +160,7 @@ public class ChooseAHeroView extends View {
         allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - ENTITY_WIDTH - SPACING, getHeight() - 3 * ENTITY_HEIGHT / 2));
         addBorder("ally", allyTeam.get(allyTeam.size() - 1));
 
-        SPACING = 15;
+        SPACING = 25;
         START_X =  (getWidth() - (ENTITY_WIDTH * 4 + SPACING * 3)) / 2;
         for(int i = 1; i < enemyTeam.size() - 1; ++i) {
             final HexEntity enemy = enemyTeam.get(i);
