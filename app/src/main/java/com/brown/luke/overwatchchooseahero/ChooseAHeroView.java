@@ -238,7 +238,7 @@ public class ChooseAHeroView extends View {
         entities.add(border);
     }
 
-    public void updateOrder(final ArrayList<String> heroOrderStrings) {
+    public void updateOrder(final ArrayList<String> heroOrderStrings, boolean reset) {
         if(!isAnimating()) {
             ArrayList<SqEntity> newHeroOrder = new ArrayList<SqEntity>(heroOrder);
 
@@ -246,7 +246,10 @@ public class ChooseAHeroView extends View {
                 SqEntity entity = heroOrder.get(i);
                 int index = heroOrderStrings.indexOf(entity.getName());
                 if (i != index) {
-                    entity.setAnimators(heroOrder.get(index).getPos());
+                    if(!reset) {
+                        entity.setAnimators(heroOrder.get(index).getPos());
+                    }
+
                     newHeroOrder.set(index, entity);
                 }
             }
@@ -254,6 +257,16 @@ public class ChooseAHeroView extends View {
             for(int i = 0; i < heroOrder.size(); ++i) {
                 heroOrder.set(i, newHeroOrder.get(i));
             }
+
+            if(reset) {
+                setInitialPositions();
+            }
+        }
+    }
+
+    public void refresh() {
+        for(HexEntity entity : hexEntities) {
+            entity.setImage("empty");
         }
     }
 

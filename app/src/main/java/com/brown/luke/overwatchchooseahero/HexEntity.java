@@ -4,6 +4,8 @@ package com.brown.luke.overwatchchooseahero;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.RectF;
 
 import java.util.HashMap;
 
@@ -48,7 +50,10 @@ public class HexEntity extends Entity {
     }
 
     public void setHoverBitmap(String hoverName) {
-        this.hoverBitmap =  BitmapFactory.decodeResource(resources, getIdMap().get(hoverName));
+        Bitmap bm = BitmapFactory.decodeResource(resources, getIdMap().get(hoverName));
+        Matrix m = new Matrix();
+        m.setRectToRect(new RectF(0, 0, bm.getWidth(), bm.getHeight()), new RectF(0, 0, bm.getWidth() * getScale(), bm.getHeight() * getScale()), Matrix.ScaleToFit.CENTER);
+        this.hoverBitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
     }
 
     public void removeHoverBitmap() {

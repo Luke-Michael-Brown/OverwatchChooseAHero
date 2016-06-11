@@ -12,23 +12,37 @@
         android:layout_height="wrap_content"
         android:background="@color/android:transparent"
         android:translationZ="1dp">
-        <TextView
+        <ImageView
             android:id="@+id/app_title"
-            android:text="Overwatch: Choose a Hero"
-            android:textColor="@color/white"
-            android:layout_margin="15dp"
-            android:textSize="22dp"
+            android:src="@drawable/title"
+            android:contentDescription="@string/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"/>
-        <Button
-            android:text="Reset"
-            android:textColor="@color/white"
-            android:background="@android:color/transparent"
-            android:layout_alignParentRight="true"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="reset"/>
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            style="?android:attr/buttonBarStyle">
+            <Button
+                android:background="@drawable/reset"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:onClick="reset"
+                style="?android:attr/buttonBarButtonStyle"/>
+            <Button
+                android:background="@drawable/trash"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="5dp"
+                android:onClick="trash"
+                style="?android:attr/buttonBarButtonStyle"/>
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -40,31 +54,72 @@
         android:translationZ="1dp">
         <Button
             android:id="@+id/start_btn"
-            android:text="Choose"
-            android:background="@android:color/transparent"
+            android:text="@string/run"
             android:textColor="@color/white"
-            android:layout_alignParentLeft="true"
+            android:textSize="30sp"
+            android:background="@android:color/transparent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30dp"
             android:layout_margin="3dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:onClick="run"/>
         <LinearLayout
+            android:id="@+id/drop_downs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true">
-            <Spinner
-                android:id="@+id/map_spinner"
-                android:layout_width="wrap_content"
+
+            <RelativeLayout
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:entries="@array/maps"
-                style="@style/spinner"/>
-            <Spinner
-                android:id="@+id/state_spinner"
-                android:layout_width="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/lightBlue">
+                <Spinner
+                    android:id="@+id/map_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/maps"
+                    android:spinnerMode="dialog"
+                    android:background="@color/android:transparent"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/dd_arrow"
+                    android:contentDescription="@string/down_arrow"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:entries="@array/states"
-                style="@style/spinner"/>
+                android:layout_margin="5dp"
+                android:background="@color/lightBlue">
+                <Spinner
+                    android:id="@+id/state_spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/states"
+                    android:spinnerMode="dialog"
+                    android:background="@color/android:transparent"/>
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/dd_arrow"
+                    android:contentDescription="@string/down_arrow"/>
+            </RelativeLayout>
+
         </LinearLayout>
 
     </RelativeLayout>
@@ -96,13 +151,13 @@
 
     <ImageView
         android:id="@+id/app_bg"
-        android:src="@drawable/bg"
-        android:scaleType="centerCrop"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_above="@id/adView"/>
+        android:layout_above="@id/adView"
+        android:src="@drawable/bg"
+        tools:ignore="contentDescription"
+        android:scaleType="centerCrop"/>
 
     <com.brown.luke.overwatchchooseahero.ChooseAHeroView
         android:id="@+id/canvas_layout"

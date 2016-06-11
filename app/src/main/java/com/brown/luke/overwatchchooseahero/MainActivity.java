@@ -13,7 +13,9 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -40,17 +42,10 @@ public class MainActivity extends AppCompatActivity {
             ab.hide();
         }
 
-        state = "ATTACK";
+        state = "Attack";
         view = (ChooseAHeroView) findViewById(R.id.canvas_layout);
 
         // Set custom fonts
-        TextView title = (TextView) findViewById(R.id.app_title);
-        if(title != null) {
-            Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
-            title.setTypeface(tf);
-        }
-
-
         Button runButton = (Button) findViewById(R.id.start_btn);
         if(runButton != null) {
             Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleTooOblique.ttf");
@@ -76,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         final Spinner stateSpinner = (Spinner) findViewById(R.id.state_spinner);
+        setUpSpinner(stateSpinner, getResources().getStringArray(R.array.states));
         stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -87,12 +83,39 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        final Spinner mapSpinner = (Spinner) findViewById(R.id.map_spinner);
+        setUpSpinner(mapSpinner, getResources().getStringArray(R.array.maps));
     }
+
+    private void setUpSpinner(final Spinner spinner, final String[] entries) {
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                R.layout.spinner_item, entries) {
+
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
+                ((TextView) v).setTypeface(externalFont);
+                return v;
+            }
+
+
+            public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
+                View v =super.getDropDownView(position, convertView, parent);
+                Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
+                ((TextView) v).setTypeface(externalFont);
+                parent.setBackgroundColor(getResources().getColor(R.color.darkBlue));
+                return v;
+            }
+        };
+        spinner.setAdapter(adapter);
+    }
+
 
     public void run(View btn) {
         final ArrayList<String> rankedHeroes = ChooseAHero.run(view.getAllyTeam(), view.getEnemyTeam(), state);
         if(rankedHeroes != null) {
-            view.updateOrder(rankedHeroes);
+            view.updateOrder(rankedHeroes, false);
         }
     }
 
@@ -104,6 +127,12 @@ public class MainActivity extends AppCompatActivity {
                 "dva", "reinhardt", "roadhog",
                 "winston", "zarya", "lucio",
                 "mercy", "symmetra", "zenyatta"));
-        view.updateOrder(defaultOrder);
+        view.updateOrder(defaultOrder, true);
     }
+
+    public void trash(View btn) {
+        reset(view);
+        view.refresh();
+    }
+
 }

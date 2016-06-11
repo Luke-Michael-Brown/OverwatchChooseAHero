@@ -295,13 +295,13 @@ public class ChooseAHero {
 
         State state;
         switch (stateString) {
-            case "ATTACK":
+            case "Attack":
                 state = State.ATTACK;
                 break;
-            case "DEFEND":
+            case "Defend":
                 state = State.DEFEND;
                 break;
-            case "KOH":
+            case "Control":
                 state = State.KOH;
                 break;
             default:

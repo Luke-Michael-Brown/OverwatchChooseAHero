@@ -1,19 +1,19 @@
 <resources>
-    <string name="app_name">Overwatch Choose A Hero</string>
+    <string name="app_name">Overwatch Recommend</string>
 
-    <string name="action_settings">Settings</string>
-
-    <string name="hello_world">Hello world!</string>
     <!-- -
         This is an ad unit ID for a banner test ad. Replace with your own banner ad unit id.
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
     <string name="banner_ad_unit_id">ca-app-pub-1155399458000973/9121794648</string>
+
+    <string name="run">Choose</string>
+    <string name="down_arrow">\/</string>
     
     <string-array name="states">
-        <item>ATTACK</item>
-        <item>DEFEND</item>
-        <item>KOH</item>
+        <item>Attack</item>
+        <item>Defend</item>
+        <item>Control</item>
     </string-array>
 
     <string-array name="maps">

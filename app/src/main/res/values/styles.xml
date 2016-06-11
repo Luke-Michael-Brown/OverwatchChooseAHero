@@ -8,9 +8,4 @@
         <item name="colorAccent">@color/blue</item>
     </style>
 
-    <style name="spinner">
-        <item name="android:color">@color/white</item>
-        <item name="android:layout_margin">10dp</item>
-    </style>
-
 </resources>
