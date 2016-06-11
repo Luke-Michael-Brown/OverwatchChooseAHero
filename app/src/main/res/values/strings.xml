@@ -8,7 +8,8 @@
     <string name="banner_ad_unit_id">ca-app-pub-1155399458000973/9121794648</string>
 
     <string name="run">Choose</string>
-    <string name="down_arrow">\/</string>
+    <string name="reset">Reset</string>
+    <string name="trash">Trash</string>
     
     <string-array name="states">
         <item>Attack</item>

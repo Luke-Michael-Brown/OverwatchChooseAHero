@@ -8,4 +8,23 @@
         <item name="colorAccent">@color/blue</item>
     </style>
 
+    <style name="topbar_button" parent="android:ButtonBar">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="spinner">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:spinnerMode">dialog</item>
+        <item name="android:background">@color/android:transparent</item>
+    </style>
+
+    <style name="spinner_arrow">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:src">@drawable/dd_arrow</item>
+    </style>
+
 </resources>

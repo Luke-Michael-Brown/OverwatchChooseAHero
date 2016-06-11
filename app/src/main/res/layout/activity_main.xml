@@ -6,12 +6,30 @@
     android:id="@+id/background"
     tools:context="com.brown.luke.overwatchchooseahero.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/top_bar"
+    <ImageView
+        android:id="@+id/app_bg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/android:transparent"
-        android:translationZ="1dp">
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/adView"
+        android:src="@drawable/bg"
+        tools:ignore="contentDescription"
+        android:scaleType="centerCrop"/>
+
+    <com.brown.luke.overwatchchooseahero.ChooseAHeroView
+        android:id="@+id/canvas_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/bottom_bar"
+        android:layout_below="@+id/top_bar">
+    </com.brown.luke.overwatchchooseahero.ChooseAHeroView>
+
+    <RelativeLayout
+        android:id="@id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/android:transparent">
         <ImageView
             android:id="@+id/app_title"
             android:src="@drawable/title"
@@ -28,30 +46,27 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             style="?android:attr/buttonBarStyle">
-            <Button
-                android:background="@drawable/reset"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="5dp"
+            <ImageButton
+                android:src="@drawable/reset"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/reset"
                 android:onClick="reset"
-                style="?android:attr/buttonBarButtonStyle"/>
-            <Button
-                android:background="@drawable/trash"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="5dp"
+                style="@style/topbar_button"/>
+            <ImageButton
+                android:src="@drawable/trash"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/trash"
                 android:onClick="trash"
-                style="?android:attr/buttonBarButtonStyle"/>
+                style="@style/topbar_button"/>
         </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/bottom_bar"
+        android:id="@id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/android:transparent"
-        android:layout_above="@+id/adView"
-        android:translationZ="1dp">
+        android:layout_above="@id/adView">
         <Button
             android:id="@+id/start_btn"
             android:text="@string/run"
@@ -79,21 +94,15 @@
                 android:background="@color/lightBlue">
                 <Spinner
                     android:id="@+id/map_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:entries="@array/maps"
-                    android:spinnerMode="dialog"
-                    android:background="@color/android:transparent"/>
+                    style="@style/spinner"/>
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/dd_arrow"
-                    android:contentDescription="@string/down_arrow"/>
+                    tools:ignore="contentDescription"
+                    style="@style/spinner_arrow"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -103,21 +112,15 @@
                 android:background="@color/lightBlue">
                 <Spinner
                     android:id="@+id/state_spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:entries="@array/states"
-                    android:spinnerMode="dialog"
-                    android:background="@color/android:transparent"/>
+                    style="@style/spinner"/>
                 <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_centerVertical="true"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
-                    android:src="@drawable/dd_arrow"
-                    android:contentDescription="@string/down_arrow"/>
+                    tools:ignore="contentDescription"
+                    style="@style/spinner_arrow"/>
             </RelativeLayout>
 
         </LinearLayout>
@@ -148,24 +151,4 @@
         android:background="@color/blue"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/banner_ad_unit_id" />
-
-    <ImageView
-        android:id="@+id/app_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_above="@id/adView"
-        android:src="@drawable/bg"
-        tools:ignore="contentDescription"
-        android:scaleType="centerCrop"/>
-
-    <com.brown.luke.overwatchchooseahero.ChooseAHeroView
-        android:id="@+id/canvas_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_above="@id/bottom_bar"
-        android:layout_below="@id/top_bar">
-    </com.brown.luke.overwatchchooseahero.ChooseAHeroView>
-
 </RelativeLayout>
