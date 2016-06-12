@@ -92,8 +92,7 @@
             <RelativeLayout
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/lightBlue">
+                android:layout_margin="5dp">
                 <Spinner
                     android:id="@+id/map_spinner"
                     android:entries="@array/maps"
@@ -110,8 +109,7 @@
             <RelativeLayout
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/lightBlue">
+                android:layout_margin="5dp">
                 <Spinner
                     android:id="@+id/state_spinner"
                     android:entries="@array/states"

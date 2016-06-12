@@ -6,6 +6,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -119,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onNothingSelected(AdapterView<?> parent) {
-
                 }
             });
         }
@@ -148,10 +148,10 @@ public class MainActivity extends AppCompatActivity {
 
 
             public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
-                View v =super.getDropDownView(position, convertView, parent);
+                View v = super.getDropDownView(position, convertView, parent);
                 Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
                 ((TextView) v).setTypeface(externalFont);
-                parent.setBackgroundColor(getResources().getColor(R.color.darkBlue));
+                //parent.setBackgroundColor(getResources().getColor(R.color.darkBlue));
                 return v;
             }
         };
