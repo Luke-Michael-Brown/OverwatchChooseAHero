@@ -47,12 +47,14 @@
             android:layout_alignParentRight="true"
             style="?android:attr/buttonBarStyle">
             <ImageButton
+                android:id="@+id/reset_btn"
                 android:src="@drawable/reset"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/reset"
                 android:onClick="reset"
                 style="@style/topbar_button"/>
             <ImageButton
+                android:id="@+id/trash_btn"
                 android:src="@drawable/trash"
                 android:background="@android:color/transparent"
                 android:contentDescription="@string/trash"

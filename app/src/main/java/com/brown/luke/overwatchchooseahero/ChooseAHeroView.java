@@ -1,5 +1,6 @@
 package com.brown.luke.overwatchchooseahero;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -17,6 +18,8 @@ import java.util.Arrays;
 
 public class ChooseAHeroView extends View {
      // Fields
+    private OnHeroesChangedListener listener;
+
     private final ArrayList<SqEntity> heroOrder;
     private final ArrayList<HexEntity> allyTeam;
     private final ArrayList<HexEntity> enemyTeam;
@@ -24,6 +27,7 @@ public class ChooseAHeroView extends View {
     private final ArrayList<Entity> entities;
     private final ArrayList<HexEntity> hexEntities;
 
+    private int numberOfHeroesSelected = 0;
     private int currentIndex = -1;
     private float pokeX;
     private float pokeY;
@@ -91,6 +95,10 @@ public class ChooseAHeroView extends View {
         this.postInvalidate();
     }
 
+    public void setListener(final OnHeroesChangedListener listener) {
+        this.listener = listener;
+    }
+
     @Override
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
@@ -125,6 +133,67 @@ public class ChooseAHeroView extends View {
         }
 
         this.postInvalidateDelayed(1000 / FPS);
+    }
+
+    @Override
+    public boolean onTouchEvent(final MotionEvent event){
+       if(isAnimating()) {
+           return true;
+       }
+
+        final PointF poke = new PointF(event.getX(), event.getY());
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                for(int i = 0; i < heroOrder.size(); ++i) {
+                    final Entity entity = heroOrder.get(i);
+
+                    if(entity.contains(poke)) {
+                        pokeX = event.getX();
+                        pokeY = event.getY();
+                        currentIndex = i;
+                    }
+                }
+                return true;
+
+            case MotionEvent.ACTION_UP:
+                for(Entity entity : hexEntities) {
+                    if(entity.contains(poke)) {
+                        if(currentIndex == -1) {
+                            entity.setImage("empty");
+                            --numberOfHeroesSelected;
+                            listener.heroRemoved();
+                            if(numberOfHeroesSelected == 0) {
+                                listener.allHeroesRemoved();
+                            }
+                        } else {
+                            Entity current = this.heroOrder.get(currentIndex);
+                            entity.setImage(current.getName());
+                            listener.heroAdded();
+                            ++numberOfHeroesSelected;
+                        }
+                        break;
+                    }
+                }
+
+            case MotionEvent.ACTION_CANCEL:
+                currentIndex = -1;
+                return true;
+
+            case MotionEvent.ACTION_MOVE:
+                pokeX = poke.x;
+                pokeY = poke.y;
+                for(HexEntity hexEntity : hexEntities) {
+                    if(hexEntity.contains(poke) && currentIndex != -1) {
+                        hexEntity.setHoverBitmap(heroOrder.get(currentIndex).getName());
+                    } else {
+                        hexEntity.removeHoverBitmap();
+                    }
+                }
+                return true;
+
+        }
+
+        return false;
     }
 
     private void setInitialPositions() {
@@ -174,60 +243,6 @@ public class ChooseAHeroView extends View {
         addBorder("enemy", enemyTeam.get(enemyTeam.size() - 1));
     }
 
-    @Override
-    public boolean onTouchEvent(final MotionEvent event){
-       if(isAnimating()) {
-           return true;
-       }
-
-        final PointF poke = new PointF(event.getX(), event.getY());
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                for(int i = 0; i < heroOrder.size(); ++i) {
-                    final Entity entity = heroOrder.get(i);
-
-                    if(entity.contains(poke)) {
-                        pokeX = event.getX();
-                        pokeY = event.getY();
-                        currentIndex = i;
-                    }
-                }
-                return true;
-
-            case MotionEvent.ACTION_UP:
-                for(Entity entity : hexEntities) {
-                    if(entity.contains(poke)) {
-                        if(currentIndex == -1) {
-                            entity.setImage("empty");
-                        } else {
-                            Entity current = this.heroOrder.get(currentIndex);
-                            entity.setImage(current.getName());
-                        }
-                        break;
-                    }
-                }
-
-            case MotionEvent.ACTION_CANCEL:
-                currentIndex = -1;
-                return true;
-
-            case MotionEvent.ACTION_MOVE:
-                pokeX = poke.x;
-                pokeY = poke.y;
-                for(HexEntity hexEntity : hexEntities) {
-                    if(hexEntity.contains(poke) && currentIndex != -1) {
-                        hexEntity.setHoverBitmap(heroOrder.get(currentIndex).getName());
-                    } else {
-                        hexEntity.removeHoverBitmap();
-                    }
-                }
-                return true;
-
-        }
-
-        return false;
-    }
-
     private void addBorder(final String team, final HexEntity hex) {
         final Bitmap bitmap = hex.getBitmap();
         final HexEntity border = new HexEntity(team);
@@ -268,6 +283,7 @@ public class ChooseAHeroView extends View {
         for(HexEntity entity : hexEntities) {
             entity.setImage("empty");
         }
+        numberOfHeroesSelected = 0;
     }
 
     public ArrayList<String> getAllyTeam() {
