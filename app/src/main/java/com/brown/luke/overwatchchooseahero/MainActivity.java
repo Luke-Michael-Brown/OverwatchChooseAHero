@@ -1,18 +1,15 @@
 package com.brown.luke.overwatchchooseahero;
 
 import com.brown.luke.overwatchchooseahero.ChooseAHero.ChooseAHero;
+import com.brown.luke.overwatchchooseahero.ChooseAHero.State;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,19 +17,17 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
     // Field
     private String state;
+    private String map;
+    private String subMap;
     private ChooseAHeroView view;
     private boolean isDefaultOrder = true;
 
@@ -72,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         state = "Attack";
+        map = "Hanamura";
+        subMap = null;
         view = (ChooseAHeroView) findViewById(R.id.canvas_layout);
         if (view != null) {
             view.setListener(listener);
@@ -115,7 +112,15 @@ public class MainActivity extends AppCompatActivity {
             stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    state = parent.getItemAtPosition(position).toString();
+                    String result = parent.getItemAtPosition(position).toString();
+                    if(result.equals("Attack") || result.equals("Defend")) {
+                        state = parent.getItemAtPosition(position).toString();
+                    } else {
+                        subMap = parent.getItemAtPosition(position).toString();
+                    }
+                    if(!isDefaultOrder) {
+                        enableButton(runButton);
+                    }
                 }
 
                 @Override
@@ -127,6 +132,33 @@ public class MainActivity extends AppCompatActivity {
         final Spinner mapSpinner = (Spinner) findViewById(R.id.map_spinner);
         if(mapSpinner != null) {
             setUpSpinner(mapSpinner, getResources().getStringArray(R.array.maps));
+            mapSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    map = parent.getItemAtPosition(position).toString();
+
+                    ArrayList<String> mapsTemp = ChooseAHero.getSubMaps(map);
+                    String[] subMaps;
+                    if(mapsTemp == null) {
+                        subMaps = getResources().getStringArray(R.array.states);
+                        state = "Attack";
+                        subMap = null;
+                    } else {
+                        subMaps = new String[3];
+                        subMaps = mapsTemp.toArray(subMaps);
+                        state = "Control";
+                        subMap = subMaps[0];
+                    }
+                    setUpSpinner(stateSpinner, subMaps);
+                    if(!isDefaultOrder) {
+                        enableButton(runButton);
+                    }
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                }
+            });
         }
 
         // Add button pressed states
@@ -151,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 View v = super.getDropDownView(position, convertView, parent);
                 Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
                 ((TextView) v).setTypeface(externalFont);
-                //parent.setBackgroundColor(getResources().getColor(R.color.darkBlue));
                 return v;
             }
         };
@@ -201,7 +232,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void reset(View btn) {
-        final ArrayList<String> defaultOrder = new ArrayList<String>(Arrays.asList("genji", "mccree", "pharah",
+        final ArrayList<String> defaultOrder = new ArrayList<>(Arrays.asList("genji", "mccree", "pharah",
                 "reaper", "soldier76", "tracer",
                 "bastion", "hanzo", "junkrat",
                 "mei", "torbjorn", "widowmaker",

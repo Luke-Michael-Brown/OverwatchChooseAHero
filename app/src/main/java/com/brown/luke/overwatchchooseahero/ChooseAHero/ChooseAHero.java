@@ -1,11 +1,10 @@
 package com.brown.luke.overwatchchooseahero.ChooseAHero;
 
-import android.util.Log;
-
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -16,32 +15,61 @@ import java.util.Set;
 public class ChooseAHero {
     // Fields
     private static ArrayList<Hero> heroes;
+    private static ArrayList<Map> maps;
     private static SimpleDirectedWeightedGraph<Hero, WeightedEdge> counters;
     private static SimpleWeightedGraph<Hero, WeightedEdge> synergy;
 
     static  {
+        // Setup maps
+        final Map hanamura = new Map("Hanamura");
+        final Map anubis = new Map("Anubis");
+        final Map volskaya = new Map("Volskaya");
+        final Map dorado = new Map("Dorado");
+        final Map route66 = new Map("Route 66");
+        final Map watchpoint = new Map("watchpoint");
+        final Map hollywood = new Map("Hollywood");
+        final Map kingsRow =  new Map("Kings Row");
+        final Map numbani = new Map("Numbani");
+        final Map ilios = new Map("Ilios", new ArrayList<>(Arrays.asList("Lighthouse", "Ruins", "Well")));
+        final Map lijiang = new Map("Lijiang", new ArrayList<>(Arrays.asList("Control Center", "Garden", "Night Market")));
+        final Map nepal =  new Map("Nepal", new ArrayList<>(Arrays.asList("Sanctum", "Shrine", "Village")));
+
+        maps = new ArrayList<>();
+        maps.add(hanamura);
+        maps.add(anubis);
+        maps.add(volskaya);
+        maps.add(dorado);
+        maps.add(route66);
+        maps.add(watchpoint);
+        maps.add(hollywood);
+        maps.add(kingsRow);
+        maps.add(numbani);
+        maps.add(ilios);
+        maps.add(lijiang);
+        maps.add(nepal);
+
         // Setup heroes
-        final Hero genji = new Hero("genji", Role.OFFENCE, SubRole.FLANKER);
-        final Hero mcCree = new Hero("mccree", Role.OFFENCE, SubRole.ASSAULT);
-        final Hero pharah = new Hero("pharah", Role.OFFENCE, SubRole.ASSAULT);
-        final Hero reaper = new Hero("reaper", Role.OFFENCE, SubRole.FLANKER);
-        final Hero soldier76 = new Hero("soldier76", Role.OFFENCE, SubRole.ASSAULT);
-        final Hero tracer = new Hero("tracer", Role.OFFENCE, SubRole.FLANKER);
-        final Hero bastion = new Hero("bastion", Role.DEFENCE, SubRole.BUILDER);
-        final Hero hanzo = new Hero("hanzo", Role.DEFENCE, SubRole.SNIPER);
-        final Hero junkrat = new Hero("junkrat", Role.DEFENCE);
-        final Hero mei = new Hero("mei", Role.DEFENCE);
-        final Hero torbjorn = new Hero("torbjorn", Role.DEFENCE, SubRole.BUILDER);
+        final Hero genji      = new Hero("genji", Role.OFFENCE, SubRole.FLANKER);
+        final Hero mcCree     = new Hero("mccree", Role.OFFENCE, SubRole.ASSAULT);
+        final Hero pharah     = new Hero("pharah", Role.OFFENCE, SubRole.ASSAULT);
+        final Hero reaper     = new Hero("reaper", Role.OFFENCE, SubRole.FLANKER);
+        final Hero soldier76  = new Hero("soldier76", Role.OFFENCE, SubRole.ASSAULT);
+        final Hero tracer     = new Hero("tracer", Role.OFFENCE, SubRole.FLANKER);
+        final Hero bastion    = new Hero("bastion", Role.DEFENCE, SubRole.BUILDER);
+        final Hero hanzo      = new Hero("hanzo", Role.DEFENCE, SubRole.SNIPER);
+        final Hero junkrat    = new Hero("junkrat", Role.DEFENCE);
+        final Hero mei        = new Hero("mei", Role.DEFENCE);
+        final Hero torbjorn   = new Hero("torbjorn", Role.DEFENCE, SubRole.BUILDER);
         final Hero widowmaker = new Hero("widowmaker", Role.DEFENCE, SubRole.SNIPER);
-        final Hero dva = new Hero("dva", Role.TANK, false);
-        final Hero reinhardt = new Hero("reinhardt", Role.TANK);
-        final Hero roadhog = new Hero("roadhog", Role.TANK);
-        final Hero winston = new Hero("winston", Role.TANK);
-        final Hero zarya = new Hero("zarya", Role.TANK);
-        final Hero lucio = new Hero("lucio", Role.SUPPORT);
-        final Hero mercy = new Hero("mercy", Role.SUPPORT);
-        final Hero symmetra = new Hero("symmetra", Role.SUPPORT, SubRole.BUILDER, false);
-        final Hero zenyatta = new Hero("zenyatta", Role.SUPPORT);
+        final Hero dva        = new Hero("dva", Role.TANK, State.ATTACK, false);
+        final Hero reinhardt  = new Hero("reinhardt", Role.TANK, State.ATTACK);
+        final Hero roadhog    = new Hero("roadhog", Role.TANK, State.DEFEND);
+        final Hero winston    = new Hero("winston", Role.TANK, State.ATTACK);
+        final Hero zarya      = new Hero("zarya", Role.TANK, State.DEFEND);
+        final Hero lucio      = new Hero("lucio", Role.SUPPORT, State.ATTACK);
+        final Hero mercy      = new Hero("mercy", Role.SUPPORT, State.DEFEND);
+        final Hero symmetra   = new Hero("symmetra", Role.SUPPORT, State.DEFEND, SubRole.BUILDER, false);
+        final Hero zenyatta   = new Hero("zenyatta", Role.SUPPORT, State.ATTACK);
 
         // List heroes (in tier list order from best to worst)
         heroes = new ArrayList<Hero>();
@@ -76,29 +104,29 @@ public class ChooseAHero {
         }
 
         // Counters
-        addCounter(genji, widowmaker, 2);
+        addCounter(genji, widowmaker, 3);
         addCounter(genji, bastion, 2);
         addCounter(genji, torbjorn, 1);
         addCounter(genji, hanzo, 2);
-        addCounter(genji, zenyatta, 2);
+        addCounter(genji, zenyatta, 1);
         addCounter(genji, mercy, 1);
+        addCounter(genji, reinhardt, 1);
 
-        addCounter(mcCree, tracer, 2);
-        addCounter(mcCree, genji, 2);
+        addCounter(mcCree, tracer, 3);
+        addCounter(mcCree, genji, 3);
         addCounter(mcCree, dva, 2);
         addCounter(mcCree, mercy, 2);
         addCounter(mcCree, pharah, 1);
         addCounter(mcCree, reaper, 1);
-        addCounter(mcCree, reinhardt, 1);
         addCounter(mcCree, torbjorn, 1);
         addCounter(mcCree, bastion, 1);
-        addCounter(mcCree, winston, 1);
-        addCounter(mcCree, lucio, 2);
-        addCounter(mcCree, junkrat, 1);
+        addCounter(mcCree, winston, 3);
+        addCounter(mcCree, lucio, 3);
+        addCounter(mcCree, soldier76, 1);
 
         addCounter(pharah, torbjorn, 2);
         addCounter(pharah, bastion, 2);
-        addCounter(pharah, reinhardt, 2);
+        addCounter(pharah, reinhardt, 3);
         addCounter(pharah, mei, 2);
         addCounter(pharah, junkrat, 2);
         addCounter(pharah, lucio, 1);
@@ -108,8 +136,8 @@ public class ChooseAHero {
         addCounter(pharah, reaper, 1);
         addCounter(pharah, zarya, 1);
 
-        addCounter(reaper, zarya, 2);
-        addCounter(reaper, winston, 2);
+        addCounter(reaper, zarya, 3);
+        addCounter(reaper, winston, 3);
         addCounter(reaper, widowmaker, 1);
         addCounter(reaper, tracer, 1);
         addCounter(reaper, reinhardt, 2);
@@ -118,14 +146,14 @@ public class ChooseAHero {
         addCounter(reaper, junkrat, 1);
         addCounter(reaper, roadhog, 1);
         addCounter(reaper, genji, 1);
+        addCounter(reaper, mcCree, 1);
 
-        addCounter(soldier76, pharah, 2);
+        addCounter(soldier76, pharah, 3);
         addCounter(soldier76, roadhog, 1);
         addCounter(soldier76, bastion, 1);
         addCounter(soldier76, torbjorn, 1);
         addCounter(soldier76, tracer, 1);
-        addCounter(soldier76, reaper, 1);
-        addCounter(soldier76, mei, 1);
+        addCounter(soldier76, mei, 2);
         addCounter(soldier76, mercy, 1);
 
         addCounter(tracer, widowmaker, 2);
@@ -135,13 +163,12 @@ public class ChooseAHero {
         addCounter(tracer, mercy, 2);
         addCounter(tracer, zenyatta, 2);
         addCounter(tracer, lucio, 1);
-        addCounter(tracer, genji, 1);
 
         addCounter(bastion, zarya, 2);
         addCounter(bastion, reaper, 1);
         addCounter(bastion, mercy, 1);
         addCounter(bastion, lucio, 1);
-        addCounter(bastion, dva, 2);
+        addCounter(bastion, dva, 1);
         addCounter(bastion, winston, 2);
 
         addCounter(hanzo, mercy, 1);
@@ -162,26 +189,27 @@ public class ChooseAHero {
         addCounter(junkrat, dva, 1);
 
         addCounter(widowmaker, mercy, 1);
-        addCounter(widowmaker, zenyatta, 2);
+        addCounter(widowmaker, zenyatta, 3);
         addCounter(widowmaker, mcCree, 2);
         addCounter(widowmaker, soldier76, 2);
-        addCounter(widowmaker, bastion, 2);
-        addCounter(widowmaker, torbjorn, 2);
+        addCounter(widowmaker, bastion, 3);
+        addCounter(widowmaker, torbjorn, 3);
         addCounter(widowmaker, hanzo, 1);
         addCounter(widowmaker, roadhog, 1);
         addCounter(widowmaker, pharah, 1);
         addCounter(widowmaker, lucio, 1);
 
-        addCounter(mei, genji, 2);
+        addCounter(mei, genji, 3);
         addCounter(mei, widowmaker, 1);
         addCounter(mei, hanzo, 1);
-        addCounter(mei, lucio, 2);
+        addCounter(mei, lucio, 3);
         addCounter(mei, symmetra, 1);
         addCounter(mei, torbjorn, 1);
         addCounter(mei, bastion, 1);
         addCounter(mei, dva, 1);
         addCounter(mei, reinhardt, 1);
         addCounter(mei, winston, 1);
+        addCounter(mei, reaper, 1);
 
         addCounter(torbjorn, roadhog, 2);
         addCounter(torbjorn, lucio, 1);
@@ -200,7 +228,7 @@ public class ChooseAHero {
         addCounter(reinhardt, hanzo, 2);
         addCounter(reinhardt, torbjorn, 1);
         addCounter(reinhardt, soldier76, 1);
-        addCounter(reinhardt, mcCree, 1);
+        addCounter(reinhardt, junkrat, 1);
 
         addCounter(roadhog, dva, 2);
         addCounter(roadhog, pharah, 1);
@@ -208,40 +236,41 @@ public class ChooseAHero {
         addCounter(roadhog, tracer, 1);
         addCounter(roadhog, mercy, 2);
         addCounter(roadhog, zenyatta, 2);
-        addCounter(roadhog, lucio, 2);
+        addCounter(roadhog, lucio, 3);
         addCounter(roadhog, reinhardt, 1);
         addCounter(roadhog, soldier76, 1);
+        addCounter(roadhog, winston, 1);
 
-        addCounter(winston, torbjorn, 1);
         addCounter(winston, widowmaker, 2);
         addCounter(winston, hanzo, 2);
-        addCounter(winston, genji, 2);
-        addCounter(winston, tracer, 1);
+        addCounter(winston, genji, 3);
+        addCounter(winston, tracer, 2);
         addCounter(winston, reinhardt, 1);
         addCounter(winston, symmetra, 2);
         addCounter(winston, junkrat, 2);
 
         addCounter(zarya, dva, 2);
         addCounter(zarya, winston, 2);
-        addCounter(zarya, reinhardt, 2);
+        addCounter(zarya, reinhardt, 1);
         addCounter(zarya, genji, 1);
-        addCounter(zarya, mcCree, 2);
+        addCounter(zarya, mcCree, 3);
         addCounter(zarya, mei, 1);
         addCounter(zarya, junkrat, 1);
         addCounter(zarya, symmetra, 1);
 
-        addCounter(lucio, dva, 1);
+        addCounter(lucio, dva, 3);
         addCounter(lucio, reaper, 1);
-        addCounter(lucio, winston, 1);
+        addCounter(lucio, soldier76, 1);
 
         addCounter(mercy, reaper, 1);
         addCounter(mercy, winston, 1);
+        addCounter(mercy, pharah, 1);
+        addCounter(mercy, junkrat, 1);
 
         addCounter(symmetra, dva, 1);
         addCounter(symmetra, genji, 2);
         addCounter(symmetra, tracer, 2);
         addCounter(symmetra, reaper, 2);
-        addCounter(symmetra, winston, 1);
         addCounter(symmetra, reinhardt, 2);
 
         addCounter(zenyatta, dva, 1);
@@ -259,18 +288,21 @@ public class ChooseAHero {
         addSynergy(zarya, dva, 1);
         addSynergy(soldier76, zenyatta, 2);
         addSynergy(roadhog, reaper, 1);
-        addSynergy(reinhardt, lucio, 1);
+        addSynergy(reinhardt, lucio, 2);
         addSynergy(reinhardt, mercy, 1);
         addSynergy(reinhardt, hanzo, 1);
         addSynergy(pharah, mercy, 2);
         addSynergy(roadhog, junkrat, 1);
-        addSynergy(reaper, lucio, 1);
-        addSynergy(mcCree, lucio, 1);
+        addSynergy(reaper, lucio, 2);
+        addSynergy(mercy, genji, 1);
+        addSynergy(mcCree, lucio, 2);
         addSynergy(mercy, bastion, 1);
-        addSynergy(mercy, mei, 1);
         addSynergy(mercy, widowmaker, 1);
-        addSynergy(roadhog, lucio, 1);
-        addSynergy(zarya, lucio, 1);
+        addSynergy(mercy, tracer, 1);
+        addSynergy(roadhog, lucio, 2);
+        addSynergy(zarya, lucio, 2);
+        addSynergy(lucio, mei, 2);
+        addSynergy(mei, reinhardt, 2);
         addSynergy(zenyatta, symmetra, 2);
         addSynergy(lucio, symmetra, 1);
         addSynergy(mercy, symmetra, 1);
@@ -278,8 +310,8 @@ public class ChooseAHero {
 
     // Main algorithm
     public static ArrayList<String> run(final ArrayList<String> allyTeamStrings, final ArrayList<String> enemyTeamStrings, final String stateString) {
-        ArrayList<Hero> allyTeam = new ArrayList<Hero>();
-        ArrayList<Hero> enemyTeam = new ArrayList<Hero>();
+        ArrayList<Hero> allyTeam = new ArrayList<>();
+        ArrayList<Hero> enemyTeam = new ArrayList<>();
         for(Hero hero : heroes) {
             for(String allyName : allyTeamStrings) {
                 if(allyName.equals(hero.getName())) {
@@ -308,31 +340,31 @@ public class ChooseAHero {
                 return null;
         }
 
-        final ArrayList<Hero> rankedHeroes = new ArrayList<Hero>(heroes);
+        final ArrayList<Hero> rankedHeroes = new ArrayList<>(heroes);
 
-        final HashMap<Role, Integer> recommendRoleCount = new HashMap<Role, Integer>();
+        final HashMap<Role, Integer> recommendRoleCount = new HashMap<>();
         recommendRoleCount.put(Role.OFFENCE, (state == State.ATTACK) ? 2 : ((state == State.KOH) ? 1 : 0));
         recommendRoleCount.put(Role.DEFENCE, (state == State.ATTACK) ? 0 : ((state == State.KOH) ? 1 : 2));
         recommendRoleCount.put(Role.TANK, 1);
         recommendRoleCount.put(Role.SUPPORT, 1);
 
-        final HashMap<SubRole, Integer> recommendSubRoleCount = new HashMap<SubRole, Integer>();
+        final HashMap<SubRole, Integer> recommendSubRoleCount = new HashMap<>();
         recommendSubRoleCount.put(SubRole.ASSAULT, (state == State.ATTACK) ? 1 : ((state == State.KOH) ? 1 : 0));
         recommendSubRoleCount.put(SubRole.FLANKER, (state == State.ATTACK) ? 1 : ((state == State.KOH) ? 1 : 0));
         recommendSubRoleCount.put(SubRole.SNIPER, (state == State.DEFEND) ? 1 : 0);
         recommendSubRoleCount.put(SubRole.BUILDER, 0);
 
-        final HashMap<Role, Integer> roleCounts = new HashMap<Role, Integer>();
+        final HashMap<Role, Integer> roleCounts = new HashMap<>();
         roleCounts.put(Role.OFFENCE, 0);
         roleCounts.put(Role.DEFENCE, 0);
         roleCounts.put(Role.TANK, 0);
         roleCounts.put(Role.SUPPORT, 0);
-        final HashMap<SubRole, Integer> subRoleCounts = new HashMap<SubRole, Integer>();
+        final HashMap<SubRole, Integer> subRoleCounts = new HashMap<>();
         subRoleCounts.put(SubRole.ASSAULT, 0);
         subRoleCounts.put(SubRole.FLANKER, 0);
         subRoleCounts.put(SubRole.SNIPER, 0);
         subRoleCounts.put(SubRole.BUILDER, 0);
-        final HashSet<Hero> coverage = new HashSet<Hero>();
+        final HashSet<Hero> coverage = new HashSet<>();
         for(Hero ally : allyTeam) {
             // Calculate the amount of each role we got
             if(ally.getCore()) {
@@ -357,11 +389,11 @@ public class ChooseAHero {
                 } else if (hero.getRole() == Role.TANK) {
                     hero.adjustRank(1000); // Some stupid big number to make them play tank
                 } else {
-                    hero.adjustRank(10);
+                    hero.adjustRank(7);
                 }
             }
             if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) < recommendSubRoleCount.get(hero.getSubRole())) {
-                hero.adjustRank(5);
+                hero.adjustRank(4);
             }
 
             // If we have too many of one role then don't recommend heroes of that role
@@ -370,6 +402,10 @@ public class ChooseAHero {
             }
             if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) > recommendSubRoleCount.get(hero.getSubRole())) {
                 hero.adjustRank(3 * (recommendSubRoleCount.get(hero.getSubRole()) - subRoleCounts.get(hero.getSubRole())));
+            }
+
+            if(hero.getPreferedState() == state) {
+                hero.adjustRank(4);
             }
 
             // If we are on attack/defend and they are an attack/defend unit +1/-1
@@ -409,6 +445,9 @@ public class ChooseAHero {
             }
             for(Hero enemy : enemyTeam) {
                 if(counters.containsEdge(hero, enemy)) {
+                    if(!coverage.contains(enemy)) {
+                        hero.adjustRank(2);
+                    }
                     hero.adjustRank(counters.getEdge(hero, enemy).weight()); // recommend heroes that counter the enemy
                 }
                 if(counters.containsEdge(enemy, hero)) {
@@ -432,13 +471,23 @@ public class ChooseAHero {
             }
         });
 
-        final ArrayList<String> result = new ArrayList<String>();
+        final ArrayList<String> result = new ArrayList<>();
         for(Hero hero : rankedHeroes) {
             hero.resetRank();
             result.add(hero.getName());
         }
 
         return result;
+    }
+
+    public static ArrayList<String> getSubMaps(String mapName) {
+        for(Map map : maps) {
+            if(map.getName().equals(mapName)) {
+                return map.getSubMaps();
+            }
+        }
+
+        return null;
     }
 
     // Helpers

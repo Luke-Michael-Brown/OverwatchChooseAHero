@@ -14,7 +14,6 @@
     <string-array name="states">
         <item>Attack</item>
         <item>Defend</item>
-        <item>Control</item>
     </string-array>
 
     <string-array name="maps">
