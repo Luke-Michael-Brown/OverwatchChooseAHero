@@ -90,7 +90,7 @@
             android:layout_alignParentRight="true">
 
             <RelativeLayout
-                android:layout_width="115dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
                 <Spinner
@@ -98,8 +98,8 @@
                     android:entries="@array/maps"
                     style="@style/spinner"/>
                 <ImageView
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     tools:ignore="contentDescription"
@@ -107,7 +107,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="115dp"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp">
                 <Spinner
@@ -115,8 +115,8 @@
                     android:entries="@array/states"
                     style="@style/spinner"/>
                 <ImageView
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     tools:ignore="contentDescription"

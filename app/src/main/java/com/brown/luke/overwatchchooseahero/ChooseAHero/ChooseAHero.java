@@ -110,17 +110,16 @@ public class ChooseAHero {
         addCounter(genji, hanzo, 2);
         addCounter(genji, zenyatta, 1);
         addCounter(genji, mercy, 1);
-        addCounter(genji, reinhardt, 1);
 
         addCounter(mcCree, tracer, 3);
         addCounter(mcCree, genji, 3);
-        addCounter(mcCree, dva, 2);
+        addCounter(mcCree, dva, 1);
         addCounter(mcCree, mercy, 2);
         addCounter(mcCree, pharah, 1);
         addCounter(mcCree, reaper, 1);
         addCounter(mcCree, torbjorn, 1);
         addCounter(mcCree, bastion, 1);
-        addCounter(mcCree, winston, 3);
+        addCounter(mcCree, winston, 1);
         addCounter(mcCree, lucio, 3);
         addCounter(mcCree, soldier76, 1);
 
