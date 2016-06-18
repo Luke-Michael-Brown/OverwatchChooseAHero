@@ -1,7 +1,9 @@
 package com.brown.luke.overwatchchooseahero;
 
-import com.brown.luke.overwatchchooseahero.ChooseAHero.ChooseAHero;
-import com.brown.luke.overwatchchooseahero.ChooseAHero.State;
+import com.brown.luke.overwatchchooseahero.OWRecommend.Recommender;
+import com.brown.luke.overwatchchooseahero.OWRecommend.HeroDB;
+import com.brown.luke.overwatchchooseahero.OWRecommend.OnHeroesChangedListener;
+import com.brown.luke.overwatchchooseahero.UI.CanvasView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -21,23 +23,35 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-    // Field
+    // Constants
+    //----------
+
+    final float DISABLED_ALPHA = 0.5f;
+
+
+    // Fields
+    //-------
+
     private String state;
     private String map;
     private String subMap;
-    private ChooseAHeroView view;
+    private CanvasView view;
     private boolean isDefaultOrder = true;
 
     private Button runButton;
     private ImageButton resetButton;
     private ImageButton trashButton;
 
+
+    // Main method
+    //-------------
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        HeroDB.load(getResources());
         setContentView(R.layout.activity_main);
 
         ActionBar ab = getSupportActionBar();
@@ -69,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         state = "Attack";
         map = "Hanamura";
         subMap = null;
-        view = (ChooseAHeroView) findViewById(R.id.canvas_layout);
+        view = (CanvasView) findViewById(R.id.canvas_layout);
         if (view != null) {
             view.setListener(listener);
         }
@@ -137,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     map = parent.getItemAtPosition(position).toString();
 
-                    ArrayList<String> mapsTemp = ChooseAHero.getSubMaps(map);
+                    ArrayList<String> mapsTemp = Recommender.getSubMaps(map);
                     String[] subMaps;
                     if(mapsTemp == null) {
                         subMaps = getResources().getStringArray(R.array.states);
@@ -166,6 +180,45 @@ public class MainActivity extends AppCompatActivity {
         addButtonPressedState(resetButton);
         addButtonPressedState(trashButton);
     }
+
+
+    // Button methods
+    //----------------
+
+    public void run(final View btn) {
+        final ArrayList<String> rankedHeroes = Recommender.run(view.getAllyTeam(), view.getEnemyTeam(), state);
+        if(rankedHeroes != null) {
+            view.updateOrder(rankedHeroes, false);
+        }
+
+        isDefaultOrder = false;
+        disableButton(runButton);
+        enableButton(resetButton);
+        enableButton(trashButton);
+    }
+
+    public void reset(final View btn) {
+        view.updateOrder(HeroDB.getDefaultOrder(), true);
+
+        isDefaultOrder = true;
+        enableButton(runButton);
+        disableButton(resetButton);
+    }
+
+
+    public void trash(final View btn) {
+        reset(view);
+        view.refresh();
+
+        isDefaultOrder = true;
+        disableButton(runButton);
+        disableButton(resetButton);
+        disableButton(trashButton);
+    }
+
+
+    // Helpers
+    //--------
 
     private void setUpSpinner(final Spinner spinner, final String[] entries) {
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -209,51 +262,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void enableButton(View button) {
+    public void enableButton(final View button) {
         button.setEnabled(true);
         button.setAlpha(1);
     }
 
-    public void disableButton(View button) {
+    public void disableButton(final View button) {
         button.setEnabled(false);
-        button.setAlpha(0.5f);
-    }
-
-    public void run(View btn) {
-        final ArrayList<String> rankedHeroes = ChooseAHero.run(view.getAllyTeam(), view.getEnemyTeam(), state);
-        if(rankedHeroes != null) {
-            view.updateOrder(rankedHeroes, false);
-        }
-
-        isDefaultOrder = false;
-        disableButton(runButton);
-        enableButton(resetButton);
-        enableButton(trashButton);
-    }
-
-    public void reset(View btn) {
-        final ArrayList<String> defaultOrder = new ArrayList<>(Arrays.asList("genji", "mccree", "pharah",
-                "reaper", "soldier76", "tracer",
-                "bastion", "hanzo", "junkrat",
-                "mei", "torbjorn", "widowmaker",
-                "dva", "reinhardt", "roadhog",
-                "winston", "zarya", "lucio",
-                "mercy", "symmetra", "zenyatta"));
-        view.updateOrder(defaultOrder, true);
-
-        isDefaultOrder = true;
-        enableButton(runButton);
-        disableButton(resetButton);
-    }
-
-
-    public void trash(View btn) {
-        reset(view);
-        view.refresh();
-
-        isDefaultOrder = true;
-        disableButton(runButton);
-        disableButton(resetButton);
-        disableButton(trashButton);
+        button.setAlpha(DISABLED_ALPHA);
     }
 }

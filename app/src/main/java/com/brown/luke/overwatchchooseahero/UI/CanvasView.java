@@ -1,6 +1,5 @@
-package com.brown.luke.overwatchchooseahero;
+package com.brown.luke.overwatchchooseahero.UI;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,77 +7,63 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.brown.luke.overwatchchooseahero.OWRecommend.HeroDB;
+import com.brown.luke.overwatchchooseahero.OWRecommend.OnHeroesChangedListener;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
-public class ChooseAHeroView extends View {
-     // Fields
+public class CanvasView extends View {
+    // Constants
+    //----------
+
+    private final byte FPS = 60;
+    private final byte TEAM_SIZE = 6;
+    private final byte NUMBER_OF_ROWS = 5;
+
+
+    // Fields
+    //--------
+
+    private final ArrayList<SqEntity> heroOrder = new ArrayList<>();
+    private final ArrayList<HexEntity> allyTeam = new ArrayList<>();
+    private final ArrayList<HexEntity> enemyTeam = new ArrayList<>();
+
+    private final ArrayList<Entity> entities =  new ArrayList<>();
+    private final ArrayList<HexEntity> hexEntities = new ArrayList<>();
+
     private OnHeroesChangedListener listener;
-
-    private final ArrayList<SqEntity> heroOrder;
-    private final ArrayList<HexEntity> allyTeam;
-    private final ArrayList<HexEntity> enemyTeam;
-
-    private final ArrayList<Entity> entities;
-    private final ArrayList<HexEntity> hexEntities;
-
-    private int numberOfHeroesSelected = 0;
-    private int currentIndex = -1;
-    private float pokeX;
-    private float pokeY;
     private final Paint paint;
-    private final int FPS = 60;
 
-    public ChooseAHeroView(final Context context, final AttributeSet attrs) {
+    private byte numberOfHeroesSelected = 0;
+    private byte currentIndex = -1;
+    private float pokeX = -1;
+    private float pokeY = -1;
+
+
+    // Constructor
+    //------------
+
+    public CanvasView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
-        Entity.setRes(getResources());
+        Entity.setRes(getResources(), getContext().getPackageName());
         paint = new Paint();
 
-        heroOrder = new ArrayList<SqEntity>();
-        heroOrder.add(new SqEntity("genji"));
-        heroOrder.add(new SqEntity("mccree"));
-        heroOrder.add(new SqEntity("pharah"));
-        heroOrder.add(new SqEntity("reaper"));
-        heroOrder.add(new SqEntity("soldier76"));
-        heroOrder.add(new SqEntity("tracer"));
-        heroOrder.add(new SqEntity("bastion"));
-        heroOrder.add(new SqEntity("hanzo"));
-        heroOrder.add(new SqEntity("junkrat"));
-        heroOrder.add(new SqEntity("mei"));
-        heroOrder.add(new SqEntity("torbjorn"));
-        heroOrder.add(new SqEntity("widowmaker"));
-        heroOrder.add(new SqEntity("dva"));
-        heroOrder.add(new SqEntity("reinhardt"));
-        heroOrder.add(new SqEntity("roadhog"));
-        heroOrder.add(new SqEntity("winston"));
-        heroOrder.add(new SqEntity("zarya"));
-        heroOrder.add(new SqEntity("lucio"));
-        heroOrder.add(new SqEntity("mercy"));
-        heroOrder.add(new SqEntity("symmetra"));
-        heroOrder.add(new SqEntity("zenyatta"));
+        for(String name : HeroDB.getDefaultOrder()) {
+            heroOrder.add(new SqEntity(name));
+        }
 
-        allyTeam = new ArrayList<HexEntity>();
-        allyTeam.add(new HexEntity("empty"));
-        allyTeam.add(new HexEntity("empty"));
-        allyTeam.add(new HexEntity("empty"));
-        allyTeam.add(new HexEntity("empty"));
-        allyTeam.add(new HexEntity("empty"));
+        for(byte i = 0; i < TEAM_SIZE - 1; ++i) {
+            allyTeam.add(new HexEntity("empty"));
+        }
 
-        enemyTeam = new ArrayList<HexEntity>();
-        enemyTeam.add(new HexEntity("empty"));
-        enemyTeam.add(new HexEntity("empty"));
-        enemyTeam.add(new HexEntity("empty"));
-        enemyTeam.add(new HexEntity("empty"));
-        enemyTeam.add(new HexEntity("empty"));
-        enemyTeam.add(new HexEntity("empty"));
+        for(byte i = 0; i < TEAM_SIZE; ++i) {
+            enemyTeam.add(new HexEntity("empty"));
+        }
 
-        entities = new ArrayList<Entity>();
-        hexEntities = new ArrayList<HexEntity>();
         for(Entity entity : heroOrder) {
             entities.add(entity);
         }
@@ -95,9 +80,9 @@ public class ChooseAHeroView extends View {
         this.postInvalidate();
     }
 
-    public void setListener(final OnHeroesChangedListener listener) {
-        this.listener = listener;
-    }
+
+    // Main methods
+    //--------------
 
     @Override
     protected void onDraw(final Canvas canvas) {
@@ -115,9 +100,6 @@ public class ChooseAHeroView extends View {
             final float x = pos.x;
             final float y = pos.y;
             final Bitmap bm = entity.getBitmap();
-            final float w = bm.getHeight();
-            final float h = bm.getHeight();
-
             if(entity.isHover()) {
                 paint.setAlpha(167);
             }
@@ -144,7 +126,7 @@ public class ChooseAHeroView extends View {
         final PointF poke = new PointF(event.getX(), event.getY());
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                for(int i = 0; i < heroOrder.size(); ++i) {
+                for(byte i = 0; i < heroOrder.size(); ++i) {
                     final Entity entity = heroOrder.get(i);
 
                     if(entity.contains(poke)) {
@@ -196,16 +178,22 @@ public class ChooseAHeroView extends View {
         return false;
     }
 
-    private void setInitialPositions() {
-        int ENTITY_SIZE = heroOrder.get(0).getBitmap().getWidth();
-        int NUMBER_OF_ROWS = 5;
 
-        int index = 0;
+    // Setters
+    //---------
+
+    public void setListener(final OnHeroesChangedListener listener) {
+        this.listener = listener;
+    }
+
+    private void setInitialPositions() {
+        final int ENTITY_SIZE = heroOrder.get(0).getBitmap().getWidth();
+        byte index = 0;
         int y = (this.getHeight() - ENTITY_SIZE * NUMBER_OF_ROWS) / 2;
-        for(int i = 0; i < NUMBER_OF_ROWS; ++i) {
-            int NUM_OF_HEROES = (i == 0 || i == NUMBER_OF_ROWS - 1) ? 3 : 5;
+        for(byte i = 0; i < NUMBER_OF_ROWS; ++i) {
+            byte NUM_OF_HEROES = (byte) ((i == 0 || i == NUMBER_OF_ROWS - 1) ? 3 : 5);
             int x = (this.getWidth() - NUM_OF_HEROES * ENTITY_SIZE) / 2;
-            for(int j = 0; j < NUM_OF_HEROES; ++j) {
+            for(byte j = 0; j < NUM_OF_HEROES; ++j) {
                 heroOrder.get(index).setPos(new PointF(x, y));
                 x += ENTITY_SIZE;
                 ++index;
@@ -216,9 +204,9 @@ public class ChooseAHeroView extends View {
         int ENTITY_WIDTH = allyTeam.get(0).getBitmap().getWidth();
         int ENTITY_HEIGHT = allyTeam.get(0).getBitmap().getHeight();
 
-        int SPACING = 40;
+        byte SPACING = 40;
         int START_X =  (getWidth() - (ENTITY_WIDTH * 3 + SPACING * 2)) / 2;
-        for(int i = 1; i < allyTeam.size() - 1; ++i) {
+        for(byte i = 1; i < allyTeam.size() - 1; ++i) {
             final HexEntity ally = allyTeam.get(i);
             final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), getHeight() - ENTITY_WIDTH - SPACING);
             ally.setPos(pos);
@@ -231,7 +219,7 @@ public class ChooseAHeroView extends View {
 
         SPACING = 25;
         START_X =  (getWidth() - (ENTITY_WIDTH * 4 + SPACING * 3)) / 2;
-        for(int i = 1; i < enemyTeam.size() - 1; ++i) {
+        for(byte i = 1; i < enemyTeam.size() - 1; ++i) {
             final HexEntity enemy = enemyTeam.get(i);
             final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), SPACING);
             enemy.setPos(pos);
@@ -243,23 +231,16 @@ public class ChooseAHeroView extends View {
         addBorder("enemy", enemyTeam.get(enemyTeam.size() - 1));
     }
 
-    private void addBorder(final String team, final HexEntity hex) {
-        final Bitmap bitmap = hex.getBitmap();
-        final HexEntity border = new HexEntity(team);
-        final Bitmap borderBitmap = border.getBitmap();
+    // Public methods
+    //----------------
 
-        border.setPos(new PointF(hex.getPos().x - (borderBitmap.getWidth() - bitmap.getWidth()) / 2,
-                                 hex.getPos().y - (borderBitmap.getHeight() - bitmap.getHeight()) / 2 + 1));
-        entities.add(border);
-    }
-
-    public void updateOrder(final ArrayList<String> heroOrderStrings, boolean reset) {
+    public void updateOrder(final ArrayList<String> heroOrderStrings, final boolean reset) {
         if(!isAnimating()) {
-            ArrayList<SqEntity> newHeroOrder = new ArrayList<SqEntity>(heroOrder);
+            ArrayList<SqEntity> newHeroOrder = new ArrayList<>(heroOrder);
 
-            for(int i = 0; i < heroOrder.size(); ++i) {
+            for(byte i = 0; i < heroOrder.size(); ++i) {
                 SqEntity entity = heroOrder.get(i);
-                int index = heroOrderStrings.indexOf(entity.getName());
+                byte index = (byte) heroOrderStrings.indexOf(entity.getName());
                 if (i != index) {
                     if(!reset) {
                         entity.setAnimators(heroOrder.get(index).getPos());
@@ -269,7 +250,7 @@ public class ChooseAHeroView extends View {
                 }
             }
 
-            for(int i = 0; i < heroOrder.size(); ++i) {
+            for(byte i = 0; i < heroOrder.size(); ++i) {
                 heroOrder.set(i, newHeroOrder.get(i));
             }
 
@@ -287,7 +268,7 @@ public class ChooseAHeroView extends View {
     }
 
     public ArrayList<String> getAllyTeam() {
-        final ArrayList<String> allyTeamStrings = new ArrayList<String>();
+        final ArrayList<String> allyTeamStrings = new ArrayList<>();
         for(Entity entity : allyTeam) {
             String name = entity.getName();
             if(!name.equals("empty")) {
@@ -298,7 +279,7 @@ public class ChooseAHeroView extends View {
     }
 
     public ArrayList<String> getEnemyTeam() {
-        final ArrayList<String> enemyTeamStrings = new ArrayList<String>();
+        final ArrayList<String> enemyTeamStrings = new ArrayList<>();
         for(Entity entity : enemyTeam) {
             String name = entity.getName();
             if(!name.equals("empty")) {
@@ -308,7 +289,11 @@ public class ChooseAHeroView extends View {
         return enemyTeamStrings;
     }
 
-    public boolean isAnimating() {
+
+    // Helpers
+    //----------
+
+    private boolean isAnimating() {
         for(Entity entity : heroOrder) {
             if(entity.isAnimating()) {
                 return true;
@@ -318,4 +303,13 @@ public class ChooseAHeroView extends View {
         return false;
     }
 
+    private void addBorder(final String team, final HexEntity hex) {
+        final Bitmap bitmap = hex.getBitmap();
+        final HexEntity border = new HexEntity(team);
+        final Bitmap borderBitmap = border.getBitmap();
+
+        border.setPos(new PointF(hex.getPos().x - (borderBitmap.getWidth() - bitmap.getWidth()) / 2,
+                hex.getPos().y - (borderBitmap.getHeight() - bitmap.getHeight()) / 2 + 1));
+        entities.add(border);
+    }
 }

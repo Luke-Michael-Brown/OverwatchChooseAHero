@@ -1,4 +1,4 @@
-package com.brown.luke.overwatchchooseahero;
+package com.brown.luke.overwatchchooseahero.OWRecommend;
 
 public interface OnHeroesChangedListener {
     void heroAdded();

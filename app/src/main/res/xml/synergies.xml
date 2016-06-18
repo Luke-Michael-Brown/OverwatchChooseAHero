@@ -1,133 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Synergies xmlns:android="http://schemas.android.com/apk/res/android">
-    <Synergy>
-        <Name1>reinhardt</Name1>
-        <Name2>mcCree</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>winston</Name1>
-        <Name2>junkrat</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>zarya</Name1>
-        <Name2>tracer</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>zarya</Name1>
-        <Name2>pharah</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>zarya</Name1>
-        <Name2>mcCree</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>zarya</Name1>
-        <Name2>dva</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>soldier76</Name1>
-        <Name2>zenyatta</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>roadhog</Name1>
-        <Name2>reaper</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>reinhardt</Name1>
-        <Name2>lucio</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>reinhardt</Name1>
-        <Name2>mercy</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>reinhardt</Name1>
-        <Name2>hanzo</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>pharah</Name1>
-        <Name2>mercy</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>roadhog</Name1>
-        <Name2>junkrat</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>reaper</Name1>
-        <Name2>lucio</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mercy</Name1>
-        <Name2>genji</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mcCree</Name1>
-        <Name2>lucio</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mercy</Name1>
-        <Name2>bastion</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mercy</Name1>
-        <Name2>widowmaker</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mercy</Name1>
-        <Name2>tracer</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>roadhog</Name1>
-        <Name2>lucio</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>zarya</Name1>
-        <Name2>lucio</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>lucio</Name1>
-        <Name2>mei</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mei</Name1>
-        <Name2>reinhardt</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>zenyatta</Name1>
-        <Name2>symmetra</Name2>
-        <Amount>2</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>lucio</Name1>
-        <Name2>symmetra</Name2>
-        <Amount>1</Amount>
-    </Synergy>
-    <Synergy>
-        <Name1>mercy</Name1>
-        <Name2>symmetra</Name2>
-        <Amount>1</Amount>
-    </Synergy>
+    <Synergy name1="reinhardt" name2="mccree" amount="2"/>
+    <Synergy name1="winston" name2="junkrat" amount="2"/>
+    <Synergy name1="zarya" name2="tracer" amount="1"/>
+    <Synergy name1="zarya" name2="pharah" amount="1"/>
+    <Synergy name1="zarya" name2="mccree" amount="1"/>
+    <Synergy name1="zarya" name2="dva" amount="1"/>
+    <Synergy name1="soldier76" name2="zenyatta" amount="2"/>
+    <Synergy name1="roadhog" name2="reaper" amount="1"/>
+    <Synergy name1="reinhardt" name2="lucio" amount="2"/>
+    <Synergy name1="reinhardt" name2="mercy" amount="1"/>
+    <Synergy name1="reinhardt" name2="hanzo" amount="1"/>
+    <Synergy name1="pharah" name2="mercy" amount="2"/>
+    <Synergy name1="roadhog" name2="junkrat" amount="1"/>
+    <Synergy name1="reaper" name2="lucio" amount="2"/>
+    <Synergy name1="mercy" name2="genji" amount="1"/>
+    <Synergy name1="mccree" name2="lucio" amount="2"/>
+    <Synergy name1="mercy" name2="bastion" amount="1"/>
+    <Synergy name1="mercy" name2="widowmaker" amount="1"/>
+    <Synergy name1="mercy" name2="tracer" amount="1"/>
+    <Synergy name1="roadhog" name2="lucio" amount="2"/>
+    <Synergy name1="zarya" name2="lucio" amount="2"/>
+    <Synergy name1="lucio" name2="mei" amount="2"/>
+    <Synergy name1="mei" name2="reinhardt" amount="2"/>
+    <Synergy name1="zenyatta" name2="symmetra" amount="2"/>
+    <Synergy name1="lucio" name2="symmetra" amount="1"/>
+    <Synergy name1="mercy" name2="symmetra" amount="1"/>
 </Synergies>

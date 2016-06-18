@@ -1,11 +1,17 @@
-package com.brown.luke.overwatchchooseahero.ChooseAHero;
+package com.brown.luke.overwatchchooseahero.OWRecommend;
 
 
 import java.util.ArrayList;
 
 public class Map {
+    // Fields
+    //--------
+
     private String name;
     private ArrayList<String> subMaps;
+
+    // Constructors
+    //-------------
 
     public Map(final String name) {
         this.name = name;
@@ -16,6 +22,10 @@ public class Map {
         this(name);
         this.subMaps = subMaps;
     }
+
+
+    // Getters
+    //--------
 
     public String getName() {
         return name;

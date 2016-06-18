@@ -16,14 +16,14 @@
         tools:ignore="contentDescription"
         android:scaleType="centerCrop"/>
 
-    <com.brown.luke.overwatchchooseahero.ChooseAHeroView
+    <com.brown.luke.overwatchchooseahero.UI.CanvasView
         android:id="@+id/canvas_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:layout_above="@+id/bottom_bar"
         android:layout_below="@+id/top_bar">
-    </com.brown.luke.overwatchchooseahero.ChooseAHeroView>
+    </com.brown.luke.overwatchchooseahero.UI.CanvasView>
 
     <RelativeLayout
         android:id="@id/top_bar"

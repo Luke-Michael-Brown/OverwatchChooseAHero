@@ -1,6 +1,4 @@
-package com.brown.luke.overwatchchooseahero.ChooseAHero;
-
-import com.brown.luke.overwatchchooseahero.ChooseAHero.Hero;
+package com.brown.luke.overwatchchooseahero.OWRecommend;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
 
