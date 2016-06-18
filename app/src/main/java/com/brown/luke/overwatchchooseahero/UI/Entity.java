@@ -88,6 +88,7 @@ public abstract class Entity {
     abstract protected float getScale();
     abstract protected String getSuffix();
 
+
     // Static methods
     //----------------
 
