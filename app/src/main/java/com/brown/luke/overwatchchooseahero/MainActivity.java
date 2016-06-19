@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
     // Constants
     //----------
 
-    final float DISABLED_ALPHA = 0.5f;
-
+    private final float DISABLED_ALPHA = 0.5f;
 
     // Fields
     //-------

@@ -1,12 +1,14 @@
 package com.brown.luke.overwatchchooseahero.UI;
 
 import android.graphics.PointF;
+import android.util.DisplayMetrics;
+import android.util.Log;
 
 public class SqEntity extends Entity {
     // Constants
     //-----------
 
-    final short SQ_DURATION = 267;
+    final short SQ_DURATION = 233;
 
 
     // Fields
@@ -58,7 +60,19 @@ public class SqEntity extends Entity {
 
     @Override
     protected float getScale() {
-        return 1.6f;
+        if(DPI == 4) {
+            return 1.8f;
+        } else if(DPI == 3) {
+            return 1.4f;
+        } else if(DPI == 2) {
+            return 0.96f;
+        } else if(DPI == 1.5f) {
+            return 0.6f;
+        } else if(DPI == 1) {
+            return 0.32f;
+        } else {
+            return 1.4f;
+        }
     }
 
     @Override

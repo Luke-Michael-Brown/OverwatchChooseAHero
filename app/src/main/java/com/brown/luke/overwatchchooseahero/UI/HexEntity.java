@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 
+import com.brown.luke.overwatchchooseahero.MainActivity;
+
 public class HexEntity extends Entity {
     // Fields
     //--------
@@ -63,7 +65,15 @@ public class HexEntity extends Entity {
 
     @Override
     protected float getScale() {
-        return 0.9f;
+        if(DPI >= 4) {
+            return 1.2f;
+        } else if(DPI >= 3) {
+            return 0.9f;
+        } else if(DPI >= 2) {
+            return 0.63f;
+        } else {
+            return 0.35f;
+        }
     }
 
     @Override

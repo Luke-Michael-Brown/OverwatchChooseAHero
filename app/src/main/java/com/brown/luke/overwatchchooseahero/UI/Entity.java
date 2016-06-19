@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
+import android.util.Log;
 
 public abstract class Entity {
     // Static fields
@@ -14,6 +15,7 @@ public abstract class Entity {
 
     protected static Resources resources;
     protected static String packageName;
+    protected static float DPI;
 
 
     // Fields
@@ -95,5 +97,7 @@ public abstract class Entity {
     public static void setRes(final Resources res, final String packageName) {
         Entity.resources = res;
         Entity.packageName = packageName;
+        Entity.DPI = resources.getDisplayMetrics().density;
+        Log.d("DPI", DPI + "");
     }
 }
