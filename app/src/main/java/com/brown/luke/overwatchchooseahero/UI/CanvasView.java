@@ -94,18 +94,21 @@ public class CanvasView extends View {
 
         paint.setColor(Color.BLACK);
         for(Entity entity : entities) {
-            entity.update(1000 / FPS);
-
             PointF pos = entity.getPos();
-            final float x = pos.x;
-            final float y = pos.y;
-            final Bitmap bm = entity.getBitmap();
-            if(entity.isHover()) {
-                paint.setAlpha(167);
-            }
+            if(pos != null) {
+                final float x = pos.x;
+                final float y = pos.y;
 
-            canvas.drawBitmap(bm, x, y, paint);
-            paint.setAlpha(255);
+                entity.update(1000 / FPS);
+
+                final Bitmap bm = entity.getBitmap();
+                if (entity.isHover()) {
+                    paint.setAlpha(167);
+                }
+
+                canvas.drawBitmap(bm, x, y, paint);
+                paint.setAlpha(255);
+            }
         }
 
         if(currentIndex >= 0) {
@@ -204,8 +207,8 @@ public class CanvasView extends View {
         int ENTITY_WIDTH = allyTeam.get(0).getBitmap().getWidth();
         int ENTITY_HEIGHT = allyTeam.get(0).getBitmap().getHeight();
 
-        byte SPACING = 40;
-        int START_X =  (getWidth() - (ENTITY_WIDTH * 3 + SPACING * 2)) / 2;
+        float SPACING = 40 * Entity.DPI / 3;
+        float START_X =  (getWidth() - (ENTITY_WIDTH * 3 + SPACING * 2)) / 2;
         for(byte i = 1; i < allyTeam.size() - 1; ++i) {
             final HexEntity ally = allyTeam.get(i);
             final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), getHeight() - ENTITY_WIDTH - SPACING);
@@ -217,7 +220,7 @@ public class CanvasView extends View {
         allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - ENTITY_WIDTH - SPACING, getHeight() - 3 * ENTITY_HEIGHT / 2));
         addBorder("ally", allyTeam.get(allyTeam.size() - 1));
 
-        SPACING = 25;
+        SPACING = 25 * Entity.DPI / 3;
         START_X =  (getWidth() - (ENTITY_WIDTH * 4 + SPACING * 3)) / 2;
         for(byte i = 1; i < enemyTeam.size() - 1; ++i) {
             final HexEntity enemy = enemyTeam.get(i);
