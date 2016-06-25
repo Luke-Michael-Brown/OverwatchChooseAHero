@@ -17,7 +17,7 @@ public class Recommender {
     //-------
 
     private static ArrayList<Hero> heroes;
-    private static ArrayList<Map> maps;
+    private static ArrayList<Stage> stages;
     private static SimpleDirectedWeightedGraph<Hero, WeightedEdge> counters;
     private static SimpleWeightedGraph<Hero, WeightedEdge> synergy;
 
@@ -25,44 +25,17 @@ public class Recommender {
     //-------------
 
     static  {
-        // Setup maps
-        final Map hanamura = new Map("Hanamura");
-        final Map anubis = new Map("Anubis");
-        final Map volskaya = new Map("Volskaya");
-        final Map dorado = new Map("Dorado");
-        final Map route66 = new Map("Route 66");
-        final Map watchpoint = new Map("watchpoint");
-        final Map hollywood = new Map("Hollywood");
-        final Map kingsRow =  new Map("Kings Row");
-        final Map numbani = new Map("Numbani");
-        final Map ilios = new Map("Ilios", new ArrayList<>(Arrays.asList("Lighthouse", "Ruins", "Well")));
-        final Map lijiang = new Map("Lijiang", new ArrayList<>(Arrays.asList("Control Center", "Garden", "Night Market")));
-        final Map nepal =  new Map("Nepal", new ArrayList<>(Arrays.asList("Sanctum", "Shrine", "Village")));
-
-        maps = new ArrayList<>();
-        maps.add(hanamura);
-        maps.add(anubis);
-        maps.add(volskaya);
-        maps.add(dorado);
-        maps.add(route66);
-        maps.add(watchpoint);
-        maps.add(hollywood);
-        maps.add(kingsRow);
-        maps.add(numbani);
-        maps.add(ilios);
-        maps.add(lijiang);
-        maps.add(nepal);
-
         heroes = HeroDB.getHeroes();
         counters = HeroDB.getCounters();
         synergy = HeroDB.getSynergy();
+        stages = HeroDB.getStages();
     }
 
 
     // Main method
     //-------------
 
-    public static ArrayList<String> run(final ArrayList<String> allyTeamStrings, final ArrayList<String> enemyTeamStrings, final String stateString) {
+    public static ArrayList<String> run(final ArrayList<String> allyTeamStrings, final ArrayList<String> enemyTeamStrings, final String stageString, final String subMap) {
         ArrayList<Hero> allyTeam = new ArrayList<>();
         ArrayList<Hero> enemyTeam = new ArrayList<>();
         for(String allyName : allyTeamStrings) {
@@ -72,7 +45,22 @@ public class Recommender {
             enemyTeam.add(HeroDB.getNameMap().get(enemyName));
         }
 
-        final State state = State.valueOf(stateString.toUpperCase());
+        final State state;
+        switch (subMap) {
+            case "Attack":
+                state = State.ATTACK;
+                break;
+
+            case "Defend":
+                state = State.DEFEND;
+                break;
+
+            default:
+                state = State.KOH;
+                break;
+        }
+
+        final Stage stage = HeroDB.getStageNameMap().get(stageString);
 
         final ArrayList<Hero> rankedHeroes = new ArrayList<>(heroes);
 
@@ -138,9 +126,7 @@ public class Recommender {
                 hero.adjustRank(3 * (recommendSubRoleCount.get(hero.getSubRole()) - subRoleCounts.get(hero.getSubRole())));
             }
 
-            if(hero.getPreferedState() == state) {
-                hero.adjustRank(4);
-            }
+            hero.adjustRank(stage.getRank(subMap, hero));
 
             // If we are on attack/defend and they are an attack/defend unit +1/-1
             if(hero.getRole() == Role.OFFENCE) {
@@ -212,19 +198,5 @@ public class Recommender {
         }
 
         return result;
-    }
-
-
-    // Public method
-    //---------------
-
-    public static ArrayList<String> getSubMaps(final String mapName) {
-        for(Map map : maps) {
-            if(map.getName().equals(mapName)) {
-                return map.getSubMaps();
-            }
-        }
-
-        return null;
     }
 }

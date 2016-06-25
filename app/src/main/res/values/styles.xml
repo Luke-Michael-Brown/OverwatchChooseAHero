@@ -8,9 +8,19 @@
         <item name="colorAccent">@color/blue</item>
     </style>
 
-    <style name="topbar_button" parent="android:ButtonBar">
+    <style name="title">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">7dp</item>
+        <item name="android:layout_marginLeft">7dp</item>
+    </style>
+
+    <style name="topbar_button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginRight">7dp</item>
+        <item name="android:layout_marginEnd">7dp</item>
+        <item name="android:layout_marginTop">7dp</item>
     </style>
 
     <style name="spinner">

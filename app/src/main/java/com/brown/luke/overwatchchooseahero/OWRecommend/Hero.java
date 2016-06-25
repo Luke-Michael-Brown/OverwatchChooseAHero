@@ -7,7 +7,6 @@ public class Hero {
     private String name = null;
     private Role role = null;
     private SubRole subRole = null;
-    private State preferedState = null;
     private boolean isCore = true;
     private int rank = 0;
 
@@ -31,10 +30,6 @@ public class Hero {
         return this.subRole;
     }
 
-    public State getPreferedState() {
-        return this.preferedState;
-    }
-
     public boolean getCore() {
         return isCore;
     }
@@ -52,19 +47,10 @@ public class Hero {
 
     public void setRole(final Role role) {
         this.role = role;
-        if(role == Role.OFFENCE) {
-            this.preferedState = State.ATTACK;
-        } else if(role == Role.DEFENCE) {
-            this.preferedState = State.DEFEND;
-        }
     }
 
     public void setSubRole(final SubRole subRole) {
         this.subRole = subRole;
-    }
-
-    public void setPreferedState(final State state) {
-        this.preferedState = state;
     }
 
     public void setCore(final boolean core) {

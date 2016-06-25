@@ -34,18 +34,14 @@
             android:id="@+id/app_title"
             android:src="@drawable/title"
             android:contentDescription="@string/app_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginLeft="5dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            style="@style/title"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            style="?android:attr/buttonBarStyle">
+            android:layout_alignParentRight="true">
             <ImageButton
                 android:id="@+id/reset_btn"
                 android:src="@drawable/reset"

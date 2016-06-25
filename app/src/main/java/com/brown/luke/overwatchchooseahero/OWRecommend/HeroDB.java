@@ -20,10 +20,13 @@ public class HeroDB {
 
     private static final ArrayList<Hero> heroes = new ArrayList<>();
     private static final ArrayList<String> defaultOrder = new ArrayList<>();
-    private static final HashMap<String, Hero> nameMap = new HashMap<>();
+    private static final HashMap<String, Hero> heroNameMap = new HashMap<>();
+
     private static final SimpleDirectedWeightedGraph<Hero, WeightedEdge> counters = new SimpleDirectedWeightedGraph<>(WeightedEdge.class);
     private static final SimpleWeightedGraph<Hero, WeightedEdge> synergy = new SimpleWeightedGraph<>(WeightedEdge.class);
 
+    private static final ArrayList<Stage> stages = new ArrayList<>();
+    private static final HashMap<String, Stage> stageNameMap = new HashMap<>();
 
     // Getters
     //----------
@@ -33,7 +36,7 @@ public class HeroDB {
     }
 
     public static HashMap<String, Hero> getNameMap() {
-        return nameMap;
+        return heroNameMap;
     }
 
     public static ArrayList<String> getDefaultOrder() {
@@ -46,6 +49,14 @@ public class HeroDB {
 
     public static SimpleWeightedGraph<Hero, WeightedEdge> getSynergy() {
         return synergy;
+    }
+
+    public static ArrayList<Stage> getStages() {
+        return stages;
+    }
+
+    public static HashMap<String, Stage> getStageNameMap() {
+        return stageNameMap;
     }
 
 
@@ -64,6 +75,7 @@ public class HeroDB {
 
         loadCounters();
         loadSynergies();
+        loadStages();
     }
 
     private static void loadHeroes() {
@@ -90,10 +102,6 @@ public class HeroDB {
                                 hero.setSubRole(SubRole.valueOf(value.toUpperCase()));
                                 break;
 
-                            case "perferedState":
-                                hero.setPreferedState(State.valueOf(value.toUpperCase()));
-                                break;
-
                             case "isCore":
                                 hero.setCore(Boolean.valueOf(value));
                                 break;
@@ -102,7 +110,7 @@ public class HeroDB {
 
                     heroes.add(hero);
                     defaultOrder.add(hero.getName());
-                    nameMap.put(hero.getName(), hero);
+                    heroNameMap.put(hero.getName(), hero);
                 }
 
                 xpp.next();
@@ -142,7 +150,7 @@ public class HeroDB {
                     }
 
                     if(name1 != null && name2 != null && amount > 0) {
-                        addCounter(nameMap.get(name1), nameMap.get(name2), amount);
+                        addCounter(heroNameMap.get(name1), heroNameMap.get(name2), amount);
                     }
                 }
 
@@ -183,7 +191,61 @@ public class HeroDB {
                     }
 
                     if(name1 != null && name2 != null && amount > 0) {
-                        addSynergy(nameMap.get(name1), nameMap.get(name2), amount);
+                        addSynergy(heroNameMap.get(name1), heroNameMap.get(name2), amount);
+                    }
+                }
+
+                xpp.next();
+                eventType = xpp.getEventType();
+                name = xpp.getName();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void loadStages() {
+        xpp = res.getXml(R.xml.maps);
+
+        try {
+            Stage currentStage = null;
+            String currentSubMap = null;
+
+            int eventType = xpp.getEventType();
+            String name = xpp.getName();
+            while (eventType != XmlResourceParser.END_DOCUMENT) {
+                if (eventType == XmlResourceParser.START_TAG && name.equals("Map")) {
+                    final String stageName = xpp.getAttributeValue(0);
+                    currentStage = new Stage(stageName);
+                    stages.add(currentStage);
+                    stageNameMap.put(stageName, currentStage);
+                }
+
+                if (eventType == XmlResourceParser.START_TAG && name.equals("SubMap")) {
+                    currentSubMap = xpp.getAttributeValue(0);
+                    if(currentStage != null && currentSubMap != null) {
+                        currentStage.addSubMap(currentSubMap);
+                    }
+                }
+
+                if (eventType == XmlResourceParser.START_TAG && name.equals("Hero")) {
+                    Hero hero = null;
+                    int amount = 0;
+
+                    for (byte i = 0; i < xpp.getAttributeCount(); ++i) {
+                        switch (xpp.getAttributeName(i)) {
+                            case "name":
+                                hero = heroNameMap.get(xpp.getAttributeValue(i));
+                                break;
+
+                            case "amount":
+                                amount = xpp.getAttributeIntValue(i, 0);
+                                break;
+                        }
+                    }
+
+                    if(currentStage != null && currentSubMap != null && hero != null) {
+                        currentStage.addRank(currentSubMap, hero, amount);
                     }
                 }
 

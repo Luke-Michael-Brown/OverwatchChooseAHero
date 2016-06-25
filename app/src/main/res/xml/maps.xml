@@ -1,0 +1,649 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Maps xmlns:android="http://schemas.android.com/apk/res/android">
+    <Map name="Hanamura">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Anubis">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Volskaya">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Dorado">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Route66">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Watchpoint">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Hollywood">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="KingsRow">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Numbani">
+        <SubMap name="Attack">
+            <Hero name="genji" amount="1"/>
+            <Hero name="mccree" amount="1"/>
+            <Hero name="pharah" amount="1"/>
+            <Hero name="reaper" amount="1"/>
+            <Hero name="soldier76" amount="1"/>
+            <Hero name="tracer" amount="1"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="1"/>
+            <Hero name="reinhardt" amount="1"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="1"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="1"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="1"/>
+        </SubMap>
+        <SubMap name="Defend">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="1"/>
+            <Hero name="junkrat" amount="1"/>
+            <Hero name="widowmaker" amount="1"/>
+            <Hero name="mei" amount="1"/>
+            <Hero name="torbjorn" amount="1"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="1"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="1"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="1"/>
+            <Hero name="symmetra" amount="1"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+
+    <Map name="Ilios">
+        <SubMap name="Lighthouse">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+        <SubMap name="Ruins">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+        <SubMap name="Well">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Lijiang">
+        <SubMap name="ControlCenter">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+        <SubMap name="Garden">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+        <SubMap name="NightMarket">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+    <Map name="Nepal">
+        <SubMap name="Sanctum">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+        <SubMap name="Shrine">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+        <SubMap name="Village">
+            <Hero name="genji" amount="0"/>
+            <Hero name="mccree" amount="0"/>
+            <Hero name="pharah" amount="0"/>
+            <Hero name="reaper" amount="0"/>
+            <Hero name="soldier76" amount="0"/>
+            <Hero name="tracer" amount="0"/>
+            <Hero name="bastion" amount="0"/>
+            <Hero name="hanzo" amount="0"/>
+            <Hero name="junkrat" amount="0"/>
+            <Hero name="widowmaker" amount="0"/>
+            <Hero name="mei" amount="0"/>
+            <Hero name="torbjorn" amount="0"/>
+            <Hero name="dva" amount="0"/>
+            <Hero name="reinhardt" amount="0"/>
+            <Hero name="roadhog" amount="0"/>
+            <Hero name="winston" amount="0"/>
+            <Hero name="zarya" amount="0"/>
+            <Hero name="lucio" amount="0"/>
+            <Hero name="mercy" amount="0"/>
+            <Hero name="symmetra" amount="0"/>
+            <Hero name="zenyatta" amount="0"/>
+        </SubMap>
+    </Map>
+</Maps>

@@ -1,8 +1,10 @@
 package com.brown.luke.overwatchchooseahero;
 
+import com.brown.luke.overwatchchooseahero.OWRecommend.Hero;
 import com.brown.luke.overwatchchooseahero.OWRecommend.Recommender;
 import com.brown.luke.overwatchchooseahero.OWRecommend.HeroDB;
 import com.brown.luke.overwatchchooseahero.OWRecommend.OnHeroesChangedListener;
+import com.brown.luke.overwatchchooseahero.OWRecommend.Stage;
 import com.brown.luke.overwatchchooseahero.UI.CanvasView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -12,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +26,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     // Constants
@@ -33,9 +37,8 @@ public class MainActivity extends AppCompatActivity {
     // Fields
     //-------
 
-    private String state;
-    private String map;
     private String subMap;
+    private String stage;
     private CanvasView view;
     private boolean isDefaultOrder = true;
 
@@ -79,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        state = "Attack";
-        map = "Hanamura";
+        subMap = "Attack";
+        stage = "Hanamura";
         subMap = null;
         view = (CanvasView) findViewById(R.id.canvas_layout);
         if (view != null) {
@@ -126,11 +129,7 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     String result = parent.getItemAtPosition(position).toString();
-                    if(result.equals("Attack") || result.equals("Defend")) {
-                        state = parent.getItemAtPosition(position).toString();
-                    } else {
-                        subMap = parent.getItemAtPosition(position).toString();
-                    }
+                    subMap = parent.getItemAtPosition(position).toString();
                     if(!isDefaultOrder) {
                         enableButton(runButton);
                     }
@@ -148,20 +147,14 @@ public class MainActivity extends AppCompatActivity {
             mapSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                    map = parent.getItemAtPosition(position).toString();
+                    stage = parent.getItemAtPosition(position).toString();
 
-                    ArrayList<String> mapsTemp = Recommender.getSubMaps(map);
+                    ArrayList<String> mapsTemp = HeroDB.getStageNameMap().get(stage).getSubMaps();
                     String[] subMaps;
-                    if(mapsTemp == null) {
-                        subMaps = getResources().getStringArray(R.array.states);
-                        state = "Attack";
-                        subMap = null;
-                    } else {
-                        subMaps = new String[3];
-                        subMaps = mapsTemp.toArray(subMaps);
-                        state = "Control";
-                        subMap = subMaps[0];
-                    }
+                    subMaps = new String[mapsTemp.size()];
+                    subMaps = mapsTemp.toArray(subMaps);
+                    subMap = subMaps[0];
+
                     setUpSpinner(stateSpinner, subMaps);
                     if(!isDefaultOrder) {
                         enableButton(runButton);
@@ -185,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
     //----------------
 
     public void run(final View btn) {
-        final ArrayList<String> rankedHeroes = Recommender.run(view.getAllyTeam(), view.getEnemyTeam(), state);
+        final ArrayList<String> rankedHeroes = Recommender.run(view.getAllyTeam(), view.getEnemyTeam(), stage, subMap);
         if(rankedHeroes != null) {
             view.updateOrder(rankedHeroes, false);
         }
