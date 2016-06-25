@@ -5,13 +5,13 @@
     <color name="colorAccent">#F99F1D</color>
 
     <color name="whiteTrans">#DDFFFFFF</color>
-    <color name="blackTrans">#662B2D33</color>
+    <color name="blackTrans">#CC2B2D33</color>
 
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="orange">#F99F1D</color>
 
-    <color name="blue">#661B73B9</color>
+    <color name="blue">#6EA0CF</color>
     <color name="lightBlue">#AA6EA0CF</color>
     <color name="darkBlue">#404D6C</color>
     <color name="yellow">#FBDA05</color>

@@ -76,7 +76,8 @@
             android:layout_margin="3dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:onClick="run"/>
+            android:onClick="run"
+            style="@style/text"/>
         <LinearLayout
             android:id="@+id/drop_downs"
             android:layout_width="wrap_content"
@@ -124,9 +125,47 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/tutorial_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/adView"
+        android:background="@color/blackTrans">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:padding="40dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tutorial_text"
+                android:layout_width="wrap_content"
+                android:layout_height="185dp"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:gravity="center"
+                android:lineSpacingExtra="10dp"
+                style="@style/text"/>
+            <Button
+                android:id="@+id/next_btn"
+                android:text="@string/next"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:textSize="40sp"
+                android:onClick="nextTutorial"
+                android:layout_margin="3dp"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center"
+                style="@style/text"/>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/darkBlue"
         android:layout_alignParentBottom="true">
         <ProgressBar
             android:layout_margin="1dp"
@@ -138,13 +177,13 @@
 
     <!-- view for AdMob Banner Ad -->
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+        android:id="@id/adView"
         android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/blue"
+        android:background="@color/darkBlue"
         ads:adSize="SMART_BANNER"
         ads:adUnitId="@string/banner_ad_unit_id" />
 </RelativeLayout>

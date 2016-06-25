@@ -122,7 +122,7 @@ public class CanvasView extends View {
 
     @Override
     public boolean onTouchEvent(final MotionEvent event){
-       if(isAnimating()) {
+       if(isAnimating() || !isEnabled()) {
            return true;
        }
 
