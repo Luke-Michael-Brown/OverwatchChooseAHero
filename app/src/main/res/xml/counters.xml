@@ -6,6 +6,7 @@
     <Counter name1="genji" name2="hanzo" amount="2"/>
     <Counter name1="genji" name2="zenyatta" amount="1"/>
     <Counter name1="genji" name2="mercy" amount="1"/>
+    <Counter name1="genji" name2="solider76" amount="1"/>
 
     <Counter name1="mccree" name2="tracer" amount="2"/>
     <Counter name1="mccree" name2="genji" amount="2"/>
@@ -40,7 +41,6 @@
     <Counter name1="reaper" name2="junkrat" amount="1"/>
     <Counter name1="reaper" name2="roadhog" amount="1"/>
     <Counter name1="reaper" name2="genji" amount="1"/>
-    <Counter name1="reaper" name2="mccree" amount="1"/>
 
     <Counter name1="soldier76" name2="zarya" amount="3"/>
     <Counter name1="soldier76" name2="winston" amount="3"/>
@@ -53,6 +53,8 @@
     <Counter name1="soldier76" name2="roadhog" amount="1"/>
     <Counter name1="soldier76" name2="genji" amount="1"/>
     <Counter name1="soldier76" name2="mccree" amount="1"/>
+    <Counter name1="solider76" name2="mercy" amount="2"/>
+    <Counter name1="solider76" name2="torbjorn" amount="1"/>
 
     <Counter name1="tracer" name2="widowmaker" amount="2"/>
     <Counter name1="tracer" name2="hanzo" amount="2"/>
@@ -84,6 +86,7 @@
     <Counter name1="junkrat" name2="bastion" amount="1"/>
     <Counter name1="junkrat" name2="torbjorn" amount="1"/>
     <Counter name1="junkrat" name2="dva" amount="1"/>
+    <Counter name1="junkrat" name2="reaper" amount="1"/>
     
     <Counter name1="widowmaker" name2="mercy" amount="1"/>
     <Counter name1="widowmaker" name2="zenyatta" amount="3"/>
@@ -97,8 +100,6 @@
     <Counter name1="widowmaker" name2="lucio" amount="1"/>
 
     <Counter name1="mei" name2="genji" amount="3"/>
-    <Counter name1="mei" name2="widowmaker" amount="1"/>
-    <Counter name1="mei" name2="hanzo" amount="1"/>
     <Counter name1="mei" name2="lucio" amount="3"/>
     <Counter name1="mei" name2="symmetra" amount="1"/>
     <Counter name1="mei" name2="torbjorn" amount="1"/>
@@ -112,6 +113,7 @@
     <Counter name1="torbjorn" name2="lucio" amount="1"/>
     <Counter name1="torbjorn" name2="mercy" amount="1"/>
     <Counter name1="torbjorn" name2="reaper" amount="1"/>
+    <Counter name1="torbjorn" name2="symmetra" amount="1"/>
 
     <Counter name1="dva" name2="widowmaker" amount="2"/>
     <Counter name1="dva" name2="hanzo" amount="1"/>
@@ -120,6 +122,7 @@
     <Counter name1="dva" name2="pharah" amount="1"/>
     <Counter name1="dva" name2="mercy" amount="1"/>
     <Counter name1="dva" name2="roadhog" amount="1"/>
+    <Counter name1="dva" name2="reinhardt" amount="1"/>
 
     <Counter name1="reinhardt" name2="widowmaker" amount="2"/>
     <Counter name1="reinhardt" name2="hanzo" amount="2"/>
@@ -137,6 +140,7 @@
     <Counter name1="roadhog" name2="reinhardt" amount="1"/>
     <Counter name1="roadhog" name2="soldier76" amount="1"/>
     <Counter name1="roadhog" name2="winston" amount="1"/>
+    <Counter name1="roadhog" name2="symmetra" amount="1"/>
 
     <Counter name1="winston" name2="widowmaker" amount="2"/>
     <Counter name1="winston" name2="hanzo" amount="2"/>
@@ -158,6 +162,7 @@
     <Counter name1="lucio" name2="dva" amount="3"/>
     <Counter name1="lucio" name2="reaper" amount="1"/>
     <Counter name1="lucio" name2="soldier76" amount="1"/>
+    <Counter name1="lucio" name2="winston" amount="1"/>
 
     <Counter name1="mercy" name2="reaper" amount="1"/>
     <Counter name1="mercy" name2="winston" amount="1"/>

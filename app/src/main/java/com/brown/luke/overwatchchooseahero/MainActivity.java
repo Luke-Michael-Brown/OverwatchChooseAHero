@@ -12,11 +12,14 @@ import com.google.android.gms.ads.AdView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Point;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +36,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
+    // Static fields
+    //--------------
+
+    private static Resources res;
+    private static String packageName;
+    private static Point screenSize;
+
     // Constants
     //----------
 
@@ -66,7 +76,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         HeroDB.load(getResources());
+        res = getResources();
+        packageName = getApplicationContext().getPackageName();
+        Display display = getWindowManager().getDefaultDisplay();
+        screenSize = new Point();
+        display.getSize(screenSize);
+
         setContentView(R.layout.activity_main);
 
         ActionBar ab = getSupportActionBar();
@@ -104,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         view = (CanvasView) findViewById(R.id.canvas_layout);
         if (view != null) {
             view.setListener(listener);
-            view.setEnabled(false);
         }
 
         runButton = (Button) findViewById(R.id.start_btn);
@@ -200,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
         addButtonPressedState(trashButton);
 
         if (sharedPref.getBoolean(TUTORIAL_SAVE_KEY, false)) {
-            finishTutorial();
+            findViewById(R.id.tutorial_background).setVisibility(View.GONE);
         }
     }
 
@@ -243,13 +259,17 @@ public class MainActivity extends AppCompatActivity {
         final String[] tutorialMessages = getResources().getStringArray(R.array.tutorialMessages);
         if (currentTutorialIndex == tutorialMessages.length - 1) {
             sharedPrefEditor.putBoolean(TUTORIAL_SAVE_KEY, true);
-            finishTutorial();
+            findViewById(R.id.tutorial_background).setVisibility(View.GONE);
         } else {
             tutorialText.setText(tutorialMessages[currentTutorialIndex++]);
             if (currentTutorialIndex == tutorialMessages.length - 1) {
                 nextButton.setText(getText(R.string.finish));
             }
         }
+    }
+
+    public void nop(final View view) {
+
     }
 
 
@@ -318,8 +338,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void finishTutorial() {
-        findViewById(R.id.tutorial_background).setVisibility(View.GONE);
-        view.setEnabled(true);
+
+    // Static methods
+    //---------------
+
+    public static Resources getRes() {
+        return res;
+    }
+
+    public static String getPName() {
+       return packageName;
+    }
+
+    public static Point getScreenSize() {
+        return screenSize;
     }
 }

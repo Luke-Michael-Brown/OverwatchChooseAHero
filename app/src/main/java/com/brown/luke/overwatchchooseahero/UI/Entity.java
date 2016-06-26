@@ -5,19 +5,14 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.util.Log;
 
+import com.brown.luke.overwatchchooseahero.MainActivity;
+
 public abstract class Entity {
-    // Static fields
-    //---------------
-
-    protected static Resources resources;
-    protected static String packageName;
-    protected static float DPI;
-
-
     // Fields
     //--------
 
@@ -64,8 +59,8 @@ public abstract class Entity {
 
     public void setImage(final String name) {
         this.name = name;
-        int resID = resources.getIdentifier(name + "_" + getSuffix(), "drawable", packageName);
-        Bitmap bm = BitmapFactory.decodeResource(resources, resID);
+        int resID = MainActivity.getRes().getIdentifier(name + "_" + getSuffix(), "drawable", MainActivity.getPName());
+        Bitmap bm = BitmapFactory.decodeResource(MainActivity.getRes(), resID);
         Matrix m = new Matrix();
         m.setRectToRect(new RectF(0, 0, bm.getWidth(), bm.getHeight()), new RectF(0, 0, bm.getWidth() * getScale(), bm.getHeight() * getScale()), Matrix.ScaleToFit.CENTER);
         this.bitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
@@ -89,15 +84,4 @@ public abstract class Entity {
     abstract boolean isAnimating();
     abstract protected float getScale();
     abstract protected String getSuffix();
-
-
-    // Static methods
-    //----------------
-
-    public static void setRes(final Resources res, final String packageName) {
-        Entity.resources = res;
-        Entity.packageName = packageName;
-        Entity.DPI = resources.getDisplayMetrics().density;
-        Log.d("DPI", DPI + "");
-    }
 }

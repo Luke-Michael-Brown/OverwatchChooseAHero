@@ -41,8 +41,8 @@ public class HexEntity extends Entity {
     //-----------------
 
     public void setHoverBitmap(final String hoverName) {
-        int resID = resources.getIdentifier(hoverName + "_" + getSuffix(), "drawable", packageName);
-        Bitmap bm = BitmapFactory.decodeResource(resources, resID);
+        int resID = MainActivity.getRes().getIdentifier(hoverName + "_" + getSuffix(), "drawable", MainActivity.getPName());
+        Bitmap bm = BitmapFactory.decodeResource(MainActivity.getRes(), resID);
         Matrix m = new Matrix();
         m.setRectToRect(new RectF(0, 0, bm.getWidth(), bm.getHeight()), new RectF(0, 0, bm.getWidth() * getScale(), bm.getHeight() * getScale()), Matrix.ScaleToFit.CENTER);
         this.hoverBitmap = Bitmap.createBitmap(bm, 0, 0, bm.getWidth(), bm.getHeight(), m, true);
@@ -65,15 +65,7 @@ public class HexEntity extends Entity {
 
     @Override
     protected float getScale() {
-        if(DPI >= 4) {
-            return 1.2f;
-        } else if(DPI >= 3) {
-            return 0.9f;
-        } else if(DPI >= 2) {
-            return 0.63f;
-        } else {
-            return 0.35f;
-        }
+        return (float) MainActivity.getScreenSize().x / 1250;
     }
 
     @Override

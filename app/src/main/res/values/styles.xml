@@ -19,7 +19,7 @@
         <item name="android:shadowColor">@color/black</item>
         <item name="android:shadowDx">0.0</item>
         <item name="android:shadowDy">0.0</item>
-        <item name="android:shadowRadius">8.0</item>
+        <item name="android:shadowRadius">6.0</item>
     </style>
 
     <style name="topbar_button">
@@ -33,7 +33,7 @@
     <style name="spinner">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:dropDownVerticalOffset">40dp</item>
+        <item name="android:dropDownVerticalOffset">32dp</item>
         <item name="android:background">@color/android:transparent</item>
     </style>
 
