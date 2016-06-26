@@ -18,7 +18,7 @@
             <Hero name="reinhardt" amount="4"/>
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
-            <Hero name="zarya" amount="0"/>
+            <Hero name="zarya" amount="1"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -50,11 +50,11 @@
     </Map>
     <Map name="Anubis">
         <SubMap name="Attack">
-            <Hero name="genji" amount="3"/>
+            <Hero name="genji" amount="4"/>
             <Hero name="mccree" amount="3"/>
             <Hero name="pharah" amount="4"/>
             <Hero name="reaper" amount="4"/>
-            <Hero name="soldier76" amount="3"/>
+            <Hero name="soldier76" amount="4"/>
             <Hero name="tracer" amount="4"/>
             <Hero name="bastion" amount="0"/>
             <Hero name="hanzo" amount="0"/>
@@ -110,7 +110,7 @@
             <Hero name="widowmaker" amount="0"/>
             <Hero name="mei" amount="0"/>
             <Hero name="torbjorn" amount="0"/>
-            <Hero name="dva" amount="4"/>
+            <Hero name="dva" amount="3"/>
             <Hero name="reinhardt" amount="4"/>
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="4"/>
@@ -133,7 +133,7 @@
             <Hero name="widowmaker" amount="4"/>
             <Hero name="mei" amount="4"/>
             <Hero name="torbjorn" amount="3"/>
-            <Hero name="dva" amount="1"/>
+            <Hero name="dva" amount="0"/>
             <Hero name="reinhardt" amount="1"/>
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
@@ -158,7 +158,7 @@
             <Hero name="widowmaker" amount="0"/>
             <Hero name="mei" amount="0"/>
             <Hero name="torbjorn" amount="0"/>
-            <Hero name="dva" amount="4"/>
+            <Hero name="dva" amount="3"/>
             <Hero name="reinhardt" amount="4"/>
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
@@ -181,7 +181,7 @@
             <Hero name="widowmaker" amount="4"/>
             <Hero name="mei" amount="4"/>
             <Hero name="torbjorn" amount="3"/>
-            <Hero name="dva" amount="1"/>
+            <Hero name="dva" amount="0"/>
             <Hero name="reinhardt" amount="1"/>
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
@@ -350,7 +350,7 @@
             <Hero name="widowmaker" amount="0"/>
             <Hero name="mei" amount="0"/>
             <Hero name="torbjorn" amount="0"/>
-            <Hero name="dva" amount="4"/>
+            <Hero name="dva" amount="3"/>
             <Hero name="reinhardt" amount="5"/>
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
@@ -373,7 +373,7 @@
             <Hero name="widowmaker" amount="4"/>
             <Hero name="mei" amount="4"/>
             <Hero name="torbjorn" amount="3"/>
-            <Hero name="dva" amount="1"/>
+            <Hero name="dva" amount="0"/>
             <Hero name="reinhardt" amount="1"/>
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
