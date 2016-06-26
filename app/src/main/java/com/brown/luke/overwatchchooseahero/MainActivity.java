@@ -259,6 +259,7 @@ public class MainActivity extends AppCompatActivity {
         final String[] tutorialMessages = getResources().getStringArray(R.array.tutorialMessages);
         if (currentTutorialIndex == tutorialMessages.length - 1) {
             sharedPrefEditor.putBoolean(TUTORIAL_SAVE_KEY, true);
+            sharedPrefEditor.commit();
             findViewById(R.id.tutorial_background).setVisibility(View.GONE);
         } else {
             tutorialText.setText(tutorialMessages[currentTutorialIndex++]);
