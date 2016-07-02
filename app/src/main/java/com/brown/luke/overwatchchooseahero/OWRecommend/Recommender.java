@@ -119,37 +119,37 @@ public class Recommender {
             if(state == State.ATTACK) {
                 // Make sure we got 2 attack guys on attack
                 if(hero.getCore() && hero.getRole() == Role.OFFENCE && roleCounts.get(Role.OFFENCE) < 2) {
-                    hero.adjustRank(BIG);
+                    hero.adjustRank(12);
                 }
 
                 // If we don't got an assault, boost assault
                 if(hero.getSubRole() == SubRole.ASSAULT && subRoleCounts.get(SubRole.ASSAULT) == 0) {
-                    hero.adjustRank(5);
+                    hero.adjustRank(6);
                 }
 
                 // If we don't got a flanker, boost flanker
                 if(hero.getSubRole() == SubRole.ASSAULT && subRoleCounts.get(SubRole.FLANKER) == 0) {
-                    hero.adjustRank(5);
+                    hero.adjustRank(6);
                 }
 
                 // Deboost more than 1 builders
                 if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 0) {
-                    hero.adjustRank(-5);
+                    hero.adjustRank(-6);
                 }
             } else if(state == State.DEFEND) {
                 // Make sure we got 1 defence unit on defence
                 if(hero.getRole() == Role.DEFENCE && roleCounts.get(Role.DEFENCE) == 0) {
-                    hero.adjustRank(BIG);
+                    hero.adjustRank(12);
                 }
 
                 // Boost a sniper if we don't got one on defence
                 if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) == 0) {
-                    hero.adjustRank(5);
+                    hero.adjustRank(6);
                 }
 
                 // Deboost more than 2 builders
                 if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 1) {
-                    hero.adjustRank(-5);
+                    hero.adjustRank(-6);
                 }
             } else if(state == State.KOH) {
                 // Make sure we got at least 1 attacking unit on koh
@@ -160,7 +160,12 @@ public class Recommender {
 
             // Deboost double sniper
             if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) > 0) {
-                hero.adjustRank(-5);
+                hero.adjustRank(-6);
+            }
+
+            // Deboot triple tank
+            if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) >= 2) {
+                hero.adjustRank(-6);
             }
 
             // Stage adjustment
