@@ -2,10 +2,13 @@
 <Synergies xmlns:android="http://schemas.android.com/apk/res/android">
     <Synergy name1="reinhardt" name2="mccree" amount="2"/>
     <Synergy name1="winston" name2="junkrat" amount="2"/>
+    <Synergy name1="zarya" name2="reaper" amount="2"/>
     <Synergy name1="zarya" name2="tracer" amount="1"/>
     <Synergy name1="zarya" name2="pharah" amount="1"/>
     <Synergy name1="zarya" name2="mccree" amount="1"/>
     <Synergy name1="zarya" name2="dva" amount="1"/>
+    <Synergy name1="dva" name2="dva" amount="1"/>
+    <Synergy name1="reaper" name2="dva" amount="1"/>
     <Synergy name1="soldier76" name2="zenyatta" amount="2"/>
     <Synergy name1="roadhog" name2="reaper" amount="1"/>
     <Synergy name1="reinhardt" name2="lucio" amount="2"/>

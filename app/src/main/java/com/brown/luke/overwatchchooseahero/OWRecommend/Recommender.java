@@ -126,26 +126,11 @@ public class Recommender {
                 hero.adjustRank(3 * (recommendSubRoleCount.get(hero.getSubRole()) - subRoleCounts.get(hero.getSubRole())));
             }
 
-            hero.adjustRank(stage.getRank(subMap, hero));
-
-            // If we are on attack/defend and they are an attack/defend unit +1/-1
-            if(hero.getRole() == Role.OFFENCE) {
-                if(state == State.ATTACK) {
-                    hero.adjustRank(1);
-                } else if(state == State.DEFEND) {
-                    hero.adjustRank(-1);
-                }
-            } else if(hero.getRole() == Role.DEFENCE) {
-                if(state == State.ATTACK) {
-                    hero.adjustRank(-1);
-                } else if(state == State.DEFEND) {
-                    hero.adjustRank(1);
-                }
-            }
+            hero.adjustRank(((enemyTeam.size() == 0) ? 1.5f : 1) * stage.getRank(subMap, hero));
 
             for(Hero ally : allyTeam) {
                 if(hero == ally) {
-                    hero.adjustRank(-5);
+                    hero.adjustRank(-10);
                 }
                 if(synergy.containsEdge(hero, ally)) {
                     hero.adjustRank(synergy.getEdge(hero, ally).weight()); // Recommend hero's that synergize with team

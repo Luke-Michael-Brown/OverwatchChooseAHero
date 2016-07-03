@@ -130,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         nextButton = (Button) findViewById(R.id.next_btn);
         tutorialText = (TextView) findViewById(R.id.tutorial_text);
-        currentTutorialIndex = 0;
-        tutorialText.setText(getResources().getStringArray(R.array.tutorialMessages)[currentTutorialIndex]);
+        startTutorial(null);
 
         disableButton(runButton);
         disableButton(resetButton);
@@ -139,13 +138,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Set custom fonts
         Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleTooOblique.ttf");
+
         if(nextButton != null) {
             nextButton.setTypeface(tf);
         }
 
+        tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleToo.ttf");
         if(tutorialText != null) {
-            tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleToo.ttf");
             tutorialText.setTypeface(tf);
+        }
+
+        Button skipButton = (Button) findViewById(R.id.skip_btn);
+        if(skipButton != null) {
+            skipButton.setTypeface(tf);
         }
 
 
@@ -269,8 +274,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void nop(final View view) {
+    public void skipTutorial(final View view) {
+        findViewById(R.id.tutorial_background).setVisibility(View.GONE);
+    }
 
+    public void startTutorial(final View view) {
+        findViewById(R.id.tutorial_background).setVisibility(View.VISIBLE);
+        currentTutorialIndex = 0;
+        tutorialText.setText(getResources().getStringArray(R.array.tutorialMessages)[currentTutorialIndex]);
+    }
+
+    public void nop(final View view) {
     }
 
 

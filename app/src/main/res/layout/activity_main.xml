@@ -36,6 +36,7 @@
             android:contentDescription="@string/app_name"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
+            android:onClick="startTutorial"
             style="@style/title"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -88,7 +89,7 @@
             android:layout_alignParentRight="true">
 
             <RelativeLayout
-                android:layout_width="113dp"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
                 android:layout_marginEnd="5dp">
@@ -106,7 +107,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="113dp"
+                android:layout_width="112dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginStart="5dp">
@@ -150,18 +151,35 @@
                 android:gravity="center"
                 android:lineSpacingExtra="10dp"
                 style="@style/text"/>
-            <Button
-                android:id="@+id/next_btn"
-                android:text="@string/next"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blue"
-                android:textSize="40sp"
-                android:onClick="nextTutorial"
-                android:layout_margin="3dp"
-                android:background="@android:color/transparent"
-                android:layout_gravity="center"
-                style="@style/text"/>
+                android:layout_gravity="center">
+                <Button
+                    android:id="@+id/skip_btn"
+                    android:text="@string/skip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="30sp"
+                    android:onClick="skipTutorial"
+                    android:layout_margin="3dp"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="left"
+                    style="@style/text"/>
+                <Button
+                    android:id="@+id/next_btn"
+                    android:text="@string/next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:textSize="40sp"
+                    android:onClick="nextTutorial"
+                    android:layout_margin="3dp"
+                    android:background="@android:color/transparent"
+                    android:layout_gravity="right"
+                    style="@style/text"/>
+            </LinearLayout>
         </LinearLayout>
 
     </RelativeLayout>
