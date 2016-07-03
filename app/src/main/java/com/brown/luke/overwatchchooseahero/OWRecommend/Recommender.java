@@ -1,5 +1,7 @@
 package com.brown.luke.overwatchchooseahero.OWRecommend;
 
+import android.util.Log;
+
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
@@ -13,6 +15,13 @@ import java.util.Set;
 
 
 public class Recommender {
+    // Constants
+    //----------
+
+    private static final short REALLY_REALLY_BIG = 1000;
+    private static final short REALLY_BIG = 750;
+    private static final short BIG = 500;
+
     // Fields
     //-------
 
@@ -64,18 +73,6 @@ public class Recommender {
 
         final ArrayList<Hero> rankedHeroes = new ArrayList<>(heroes);
 
-        final HashMap<Role, Integer> recommendRoleCount = new HashMap<>();
-        recommendRoleCount.put(Role.OFFENCE, (state == State.ATTACK) ? 2 : ((state == State.KOH) ? 1 : 0));
-        recommendRoleCount.put(Role.DEFENCE, (state == State.ATTACK) ? 0 : ((state == State.KOH) ? 1 : 2));
-        recommendRoleCount.put(Role.TANK, 1);
-        recommendRoleCount.put(Role.SUPPORT, 1);
-
-        final HashMap<SubRole, Integer> recommendSubRoleCount = new HashMap<>();
-        recommendSubRoleCount.put(SubRole.ASSAULT, (state == State.ATTACK) ? 1 : ((state == State.KOH) ? 1 : 0));
-        recommendSubRoleCount.put(SubRole.FLANKER, (state == State.ATTACK) ? 1 : ((state == State.KOH) ? 1 : 0));
-        recommendSubRoleCount.put(SubRole.SNIPER, (state == State.DEFEND) ? 1 : 0);
-        recommendSubRoleCount.put(SubRole.BUILDER, 0);
-
         final HashMap<Role, Integer> roleCounts = new HashMap<>();
         roleCounts.put(Role.OFFENCE, 0);
         roleCounts.put(Role.DEFENCE, 0);
@@ -104,31 +101,78 @@ public class Recommender {
         }
 
         for(Hero hero : rankedHeroes) {
-            // If we are under the recommended roles then recommend hero's of that role
-            if(hero.getCore() && roleCounts.get(hero.getRole()) < recommendRoleCount.get(hero.getRole())) {
-                if(hero.getRole() == Role.SUPPORT) {
-                    hero.adjustRank(5000); // Some stupid big number to make them play support even over tank
-                } else if (hero.getRole() == Role.TANK) {
-                    hero.adjustRank(1000); // Some stupid big number to make them play tank
-                } else {
-                    hero.adjustRank(7);
+            // Make sure you got a support
+            if(hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) == 0) {
+                hero.adjustRank(REALLY_REALLY_BIG);
+            }
+
+            // Make sure we got a tank
+            if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) == 0) {
+                hero.adjustRank(REALLY_BIG);
+            }
+
+            // Don't recommend a third support
+            if(hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) >= 2) {
+                hero.adjustRank(-1 * BIG);
+            }
+
+            if(state == State.ATTACK) {
+                // Make sure we got 2 attack guys on attack
+                if(hero.getCore() && hero.getRole() == Role.OFFENCE && roleCounts.get(Role.OFFENCE) < 2) {
+                    hero.adjustRank(12);
+                }
+
+                // If we don't got an assault, boost assault
+                if(hero.getSubRole() == SubRole.ASSAULT && subRoleCounts.get(SubRole.ASSAULT) == 0) {
+                    hero.adjustRank(6);
+                }
+
+                // If we don't got a flanker, boost flanker
+                if(hero.getSubRole() == SubRole.ASSAULT && subRoleCounts.get(SubRole.FLANKER) == 0) {
+                    hero.adjustRank(6);
+                }
+
+                // Deboost more than 1 builders
+                if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 0) {
+                    hero.adjustRank(-6);
+                }
+            } else if(state == State.DEFEND) {
+                // Make sure we got 1 defence unit on defence
+                if(hero.getRole() == Role.DEFENCE && roleCounts.get(Role.DEFENCE) == 0) {
+                    hero.adjustRank(12);
+                }
+
+                // Boost a sniper if we don't got one on defence
+                if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) == 0) {
+                    hero.adjustRank(6);
+                }
+
+                // Deboost more than 2 builders
+                if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 1) {
+                    hero.adjustRank(-6);
+                }
+            } else if(state == State.KOH) {
+                // Make sure we got at least 1 attacking unit on koh
+                if(hero.getRole() == Role.OFFENCE && roleCounts.get(Role.OFFENCE) == 0) {
+                    hero.adjustRank(BIG);
                 }
             }
-            if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) < recommendSubRoleCount.get(hero.getSubRole())) {
-                hero.adjustRank(4);
+
+            // Deboost double sniper
+            if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) > 0) {
+                hero.adjustRank(-6);
             }
 
-            // If we have too many of one role then don't recommend heroes of that role
-            if(hero.getCore() && roleCounts.get(hero.getRole()) > recommendRoleCount.get(hero.getRole())) {
-                hero.adjustRank(5 * (recommendRoleCount.get(hero.getRole()) - roleCounts.get(hero.getRole())));
-            }
-            if(hero.hasSubRole() && subRoleCounts.get(hero.getSubRole()) > recommendSubRoleCount.get(hero.getSubRole())) {
-                hero.adjustRank(3 * (recommendSubRoleCount.get(hero.getSubRole()) - subRoleCounts.get(hero.getSubRole())));
+            // Deboot triple tank
+            if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) >= 2) {
+                hero.adjustRank(-6);
             }
 
+            // Stage adjustment
             hero.adjustRank(((enemyTeam.size() == 0) ? 1.5f : 1) * stage.getRank(subMap, hero));
 
             for(Hero ally : allyTeam) {
+                // Deboost same hero
                 if(hero == ally) {
                     hero.adjustRank(-10);
                 }
@@ -140,10 +184,10 @@ public class Recommender {
                     for(WeightedEdge e : edges) {
                         final Hero t = e.target();
                         if(counters.containsEdge(t, ally)) {
-                            hero.adjustRank(1); // Recommend hero's that counter our team's counters
+                            hero.adjustRank(2); // Recommend hero's that counter our team's counters
                         }
                         if(!coverage.contains(t)) {
-                            hero.adjustRank(1); // Recommend hero's that extend our coverage
+                            hero.adjustRank(2); // Recommend hero's that extend our coverage
                         }
                     }
                 }
@@ -151,7 +195,7 @@ public class Recommender {
             for(Hero enemy : enemyTeam) {
                 if(counters.containsEdge(hero, enemy)) {
                     if(!coverage.contains(enemy)) {
-                        hero.adjustRank(2);
+                        hero.adjustRank(12); // If we counter an enemy that our team does not counter then boost!
                     }
                     hero.adjustRank(counters.getEdge(hero, enemy).weight()); // recommend heroes that counter the enemy
                 }
