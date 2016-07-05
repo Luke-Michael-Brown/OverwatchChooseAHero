@@ -28,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -131,23 +133,10 @@ public class MainActivity extends AppCompatActivity {
         disableButton(resetButton);
         disableButton(trashButton);
 
-        // Set custom fonts
-        Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleTooOblique.ttf");
-
-        if(nextButton != null) {
-            nextButton.setTypeface(tf);
-        }
-
-        tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleToo.ttf");
-        if(tutorialText != null) {
-            tutorialText.setTypeface(tf);
-        }
-
-        Button skipButton = (Button) findViewById(R.id.skip_btn);
-        if(skipButton != null) {
-            skipButton.setTypeface(tf);
-        }
-
+        updateFont(nextButton, "fonts/BigNoodleTooOblique.ttf");
+        updateFont(tutorialText, "fonts/BigNoodleToo.ttf");
+        updateFont(findViewById(R.id.skip_btn), "fonts/BigNoodleToo.ttf");
+        updateFont(findViewById(R.id.version_number), "fonts/BigNoodleToo.ttf");
 
         // Load an ad into the AdMob banner view.
         final AdView adView = (AdView) findViewById(R.id.adView);
@@ -294,16 +283,14 @@ public class MainActivity extends AppCompatActivity {
 
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
-                Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
-                ((TextView) v).setTypeface(externalFont);
+                updateFont(v, "fonts/Futura.ttf");
                 return v;
             }
 
 
             public View getDropDownView(int position,  View convertView,  ViewGroup parent) {
                 View v = super.getDropDownView(position, convertView, parent);
-                Typeface externalFont=Typeface.createFromAsset(getAssets(), "fonts/Futura.ttf");
-                ((TextView) v).setTypeface(externalFont);
+                updateFont(v, "fonts/Futura.ttf");
                 return v;
             }
         };
@@ -335,8 +322,7 @@ public class MainActivity extends AppCompatActivity {
         button.setAlpha(1);
 
         if (button == runButton) {
-            Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleTooOblique.ttf");
-            ((Button) button).setTypeface(tf);
+            updateFont(button, "fonts/BigNoodleTooOblique.ttf");
         }
     }
 
@@ -345,8 +331,7 @@ public class MainActivity extends AppCompatActivity {
         button.setAlpha(DISABLED_ALPHA);
 
         if (button == runButton) {
-            Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleToo.ttf");
-            ((Button) button).setTypeface(tf);
+            updateFont(button, "fonts/BigNoodleToo.ttf");
         }
     }
 
@@ -356,6 +341,14 @@ public class MainActivity extends AppCompatActivity {
         final View tutorialBackground = findViewById(R.id.tutorial_background);
         if(tutorialBackground != null) {
             tutorialBackground.setVisibility(View.GONE);
+        }
+    }
+
+    private void updateFont(final View view, final String font) {
+        Typeface tf = Typeface.createFromAsset(getAssets(), font);
+
+        if(view != null) {
+            ((TextView) view).setTypeface(tf);
         }
     }
 
