@@ -1,12 +1,9 @@
 package com.brown.luke.overwatchchooseahero.OWRecommend;
 
-import android.util.Log;
-
 import org.jgrapht.graph.SimpleDirectedWeightedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;

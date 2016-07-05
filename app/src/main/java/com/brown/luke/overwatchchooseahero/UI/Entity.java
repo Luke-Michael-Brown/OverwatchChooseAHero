@@ -1,14 +1,11 @@
 package com.brown.luke.overwatchchooseahero.UI;
 
 
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.RectF;
-import android.util.Log;
 
 import com.brown.luke.overwatchchooseahero.MainActivity;
 

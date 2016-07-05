@@ -1,8 +1,6 @@
 package com.brown.luke.overwatchchooseahero.UI;
 
 import android.graphics.PointF;
-import android.util.DisplayMetrics;
-import android.util.Log;
 
 import com.brown.luke.overwatchchooseahero.MainActivity;
 
