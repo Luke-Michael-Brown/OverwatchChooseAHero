@@ -1,10 +1,8 @@
 package com.brown.luke.overwatchchooseahero;
 
-import com.brown.luke.overwatchchooseahero.OWRecommend.Hero;
 import com.brown.luke.overwatchchooseahero.OWRecommend.Recommender;
 import com.brown.luke.overwatchchooseahero.OWRecommend.HeroDB;
 import com.brown.luke.overwatchchooseahero.OWRecommend.OnHeroesChangedListener;
-import com.brown.luke.overwatchchooseahero.OWRecommend.Stage;
 import com.brown.luke.overwatchchooseahero.UI.CanvasView;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -18,7 +16,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,10 +27,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     // Static fields
@@ -220,8 +215,9 @@ public class MainActivity extends AppCompatActivity {
         addButtonPressedState(resetButton);
         addButtonPressedState(trashButton);
 
-        if (sharedPref.getBoolean(TUTORIAL_SAVE_KEY, false)) {
-            findViewById(R.id.tutorial_background).setVisibility(View.GONE);
+        final View tutorialBackground = findViewById(R.id.tutorial_background);
+        if (sharedPref.getBoolean(TUTORIAL_SAVE_KEY, false) && tutorialBackground != null) {
+            tutorialBackground.setVisibility(View.GONE);
         }
     }
 
@@ -263,9 +259,7 @@ public class MainActivity extends AppCompatActivity {
     public void nextTutorial(final View btn) {
         final String[] tutorialMessages = getResources().getStringArray(R.array.tutorialMessages);
         if (currentTutorialIndex == tutorialMessages.length - 1) {
-            sharedPrefEditor.putBoolean(TUTORIAL_SAVE_KEY, true);
-            sharedPrefEditor.commit();
-            findViewById(R.id.tutorial_background).setVisibility(View.GONE);
+            finishTutorial();
         } else {
             tutorialText.setText(tutorialMessages[currentTutorialIndex++]);
             if (currentTutorialIndex == tutorialMessages.length - 1) {
@@ -275,11 +269,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void skipTutorial(final View view) {
-        findViewById(R.id.tutorial_background).setVisibility(View.GONE);
+        finishTutorial();
     }
 
     public void startTutorial(final View view) {
-        findViewById(R.id.tutorial_background).setVisibility(View.VISIBLE);
+        final View tutorialBackground = findViewById(R.id.tutorial_background);
+        if(tutorialBackground != null) {
+            tutorialBackground.setVisibility(View.VISIBLE);
+        }
         currentTutorialIndex = 0;
         tutorialText.setText(getResources().getStringArray(R.array.tutorialMessages)[currentTutorialIndex]);
     }
@@ -350,6 +347,15 @@ public class MainActivity extends AppCompatActivity {
         if (button == runButton) {
             Typeface tf = Typeface.createFromAsset(getAssets(), "fonts/BigNoodleToo.ttf");
             ((Button) button).setTypeface(tf);
+        }
+    }
+
+    private void finishTutorial() {
+        sharedPrefEditor.putBoolean(TUTORIAL_SAVE_KEY, true);
+        sharedPrefEditor.commit();
+        final View tutorialBackground = findViewById(R.id.tutorial_background);
+        if(tutorialBackground != null) {
+            tutorialBackground.setVisibility(View.GONE);
         }
     }
 

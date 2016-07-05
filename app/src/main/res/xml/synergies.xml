@@ -13,7 +13,7 @@
     <Synergy name1="roadhog" name2="reaper" amount="1"/>
     <Synergy name1="reinhardt" name2="lucio" amount="2"/>
     <Synergy name1="reinhardt" name2="mercy" amount="1"/>
-    <Synergy name1="reinhardt" name2="hanzo" amount="1"/>
+    <Synergy name1="reinhardt" name2="hanzo" amount="2"/>
     <Synergy name1="pharah" name2="mercy" amount="2"/>
     <Synergy name1="roadhog" name2="junkrat" amount="1"/>
     <Synergy name1="reaper" name2="lucio" amount="2"/>
@@ -29,4 +29,33 @@
     <Synergy name1="zenyatta" name2="symmetra" amount="2"/>
     <Synergy name1="lucio" name2="symmetra" amount="1"/>
     <Synergy name1="mercy" name2="symmetra" amount="1"/>
+    <Synergy name1="genji" name2="mei" amount="1"/>
+    <Synergy name1="genji" name2="reinhardt" amount="1"/>
+    <Synergy name1="genji" name2="zarya" amount="1"/>
+    <Synergy name1="genji" name2="zenyatta" amount="1"/>
+    <Synergy name1="mccree" name2="mei" amount="1"/>
+    <Synergy name1="mccree" name2="reaper" amount="1"/>
+    <Synergy name1="pharah" name2="mei" amount="1"/>
+    <Synergy name1="pharah" name2="zenyatta" amount="1"/>
+    <Synergy name1="reaper" name2="reinhardt" amount="1"/>
+    <Synergy name1="reaper" name2="mei" amount="2"/>
+    <Synergy name1="reinhardt" name2="soldier76" amount="1"/>
+    <Synergy name1="roadhog" name2="tracer" amount="1"/>
+    <Synergy name1="tracer" name2="widowmaker" amount="1"/>
+    <Synergy name1="tracer" name2="hanzo" amount="1"/>
+    <Synergy name1="tracer" name2="junkrat" amount="1"/>
+    <Synergy name1="bastion" name2="reinhardt" amount="1"/>
+    <Synergy name1="bastion" name2="mei" amount="1"/>
+    <Synergy name1="hanzo" name2="zarya" amount="1"/>
+    <Synergy name1="hanzo" name2="mercy" amount="1"/>
+    <Synergy name1="junkrat" name2="genji" amount="1"/>
+    <Synergy name1="junkrat" name2="mercy" amount="1"/>
+    <Synergy name1="roadhog" name2="mei" amount="1"/>
+    <Synergy name1="roadhog" name2="symmetra" amount="1"/>
+    <Synergy name1="winston" name2="widowmaker" amount="1"/>
+    <Synergy name1="winston" name2="hazno" amount="1"/>
+    <Synergy name1="zarya" name2="junkrat" amount="1"/>
+    <Synergy name1="zarya" name2="zenyatta" amount="1"/>
+    <Synergy name1="symmetra" name2="mccree" amount="1"/>
+    <Synergy name1="symmetra" name2="zarya" amount="1"/>
 </Synergies>
