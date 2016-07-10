@@ -116,7 +116,7 @@ public class Recommender {
             if(state == State.ATTACK) {
                 // Make sure we got 2 attack guys on attack
                 if(hero.getCore() && hero.getRole() == Role.OFFENCE && roleCounts.get(Role.OFFENCE) < 2) {
-                    hero.adjustRank(12);
+                    hero.adjustRank(10);
                 }
 
                 // If we don't got an assault, boost assault
@@ -131,12 +131,12 @@ public class Recommender {
 
                 // Deboost more than 1 builders
                 if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 0) {
-                    hero.adjustRank(-6);
+                    hero.adjustRank(-10);
                 }
             } else if(state == State.DEFEND) {
                 // Make sure we got 1 defence unit on defence
                 if(hero.getRole() == Role.DEFENCE && roleCounts.get(Role.DEFENCE) == 0) {
-                    hero.adjustRank(12);
+                    hero.adjustRank(10);
                 }
 
                 // Boost a sniper if we don't got one on defence
@@ -146,7 +146,7 @@ public class Recommender {
 
                 // Deboost more than 2 builders
                 if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 1) {
-                    hero.adjustRank(-6);
+                    hero.adjustRank(-10);
                 }
             } else if(state == State.KOH) {
                 // Make sure we got at least 1 attacking unit on koh
@@ -157,21 +157,21 @@ public class Recommender {
 
             // Deboost double sniper
             if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) > 0) {
-                hero.adjustRank(-6);
+                hero.adjustRank(-10);
             }
 
             // Deboot triple tank
             if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) >= 2) {
-                hero.adjustRank(-6);
+                hero.adjustRank(-10);
             }
 
             // Stage adjustment
-            hero.adjustRank(((enemyTeam.size() == 0) ? 1.5f : 1) * stage.getRank(subMap, hero));
+            hero.adjustRank(((enemyTeam.size() == 0) ? 1.33f : 1) * stage.getRank(subMap, hero));
 
             for(Hero ally : allyTeam) {
                 // Deboost same hero
                 if(hero == ally) {
-                    hero.adjustRank(-10);
+                    hero.adjustRank(-15);
                 }
                 if(synergy.containsEdge(hero, ally)) {
                     hero.adjustRank(synergy.getEdge(hero, ally).weight()); // Recommend hero's that synergize with team

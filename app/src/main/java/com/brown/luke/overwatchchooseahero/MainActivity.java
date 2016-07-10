@@ -20,10 +20,14 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -33,6 +37,12 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    // Constants
+    //-----------
+
+    private static final int AD_ANIMATION_DURATION = 667;
+    private static final int TUTORIAL_ANIMATION_DURATION = 400;
+
     // Static fields
     //--------------
 
@@ -149,7 +159,17 @@ public class MainActivity extends AppCompatActivity {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
+                    final View adProgress = findViewById(R.id.ad_progress);
+                    if (adProgress != null) {
+                        adProgress.setVisibility(View.INVISIBLE);
+                    }
+                    TranslateAnimation animation = new TranslateAnimation(
+                            Animation.RELATIVE_TO_SELF, -1f, Animation.RELATIVE_TO_SELF, 0,
+                            Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
+                    animation.setDuration(AD_ANIMATION_DURATION);
+                    adView.setAnimation(animation);
                     adView.setVisibility(View.VISIBLE);
+                    adView.animate();
                 }
             });
             adView.loadAd(adRequest);
@@ -264,7 +284,11 @@ public class MainActivity extends AppCompatActivity {
     public void startTutorial(final View view) {
         final View tutorialBackground = findViewById(R.id.tutorial_background);
         if(tutorialBackground != null) {
+            AlphaAnimation animation = new AlphaAnimation(0, 1);
+            animation.setDuration(TUTORIAL_ANIMATION_DURATION);
+            tutorialBackground.setAnimation(animation);
             tutorialBackground.setVisibility(View.VISIBLE);
+            tutorialBackground.animate();
         }
         currentTutorialIndex = 0;
         tutorialText.setText(getResources().getStringArray(R.array.tutorialMessages)[currentTutorialIndex]);
@@ -340,7 +364,11 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.commit();
         final View tutorialBackground = findViewById(R.id.tutorial_background);
         if(tutorialBackground != null) {
+            AlphaAnimation animation = new AlphaAnimation(1, 0);
+            animation.setDuration(TUTORIAL_ANIMATION_DURATION);
+            tutorialBackground.setAnimation(animation);
             tutorialBackground.setVisibility(View.GONE);
+            tutorialBackground.animate();
         }
     }
 
