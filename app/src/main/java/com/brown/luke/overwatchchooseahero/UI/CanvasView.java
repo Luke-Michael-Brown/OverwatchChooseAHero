@@ -23,7 +23,8 @@ public class CanvasView extends View {
 
     private final byte FPS = 30;
     private final byte TEAM_SIZE = 6;
-    private final byte NUMBER_OF_ROWS = 5;
+    private final byte NUMBER_OF_ROWS = 4;
+    private final byte[] NUMBER_OF_COLUMNS = {6, 6, 5, 4};
 
 
     // Fields
@@ -136,6 +137,7 @@ public class CanvasView extends View {
                         pokeX = event.getX();
                         pokeY = event.getY();
                         currentIndex = i;
+                        return true;
                     }
                 }
                 return true;
@@ -156,9 +158,38 @@ public class CanvasView extends View {
                             listener.heroAdded();
                             ++numberOfHeroesSelected;
                         }
-                        break;
+                        currentIndex = -1;
+                        return true;
                     }
                 }
+
+                if (currentIndex != -1) {
+                    if(pokeY <= this.getWidth() / 4) {
+                        for(HexEntity enemy : enemyTeam) {
+                            if (enemy.isEmpty()) {
+                                Entity current = this.heroOrder.get(currentIndex);
+                                enemy.setImage(current.getName());
+                                listener.heroAdded();
+                                ++numberOfHeroesSelected;
+                                currentIndex = -1;
+                                return true;
+                            }
+                        }
+                    }
+                    if(pokeY >= 3 * this.getWidth() / 4) {
+                        for(HexEntity ally : allyTeam) {
+                            if (ally.isEmpty()) {
+                                Entity current = this.heroOrder.get(currentIndex);
+                                ally.setImage(current.getName());
+                                listener.heroAdded();
+                                ++numberOfHeroesSelected;
+                                currentIndex = -1;
+                                return true;
+                            }
+                        }
+                    }
+                }
+
 
             case MotionEvent.ACTION_CANCEL:
                 currentIndex = -1;
@@ -190,48 +221,56 @@ public class CanvasView extends View {
     }
 
     private void setInitialPositions() {
-        final int ENTITY_SIZE = heroOrder.get(0).getBitmap().getWidth();
-        byte index = 0;
-        int y = (this.getHeight() - ENTITY_SIZE * NUMBER_OF_ROWS) / 2;
-        for(byte i = 0; i < NUMBER_OF_ROWS; ++i) {
-            byte NUM_OF_HEROES = (byte) ((i == 0 || i == NUMBER_OF_ROWS - 1) ? 3 : 5);
-            int x = (this.getWidth() - NUM_OF_HEROES * ENTITY_SIZE) / 2;
-            for(byte j = 0; j < NUM_OF_HEROES; ++j) {
-                heroOrder.get(index).setPos(new PointF(x, y));
-                x += ENTITY_SIZE;
-                ++index;
-            }
-            y += ENTITY_SIZE;
-        }
+        final int HEX_WIDTH = allyTeam.get(0).getBitmap().getWidth();
+        final int HEX_HEIGHT = allyTeam.get(0).getBitmap().getHeight();
 
-        int ENTITY_WIDTH = allyTeam.get(0).getBitmap().getWidth();
-        int ENTITY_HEIGHT = allyTeam.get(0).getBitmap().getHeight();
-
-        float SPACING = 40 * MainActivity.getScreenSize().x / 768;
-        float START_X =  (getWidth() - (ENTITY_WIDTH * 3 + SPACING * 2)) / 2;
+        // Ally team
+        float X_SPACING = 40 * MainActivity.getScreenSize().x / 768;
+        float Y_SPACING = 10 * MainActivity.getScreenSize().x / 768;
+        final float allyBarHeight = HEX_HEIGHT + 4 * Y_SPACING;
+        float x = (getWidth() - (HEX_WIDTH * 3 + X_SPACING * 2)) / 2;
+        float y = getHeight() - HEX_HEIGHT - Y_SPACING;
         for(byte i = 1; i < allyTeam.size() - 1; ++i) {
             final HexEntity ally = allyTeam.get(i);
-            final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), getHeight() - ENTITY_WIDTH - SPACING);
+            final PointF pos = new PointF(x + (i - 1) * (HEX_WIDTH + X_SPACING), y);
             ally.setPos(pos);
             addBorder("ally", ally);
         }
-        allyTeam.get(0).setPos(new PointF(SPACING, getHeight() - 3 * ENTITY_HEIGHT / 2));
+        allyTeam.get(0).setPos(new PointF(X_SPACING, getHeight() - allyBarHeight));
         addBorder("ally", allyTeam.get(0));
-        allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - ENTITY_WIDTH - SPACING, getHeight() - 3 * ENTITY_HEIGHT / 2));
+        allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - HEX_WIDTH - Y_SPACING, getHeight() - allyBarHeight));
         addBorder("ally", allyTeam.get(allyTeam.size() - 1));
 
-        SPACING = 25 * MainActivity.getScreenSize().x / 768;
-        START_X =  (getWidth() - (ENTITY_WIDTH * 4 + SPACING * 3)) / 2;
+        // Enemy team
+        X_SPACING = 25 * MainActivity.getScreenSize().x / 768;
+        final float enemyBarHeight = HEX_HEIGHT + 11 * Y_SPACING;
+        x = (getWidth() - (HEX_WIDTH * 4 + X_SPACING * 3)) / 2;
+        y = Y_SPACING;
         for(byte i = 1; i < enemyTeam.size() - 1; ++i) {
             final HexEntity enemy = enemyTeam.get(i);
-            final PointF pos = new PointF(START_X + (i - 1) * (ENTITY_WIDTH + SPACING), SPACING);
+            final PointF pos = new PointF(x + (i - 1) * (HEX_WIDTH + X_SPACING), y);
             enemy.setPos(pos);
             addBorder("enemy", enemy);
         }
-        enemyTeam.get(0).setPos(new PointF(SPACING, SPACING + 3 * ENTITY_HEIGHT / 4));
+        enemyTeam.get(0).setPos(new PointF(X_SPACING, enemyBarHeight - HEX_HEIGHT));
         addBorder("enemy", enemyTeam.get(0));
-        enemyTeam.get(enemyTeam.size() - 1).setPos(new PointF(getWidth() - ENTITY_WIDTH - SPACING, SPACING + 3 * ENTITY_HEIGHT / 4));
+        enemyTeam.get(enemyTeam.size() - 1).setPos(new PointF(getWidth() - HEX_WIDTH - X_SPACING, enemyBarHeight - HEX_HEIGHT));
         addBorder("enemy", enemyTeam.get(enemyTeam.size() - 1));
+
+        // Portraits
+        final int SQ_SIZE = heroOrder.get(0).getBitmap().getWidth();
+        byte index = 0;
+        y = (this.getHeight() - SQ_SIZE * NUMBER_OF_ROWS - allyBarHeight - enemyBarHeight) / 2 + enemyBarHeight;
+        for(byte i = 0; i < NUMBER_OF_ROWS; ++i) {
+            byte NUM_OF_HEROES = NUMBER_OF_COLUMNS[i];
+            x = (this.getWidth() - NUM_OF_HEROES * SQ_SIZE) / 2;
+            for(byte j = 0; j < NUM_OF_HEROES; ++j) {
+                heroOrder.get(index).setPos(new PointF(x, y));
+                x += SQ_SIZE;
+                ++index;
+            }
+            y += SQ_SIZE;
+        }
     }
 
     // Public methods

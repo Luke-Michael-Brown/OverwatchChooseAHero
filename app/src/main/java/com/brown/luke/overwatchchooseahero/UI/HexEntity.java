@@ -11,6 +11,7 @@ public class HexEntity extends Entity {
     // Fields
     //--------
 
+    private boolean isEmpty;
     private Bitmap hoverBitmap;
 
 
@@ -19,13 +20,13 @@ public class HexEntity extends Entity {
 
     public HexEntity(final String name) {
         super(name);
+        this.isEmpty = true;
         this.hoverBitmap = null;
     }
 
 
     // Getters
     //--------
-
 
     @Override
     public Bitmap getBitmap() {
@@ -34,6 +35,10 @@ public class HexEntity extends Entity {
         } else {
             return this.hoverBitmap;
         }
+    }
+
+    public boolean isEmpty() {
+        return isEmpty;
     }
 
 
@@ -54,6 +59,7 @@ public class HexEntity extends Entity {
 
     @Override
     public void setImage(final String name) {
+        isEmpty = name.equals("empty");
         super.setImage(name);
         this.hoverBitmap = null;
     }

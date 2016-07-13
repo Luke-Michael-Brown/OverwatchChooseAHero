@@ -60,7 +60,7 @@ public class SqEntity extends Entity {
 
     @Override
     protected float getScale() {
-        return (float) MainActivity.getScreenSize().x / 785;
+        return (float) MainActivity.getScreenSize().x / 767;
     }
 
     @Override

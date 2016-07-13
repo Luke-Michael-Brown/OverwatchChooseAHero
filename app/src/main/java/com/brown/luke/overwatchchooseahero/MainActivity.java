@@ -16,6 +16,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     // Constants
     //----------
 
-    private final float DISABLED_ALPHA = 0.5f;
+    private final float DISABLED_ALPHA = 0.30f;
     private final String TUTORIAL_SAVE_KEY = "TUTORIAL_SAVE_KEY";
 
 
@@ -159,17 +160,19 @@ public class MainActivity extends AppCompatActivity {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdLoaded() {
-                    final View adProgress = findViewById(R.id.ad_progress);
-                    if (adProgress != null) {
-                        adProgress.setVisibility(View.INVISIBLE);
+                    if(adView.getVisibility() != View.VISIBLE) {
+                        final View adProgress = findViewById(R.id.ad_progress);
+                        if (adProgress != null) {
+                            adProgress.setVisibility(View.INVISIBLE);
+                        }
+                        TranslateAnimation animation = new TranslateAnimation(
+                                Animation.RELATIVE_TO_SELF, -1f, Animation.RELATIVE_TO_SELF, 0,
+                                Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
+                        animation.setDuration(AD_ANIMATION_DURATION);
+                        adView.setAnimation(animation);
+                        adView.setVisibility(View.VISIBLE);
+                        adView.animate();
                     }
-                    TranslateAnimation animation = new TranslateAnimation(
-                            Animation.RELATIVE_TO_SELF, -1f, Animation.RELATIVE_TO_SELF, 0,
-                            Animation.RELATIVE_TO_SELF, 0f, Animation.RELATIVE_TO_SELF, 0f);
-                    animation.setDuration(AD_ANIMATION_DURATION);
-                    adView.setAnimation(animation);
-                    adView.setVisibility(View.VISIBLE);
-                    adView.animate();
                 }
             });
             adView.loadAd(adRequest);

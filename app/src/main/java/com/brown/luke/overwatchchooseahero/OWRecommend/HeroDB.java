@@ -151,8 +151,6 @@ public class HeroDB {
                     }
 
                     if(name1 != null && name2 != null && amount > 0) {
-                        Log.d("Hero1", name1);
-                        Log.d("Hero2", name2);
                         addCounter(heroNameMap.get(name1), heroNameMap.get(name2), amount);
                     }
                 }

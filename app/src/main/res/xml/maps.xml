@@ -505,7 +505,7 @@
         </SubMap>
     </Map>
     <Map name="Lijiang">
-        <SubMap name="ControlCenter">
+        <SubMap name="Control Center">
             <Hero name="genji" amount="1"/>
             <Hero name="mccree" amount="1"/>
             <Hero name="pharah" amount="2"/>
@@ -615,7 +615,7 @@
             <Hero name="dva" amount="1"/>
             <Hero name="reinhardt" amount="1"/>
             <Hero name="roadhog" amount="0"/>
-            <Hero name="winston" amount="0"/>
+            <Hero name="winston" amount="2"/>
             <Hero name="zarya" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="1"/>
