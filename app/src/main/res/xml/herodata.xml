@@ -17,6 +17,7 @@
     <Hero name="roadhog" role="Tank"/>
     <Hero name="winston" role="Tank"/>
     <Hero name="zarya" role="Tank"/>
+    <Hero name="ana" role="Support" subrole="Sniper"/>
     <Hero name="lucio" role="Support"/>
     <Hero name="mercy" role="Support"/>
     <Hero name="symmetra" role="Support" subrole="Builder" isCore="false"/>

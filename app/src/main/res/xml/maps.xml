@@ -19,6 +19,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
             <Hero name="zarya" amount="1"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -42,6 +43,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="4"/>
@@ -67,6 +69,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="4"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -90,6 +93,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="4"/>
@@ -115,6 +119,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="4"/>
             <Hero name="zarya" amount="1"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="0"/>
             <Hero name="symmetra" amount="0"/>
@@ -138,6 +143,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="4"/>
@@ -163,6 +169,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -186,6 +193,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="3"/>
@@ -211,6 +219,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="4"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -234,6 +243,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="1"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="3"/>
@@ -259,6 +269,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -282,6 +293,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="3"/>
@@ -307,6 +319,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -330,6 +343,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="1"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="3"/>
@@ -355,6 +369,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="3"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -378,6 +393,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="4"/>
@@ -403,6 +419,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="4"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="4"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -426,6 +443,7 @@
             <Hero name="roadhog" amount="3"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="3"/>
+            <Hero name="ana" amount="3"/>
             <Hero name="lucio" amount="1"/>
             <Hero name="mercy" amount="4"/>
             <Hero name="symmetra" amount="3"/>
@@ -452,6 +470,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="2"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -475,6 +494,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="1"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="2"/>
             <Hero name="mercy" amount="2"/>
             <Hero name="symmetra" amount="0"/>
@@ -498,6 +518,7 @@
             <Hero name="roadhog" amount="1"/>
             <Hero name="winston" amount="1"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -523,6 +544,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="1"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="2"/>
             <Hero name="symmetra" amount="0"/>
@@ -546,6 +568,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="1"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -569,6 +592,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="2"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="0"/>
@@ -594,6 +618,7 @@
             <Hero name="roadhog" amount="1"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="0"/>
             <Hero name="symmetra" amount="0"/>
@@ -617,6 +642,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="2"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="3"/>
             <Hero name="mercy" amount="1"/>
             <Hero name="symmetra" amount="1"/>
@@ -640,6 +666,7 @@
             <Hero name="roadhog" amount="0"/>
             <Hero name="winston" amount="0"/>
             <Hero name="zarya" amount="0"/>
+            <Hero name="ana" amount="0"/>
             <Hero name="lucio" amount="2"/>
             <Hero name="mercy" amount="0"/>
             <Hero name="symmetra" amount="0"/>

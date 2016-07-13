@@ -58,4 +58,8 @@
     <Synergy name1="zarya" name2="zenyatta" amount="1"/>
     <Synergy name1="symmetra" name2="mccree" amount="1"/>
     <Synergy name1="symmetra" name2="zarya" amount="1"/>
+    <Synergy name1="ana" name2="reinhardt" amount="1"/>
+    <Synergy name1="ana" name2="pharah" amount="1"/>
+    <Synergy name1="winston" name2="ana" amount="1"/>
+    <Synergy name1="dva" name2="ana" amount="1"/>
 </Synergies>

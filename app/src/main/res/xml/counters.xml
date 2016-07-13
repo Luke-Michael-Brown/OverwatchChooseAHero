@@ -7,6 +7,7 @@
     <Counter name1="genji" name2="mercy" amount="1"/>
     <Counter name1="genji" name2="junkrat" amount="1"/>
     <Counter name1="genji" name2="mccree" amount="1"/>
+    <Counter name1="genji" name2="ana" amount="2"/>
 
     <Counter name1="mccree" name2="tracer" amount="2"/>
     <Counter name1="mccree" name2="genji" amount="2"/>
@@ -93,6 +94,7 @@
     <Counter name1="widowmaker" name2="pharah" amount="2"/>
     <Counter name1="widowmaker" name2="lucio" amount="1"/>
     <Counter name1="widowmaker" name2="zarya" amount="1"/>
+    <Counter name1="widowmaker" name2="ana" amount="1"/>
 
     <Counter name1="mei" name2="tracer" amount="1"/>
     <Counter name1="mei" name2="genji" amount="2"/>
@@ -120,8 +122,10 @@
     <Counter name1="dva" name2="mercy" amount="1"/>
     <Counter name1="dva" name2="roadhog" amount="1"/>
     <Counter name1="dva" name2="reinhardt" amount="1"/>
+    <Counter name1="dva" name2="ana" amount="2"/>
 
     <Counter name1="reinhardt" name2="widowmaker" amount="2"/>
+    <Counter name1="reinhardt" name2="ana" amount="2"/>
     <Counter name1="reinhardt" name2="hanzo" amount="2"/>
     <Counter name1="reinhardt" name2="torbjorn" amount="1"/>
     <Counter name1="reinhardt" name2="soldier76" amount="1"/>
@@ -139,6 +143,7 @@
     <Counter name1="roadhog" name2="symmetra" amount="1"/>
 
     <Counter name1="winston" name2="widowmaker" amount="2"/>
+    <Counter name1="winston" name2="ana" amount="2"/>
     <Counter name1="winston" name2="hanzo" amount="2"/>
     <Counter name1="winston" name2="genji" amount="3"/>
     <Counter name1="winston" name2="tracer" amount="2"/>
@@ -155,6 +160,12 @@
     <Counter name1="zarya" name2="junkrat" amount="1"/>
     <Counter name1="zarya" name2="symmetra" amount="1"/>
     <Counter name1="zarya" name2="mercy" amount="1"/>
+
+    <Counter name1="ana" name2="pharah" amount="1"/>
+    <Counter name1="ana" name2="soldier76" amount="1"/>
+    <Counter name1="ana" name2="roadhog" amount="1"/>
+    <Counter name1="ana" name2="lucio" amount="1"/>
+    <Counter name1="ana" name2="mercy" amount="1"/>
 
     <Counter name1="lucio" name2="dva" amount="3"/>
     <Counter name1="lucio" name2="reaper" amount="1"/>

@@ -24,7 +24,7 @@ public class CanvasView extends View {
     private final byte FPS = 30;
     private final byte TEAM_SIZE = 6;
     private final byte NUMBER_OF_ROWS = 4;
-    private final byte[] NUMBER_OF_COLUMNS = {6, 6, 5, 4};
+    private final byte[] NUMBER_OF_COLUMNS = {6, 6, 5, 5};
 
 
     // Fields
