@@ -108,6 +108,11 @@ public class Recommender {
                 hero.adjustRank(REALLY_BIG);
             }
 
+            // Deboost double support
+            if (hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) == 1) {
+                hero.adjustRank(-10);
+            }
+
             // Don't recommend a third support
             if(hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) >= 2) {
                 hero.adjustRank(-1 * BIG);
@@ -129,8 +134,8 @@ public class Recommender {
                     hero.adjustRank(6);
                 }
 
-                // Deboost more than 1 builders
-                if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 0) {
+                // Deboost snipers and builders
+                if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
                     hero.adjustRank(-10);
                 }
             } else if(state == State.DEFEND) {
@@ -153,6 +158,11 @@ public class Recommender {
                 if(hero.getRole() == Role.OFFENCE && roleCounts.get(Role.OFFENCE) == 0) {
                     hero.adjustRank(BIG);
                 }
+
+                // Deboost snipers and builders
+                if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
+                    hero.adjustRank(-10);
+                }
             }
 
             // Deboost double sniper
@@ -160,9 +170,14 @@ public class Recommender {
                 hero.adjustRank(-10);
             }
 
+            // Deboot double tank
+            if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) == 1) {
+                hero.adjustRank(-6);
+            }
+
             // Deboot triple tank
             if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) >= 2) {
-                hero.adjustRank(-10);
+                hero.adjustRank(-15);
             }
 
             // Stage adjustment
@@ -192,7 +207,7 @@ public class Recommender {
             for(Hero enemy : enemyTeam) {
                 if(counters.containsEdge(hero, enemy)) {
                     if(!coverage.contains(enemy)) {
-                        hero.adjustRank(12); // If we counter an enemy that our team does not counter then boost!
+                        hero.adjustRank(15); // If we counter an enemy that our team does not counter then boost!
                     }
                     hero.adjustRank(counters.getEdge(hero, enemy).weight()); // recommend heroes that counter the enemy
                 }

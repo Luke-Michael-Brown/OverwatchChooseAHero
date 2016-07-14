@@ -40,6 +40,7 @@
     <Counter name1="reaper" name2="roadhog" amount="1"/>
     <Counter name1="reaper" name2="bastion" amount="1"/>
     <Counter name1="reaper" name2="mei" amount="1"/>
+    <Counter name1="reaper" name2="ana" amount="1"/>
 
     <Counter name1="soldier76" name2="mercy" amount="2"/>
     <Counter name1="soldier76" name2="pharah" amount="2"/>
@@ -57,6 +58,7 @@
     <Counter name1="tracer" name2="lucio" amount="1"/>
     <Counter name1="tracer" name2="genji" amount="1"/>
     <Counter name1="tracer" name2="reinhardt" amount="1"/>
+    <Counter name1="tracer" name2="ana" amount="1"/>
 
     <Counter name1="bastion" name2="zarya" amount="2"/>
     <Counter name1="bastion" name2="reaper" amount="1"/>
@@ -163,9 +165,10 @@
 
     <Counter name1="ana" name2="pharah" amount="1"/>
     <Counter name1="ana" name2="soldier76" amount="1"/>
-    <Counter name1="ana" name2="roadhog" amount="1"/>
+    <Counter name1="ana" name2="roadhog" amount="2"/>
     <Counter name1="ana" name2="lucio" amount="1"/>
-    <Counter name1="ana" name2="mercy" amount="1"/>
+    <Counter name1="ana" name2="mercy" amount="2"/>
+    <Counter name1="ana" name2="mccree" amount="1"/>
 
     <Counter name1="lucio" name2="dva" amount="3"/>
     <Counter name1="lucio" name2="reaper" amount="1"/>

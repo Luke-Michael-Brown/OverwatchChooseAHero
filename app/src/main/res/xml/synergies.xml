@@ -62,4 +62,8 @@
     <Synergy name1="ana" name2="pharah" amount="1"/>
     <Synergy name1="winston" name2="ana" amount="1"/>
     <Synergy name1="dva" name2="ana" amount="1"/>
+    <Synergy name1="ana" name2="genji" amount="2"/>
+    <Synergy name1="ana" name2="bastion" amount="2"/>
+    <Synergy name1="ana" name2="roadhog" amount="1"/>
+    <Synergy name1="ana" name2="zenyatta" amount="1"/>
 </Synergies>
