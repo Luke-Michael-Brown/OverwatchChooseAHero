@@ -16,17 +16,8 @@
         tools:ignore="contentDescription"
         android:scaleType="centerCrop"/>
 
-    <com.brown.luke.overwatchchooseahero.UI.CanvasView
-        android:id="@+id/canvas_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:layout_above="@+id/bottom_bar"
-        android:layout_below="@+id/top_bar">
-    </com.brown.luke.overwatchchooseahero.UI.CanvasView>
-
     <RelativeLayout
-        android:id="@id/top_bar"
+        android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/android:transparent">
@@ -61,7 +52,7 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@id/bottom_bar"
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/android:transparent"
@@ -126,12 +117,22 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <com.brown.luke.overwatchchooseahero.UI.CanvasView
+        android:id="@+id/canvas_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/adView">
+    </com.brown.luke.overwatchchooseahero.UI.CanvasView>
+
     <RelativeLayout
         android:id="@+id/tutorial_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:layout_alignParentTop="true"
-        android:layout_above="@+id/adView"
+        android:layout_alignParentBottom="true"
         android:background="@color/blackTrans"
         android:onClick="nop">
         <LinearLayout
@@ -152,6 +153,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:layout_gravity="center">
                 <Button
                     android:id="@+id/skip_btn"
@@ -163,7 +165,7 @@
                     android:onClick="skipTutorial"
                     android:layout_margin="3dp"
                     android:background="@android:color/transparent"
-                    android:gravity="center"
+                    android:layout_gravity="center"
                     style="@style/text"/>
                 <Button
                     android:id="@+id/next_btn"
@@ -186,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:textSize="12sp"
             android:textColor="@color/white"
             android:layout_margin="3dp"

@@ -15,7 +15,7 @@
     <string name="reset">Reset</string>
     <string name="trash">Trash</string>
 
-    <string name="verion_number">Ver. 0.5\nMade by: Luke Brown</string>
+    <string name="verion_number">Ver. 0.6\nMade by: Luke Brown</string>
 
     <string-array name="states">
         <item>Attack</item>

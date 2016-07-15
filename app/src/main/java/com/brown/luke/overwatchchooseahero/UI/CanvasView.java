@@ -30,6 +30,9 @@ public class CanvasView extends View {
     // Fields
     //--------
 
+    private View topBar;
+    private View bottomBar;
+
     private final ArrayList<SqEntity> heroOrder = new ArrayList<>();
     private final ArrayList<HexEntity> allyTeam = new ArrayList<>();
     private final ArrayList<HexEntity> enemyTeam = new ArrayList<>();
@@ -52,6 +55,9 @@ public class CanvasView extends View {
     public CanvasView(final Context context, final AttributeSet attrs) {
         super(context, attrs);
         paint = new Paint();
+
+        topBar = null;
+        bottomBar = null;
 
         for(String name : HeroDB.getDefaultOrder()) {
             heroOrder.add(new SqEntity(name));
@@ -89,33 +95,36 @@ public class CanvasView extends View {
     protected void onDraw(final Canvas canvas) {
         super.onDraw(canvas);
 
-        if(heroOrder.get(0).getPos() == null) {
-            setInitialPositions();
-        }
+        if(topBar != null && bottomBar != null) {
 
-        paint.setColor(Color.BLACK);
-        for(Entity entity : entities) {
-            PointF pos = entity.getPos();
-            if(pos != null) {
-                final float x = pos.x;
-                final float y = pos.y;
-
-                entity.update(1000 / FPS);
-
-                final Bitmap bm = entity.getBitmap();
-                if (entity.isHover()) {
-                    paint.setAlpha(167);
-                }
-
-                canvas.drawBitmap(bm, x, y, paint);
-                paint.setAlpha(255);
+            if(heroOrder.get(0).getPos() == null) {
+                setInitialPositions();
             }
-        }
 
-        if(currentIndex >= 0) {
-            final Entity entity = heroOrder.get(currentIndex);
-            final Bitmap bitmap = entity.getBitmap();
-            canvas.drawBitmap(bitmap, pokeX - bitmap.getWidth() / 2, pokeY - bitmap.getHeight() / 2, paint);
+            paint.setColor(Color.BLACK);
+            for (Entity entity : entities) {
+                PointF pos = entity.getPos();
+                if (pos != null) {
+                    final float x = pos.x;
+                    final float y = pos.y;
+
+                    entity.update(1000 / FPS);
+
+                    final Bitmap bm = entity.getBitmap();
+                    if (entity.isHover()) {
+                        paint.setAlpha(167);
+                    }
+
+                    canvas.drawBitmap(bm, x, y, paint);
+                    paint.setAlpha(255);
+                }
+            }
+
+            if (currentIndex >= 0) {
+                final Entity entity = heroOrder.get(currentIndex);
+                final Bitmap bitmap = entity.getBitmap();
+                canvas.drawBitmap(bitmap, pokeX - bitmap.getWidth() / 2, pokeY - bitmap.getHeight() / 2, paint);
+            }
         }
 
         this.postInvalidateDelayed(1000 / FPS);
@@ -140,7 +149,7 @@ public class CanvasView extends View {
                         return true;
                     }
                 }
-                return true;
+                return false;
 
             case MotionEvent.ACTION_UP:
                 for(Entity entity : hexEntities) {
@@ -216,6 +225,11 @@ public class CanvasView extends View {
     // Setters
     //---------
 
+    public void setBars(final View topBar, final View bottomBar) {
+        this.topBar = topBar;
+        this.bottomBar = bottomBar;
+    }
+
     public void setListener(final OnHeroesChangedListener listener) {
         this.listener = listener;
     }
@@ -229,32 +243,32 @@ public class CanvasView extends View {
         float Y_SPACING = 10 * MainActivity.getScreenSize().x / 768;
         final float allyBarHeight = HEX_HEIGHT + 4 * Y_SPACING;
         float x = (getWidth() - (HEX_WIDTH * 3 + X_SPACING * 2)) / 2;
-        float y = getHeight() - HEX_HEIGHT - Y_SPACING;
+        float y = getHeight() - bottomBar.getHeight() - HEX_HEIGHT - Y_SPACING;
         for(byte i = 1; i < allyTeam.size() - 1; ++i) {
             final HexEntity ally = allyTeam.get(i);
             final PointF pos = new PointF(x + (i - 1) * (HEX_WIDTH + X_SPACING), y);
             ally.setPos(pos);
             addBorder("ally", ally);
         }
-        allyTeam.get(0).setPos(new PointF(X_SPACING, getHeight() - allyBarHeight));
+        allyTeam.get(0).setPos(new PointF(X_SPACING, getHeight() - bottomBar.getHeight() - allyBarHeight));
         addBorder("ally", allyTeam.get(0));
-        allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - HEX_WIDTH - Y_SPACING, getHeight() - allyBarHeight));
+        allyTeam.get(allyTeam.size() - 1).setPos(new PointF(getWidth() - HEX_WIDTH - Y_SPACING, getHeight() - bottomBar.getHeight() - allyBarHeight));
         addBorder("ally", allyTeam.get(allyTeam.size() - 1));
 
         // Enemy team
         X_SPACING = 25 * MainActivity.getScreenSize().x / 768;
         final float enemyBarHeight = HEX_HEIGHT + 11 * Y_SPACING;
         x = (getWidth() - (HEX_WIDTH * 4 + X_SPACING * 3)) / 2;
-        y = Y_SPACING;
+        y = Y_SPACING + topBar.getHeight();
         for(byte i = 1; i < enemyTeam.size() - 1; ++i) {
             final HexEntity enemy = enemyTeam.get(i);
             final PointF pos = new PointF(x + (i - 1) * (HEX_WIDTH + X_SPACING), y);
             enemy.setPos(pos);
             addBorder("enemy", enemy);
         }
-        enemyTeam.get(0).setPos(new PointF(X_SPACING, enemyBarHeight - HEX_HEIGHT));
+        enemyTeam.get(0).setPos(new PointF(X_SPACING, topBar.getHeight() + enemyBarHeight - HEX_HEIGHT));
         addBorder("enemy", enemyTeam.get(0));
-        enemyTeam.get(enemyTeam.size() - 1).setPos(new PointF(getWidth() - HEX_WIDTH - X_SPACING, enemyBarHeight - HEX_HEIGHT));
+        enemyTeam.get(enemyTeam.size() - 1).setPos(new PointF(getWidth() - HEX_WIDTH - X_SPACING, topBar.getHeight() + enemyBarHeight - HEX_HEIGHT));
         addBorder("enemy", enemyTeam.get(enemyTeam.size() - 1));
 
         // Portraits

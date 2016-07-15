@@ -16,7 +16,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,12 +27,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -41,8 +37,8 @@ public class MainActivity extends AppCompatActivity {
     // Constants
     //-----------
 
-    private static final int AD_ANIMATION_DURATION = 667;
-    private static final int TUTORIAL_ANIMATION_DURATION = 400;
+    private static final int AD_ANIMATION_DURATION = 625;
+    private static final int TUTORIAL_ANIMATION_DURATION = 350;
 
     // Static fields
     //--------------
@@ -128,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
         subMap = null;
         view = (CanvasView) findViewById(R.id.canvas_layout);
         if (view != null) {
+            view.setBars(findViewById(R.id.top_bar), findViewById(R.id.bottom_bar));
             view.setListener(listener);
         }
 
@@ -138,7 +135,6 @@ public class MainActivity extends AppCompatActivity {
 
         nextButton = (Button) findViewById(R.id.next_btn);
         tutorialText = (TextView) findViewById(R.id.tutorial_text);
-        startTutorial(null);
 
         disableButton(runButton);
         disableButton(resetButton);
@@ -227,9 +223,8 @@ public class MainActivity extends AppCompatActivity {
         addButtonPressedState(resetButton);
         addButtonPressedState(trashButton);
 
-        final View tutorialBackground = findViewById(R.id.tutorial_background);
-        if (sharedPref.getBoolean(TUTORIAL_SAVE_KEY, false) && tutorialBackground != null) {
-            tutorialBackground.setVisibility(View.GONE);
+        if (!sharedPref.getBoolean(TUTORIAL_SAVE_KEY, false)) {
+            startTutorial(null);
         }
     }
 

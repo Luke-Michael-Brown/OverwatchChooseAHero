@@ -110,7 +110,7 @@ public class Recommender {
 
             // Deboost double support
             if (hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) == 1) {
-                hero.adjustRank(-10);
+                hero.adjustRank(-15);
             }
 
             // Don't recommend a third support
@@ -126,12 +126,12 @@ public class Recommender {
 
                 // If we don't got an assault, boost assault
                 if(hero.getSubRole() == SubRole.ASSAULT && subRoleCounts.get(SubRole.ASSAULT) == 0) {
-                    hero.adjustRank(6);
+                    hero.adjustRank(7);
                 }
 
                 // If we don't got a flanker, boost flanker
                 if(hero.getSubRole() == SubRole.ASSAULT && subRoleCounts.get(SubRole.FLANKER) == 0) {
-                    hero.adjustRank(6);
+                    hero.adjustRank(7);
                 }
 
                 // Deboost snipers and builders
@@ -146,7 +146,7 @@ public class Recommender {
 
                 // Boost a sniper if we don't got one on defence
                 if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) == 0) {
-                    hero.adjustRank(6);
+                    hero.adjustRank(7);
                 }
 
                 // Deboost more than 2 builders
@@ -172,7 +172,7 @@ public class Recommender {
 
             // Deboot double tank
             if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) == 1) {
-                hero.adjustRank(-6);
+                hero.adjustRank(-7);
             }
 
             // Deboot triple tank
