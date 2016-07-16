@@ -132,8 +132,12 @@ public class CanvasView extends View {
 
     @Override
     public boolean onTouchEvent(final MotionEvent event){
-       if(isAnimating()) {
-           return true;
+       if(isAnimating() ||
+               (event.getAction() == MotionEvent.ACTION_DOWN &&
+                       (event.getY() <= topBar.getHeight() ||
+                        event.getY() >= this.getHeight() - bottomBar.getHeight())))
+       {
+           return false;
        }
 
         final PointF poke = new PointF(event.getX(), event.getY());
@@ -149,7 +153,7 @@ public class CanvasView extends View {
                         return true;
                     }
                 }
-                return false;
+                return true;
 
             case MotionEvent.ACTION_UP:
                 for(Entity entity : hexEntities) {
@@ -173,7 +177,7 @@ public class CanvasView extends View {
                 }
 
                 if (currentIndex != -1) {
-                    if(pokeY <= this.getWidth() / 4) {
+                    if(pokeY <= 5 * this.getHeight() / 16) {
                         for(HexEntity enemy : enemyTeam) {
                             if (enemy.isEmpty()) {
                                 Entity current = this.heroOrder.get(currentIndex);
@@ -185,7 +189,7 @@ public class CanvasView extends View {
                             }
                         }
                     }
-                    if(pokeY >= 3 * this.getWidth() / 4) {
+                    if(pokeY >= 11 * this.getHeight() / 16) {
                         for(HexEntity ally : allyTeam) {
                             if (ally.isEmpty()) {
                                 Entity current = this.heroOrder.get(currentIndex);
@@ -218,7 +222,7 @@ public class CanvasView extends View {
 
         }
 
-        return false;
+        return true;
     }
 
 
