@@ -200,7 +200,7 @@
             <Hero name="zenyatta" amount="0"/>
         </SubMap>
     </Map>
-    <Map name="Route66">
+    <Map name="Route 66">
         <SubMap name="Attack">
             <Hero name="genji" amount="4"/>
             <Hero name="mccree" amount="3"/>
@@ -350,7 +350,7 @@
             <Hero name="zenyatta" amount="0"/>
         </SubMap>
     </Map>
-    <Map name="KingsRow">
+    <Map name="Kings Row">
         <SubMap name="Attack">
             <Hero name="genji" amount="4"/>
             <Hero name="mccree" amount="3"/>
@@ -574,7 +574,7 @@
             <Hero name="symmetra" amount="0"/>
             <Hero name="zenyatta" amount="0"/>
         </SubMap>
-        <SubMap name="NightMarket">
+        <SubMap name="Night Market">
             <Hero name="genji" amount="1"/>
             <Hero name="mccree" amount="1"/>
             <Hero name="pharah" amount="1"/>
