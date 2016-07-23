@@ -38,11 +38,11 @@
     </string-array>
 
     <string-array name="tutorialMessages">
-        <item>Welcome to Overwatch Recommend, an app for recommending a hero given your current situation.</item>
-        <item>Start by dragging heroes from the center to the ally and enemy team respectively. Or swiping a hero up or down for the each team respectively.</item>
-        <item>Then select your map first followed by the whether you\'re on attack/defend. If you\'re playing a control map then select the section rather than attack/defend</item>
-        <item>Finally hit choose and the app will reorder the heroes with top left being the highest rated.</item>
-        <item>Use the reset button at the top right to reset the order and the trash can to reset everything.</item>
-        <item>Try to use you\'re own judgement and look at all the highest rated. Good luck and have fun!</item>
+        <item>Welcome to Overwatch Recommend, the app for recommending an Overwatch hero given a match composition.</item>
+        <item>Start by dragging heroes from the center to the ally and enemy teams.</item>
+        <item>Select your map followed by your object: attack or defend. When playing a control map, select the stage rather than attack or defend.</item>
+        <item>Hit CHOOSE to reorder the heroes. The top left hero is the best choice given the scenario.</item>
+        <item>Use the RESET button at the top right to reset the hero\'s position and the DELTE button to clear everything.</item>
+        <item>Use your own judgement when selecting heroes. The top five heroes are all excellent choices. GLHF!</item>
     </string-array>
 </resources>
