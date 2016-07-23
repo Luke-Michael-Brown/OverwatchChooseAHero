@@ -8,7 +8,7 @@ public class SqEntity extends Entity {
     // Constants
     //-----------
 
-    final short SQ_DURATION = 233;
+    final short SQ_DURATION = 250;
 
 
     // Fields

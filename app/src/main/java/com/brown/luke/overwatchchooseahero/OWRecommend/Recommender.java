@@ -110,7 +110,7 @@ public class Recommender {
 
             // Deboost double support
             if (hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) == 1) {
-                hero.adjustRank(-15);
+                hero.adjustRank(-25);
             }
 
             // Don't recommend a third support
@@ -136,7 +136,7 @@ public class Recommender {
 
                 // Deboost snipers and builders
                 if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
-                    hero.adjustRank(-10);
+                    hero.adjustRank(-17);
                 }
             } else if(state == State.DEFEND) {
                 // Make sure we got 1 defence unit on defence
@@ -151,7 +151,7 @@ public class Recommender {
 
                 // Deboost more than 2 builders
                 if(hero.getSubRole() == SubRole.BUILDER && subRoleCounts.get(SubRole.BUILDER) > 1) {
-                    hero.adjustRank(-10);
+                    hero.adjustRank(-15);
                 }
             } else if(state == State.KOH) {
                 // Make sure we got at least 1 attacking unit on koh
@@ -161,13 +161,13 @@ public class Recommender {
 
                 // Deboost snipers and builders
                 if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
-                    hero.adjustRank(-10);
+                    hero.adjustRank(-20);
                 }
             }
 
             // Deboost double sniper
             if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) > 0) {
-                hero.adjustRank(-10);
+                hero.adjustRank(-25);
             }
 
             // Deboot double tank
@@ -177,7 +177,7 @@ public class Recommender {
 
             // Deboot triple tank
             if(hero.getCore() && hero.getRole() == Role.TANK && roleCounts.get(Role.TANK) >= 2) {
-                hero.adjustRank(-15);
+                hero.adjustRank(-25);
             }
 
             // Stage adjustment
@@ -186,7 +186,7 @@ public class Recommender {
             for(Hero ally : allyTeam) {
                 // Deboost same hero
                 if(hero == ally) {
-                    hero.adjustRank(-15);
+                    hero.adjustRank(-17);
                 }
                 if(synergy.containsEdge(hero, ally)) {
                     hero.adjustRank(synergy.getEdge(hero, ally).weight()); // Recommend hero's that synergize with team

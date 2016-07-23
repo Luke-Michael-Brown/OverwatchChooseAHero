@@ -12,7 +12,7 @@
     <Hero name="widowmaker" role="Defence" subrole="Sniper"/>
     <Hero name="mei" role="Defence"/>
     <Hero name="torbjorn" role="Defence" subrole="Builder"/>
-    <Hero name="dva" role="Tank" isCore="false"/>
+    <Hero name="dva" role="Tank"/>
     <Hero name="reinhardt" role="Tank"/>
     <Hero name="roadhog" role="Tank"/>
     <Hero name="winston" role="Tank"/>
@@ -20,6 +20,6 @@
     <Hero name="ana" role="Support" subrole="Sniper"/>
     <Hero name="lucio" role="Support"/>
     <Hero name="mercy" role="Support"/>
-    <Hero name="symmetra" role="Support" subrole="Builder" isCore="false"/>
+    <Hero name="symmetra" role="Defence" subrole="Builder"/> <!-- She is a defence hero. Deal with it. -->
     <Hero name="zenyatta" role="Support"/>
 </HeroData>
