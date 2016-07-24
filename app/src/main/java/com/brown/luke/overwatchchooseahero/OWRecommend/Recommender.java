@@ -110,7 +110,7 @@ public class Recommender {
 
             // Deboost double support
             if (hero.getCore() && hero.getRole() == Role.SUPPORT && roleCounts.get(Role.SUPPORT) == 1) {
-                hero.adjustRank(-25);
+                hero.adjustRank(-20);
             }
 
             // Don't recommend a third support
@@ -136,7 +136,7 @@ public class Recommender {
 
                 // Deboost snipers and builders
                 if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
-                    hero.adjustRank(-17);
+                    hero.adjustRank(-20);
                 }
             } else if(state == State.DEFEND) {
                 // Make sure we got 1 defence unit on defence
