@@ -265,11 +265,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void nextTutorial(final View btn) {
         final String[] tutorialMessages = getResources().getStringArray(R.array.tutorialMessages);
-        if (currentTutorialIndex == tutorialMessages.length - 1) {
+        if (currentTutorialIndex == tutorialMessages.length) {
             finishTutorial();
         } else {
             tutorialText.setText(tutorialMessages[currentTutorialIndex++]);
-            if (currentTutorialIndex == tutorialMessages.length - 1) {
+            if (currentTutorialIndex == tutorialMessages.length) {
                 nextButton.setText(getText(R.string.finish));
             }
         }
@@ -290,6 +290,7 @@ public class MainActivity extends AppCompatActivity {
         }
         currentTutorialIndex = 0;
         tutorialText.setText(getResources().getStringArray(R.array.tutorialMessages)[currentTutorialIndex]);
+        nextButton.setText(getText(R.string.next));
     }
 
     public void nop(final View view) {
