@@ -136,7 +136,7 @@ public class Recommender {
 
                 // Deboost snipers and builders
                 if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
-                    hero.adjustRank(-20);
+                    hero.adjustRank(-25);
                 }
             } else if(state == State.DEFEND) {
                 // Make sure we got 1 defence unit on defence
@@ -161,13 +161,13 @@ public class Recommender {
 
                 // Deboost snipers and builders
                 if(hero.getSubRole() == SubRole.SNIPER || hero.getSubRole() == SubRole.BUILDER) {
-                    hero.adjustRank(-20);
+                    hero.adjustRank(-25);
                 }
             }
 
             // Deboost double sniper
             if(hero.getSubRole() == SubRole.SNIPER && subRoleCounts.get(SubRole.SNIPER) > 0) {
-                hero.adjustRank(-25);
+                hero.adjustRank(-30);
             }
 
             // Deboot double tank

@@ -66,4 +66,9 @@
     <Synergy name1="ana" name2="bastion" amount="2"/>
     <Synergy name1="ana" name2="roadhog" amount="1"/>
     <Synergy name1="ana" name2="zenyatta" amount="1"/>
+
+    <Synergy name1="ana" name2="symmetra" amount="2"/>
+    <Synergy name1="ana" name2="lucio" amount="1"/>
+    <Synergy name1="ana" name2="mercy" amount="1"/>
+    <Synergy name1="ana" name2="zenyatta" amount="2"/>
 </Synergies>
